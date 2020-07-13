@@ -39,6 +39,8 @@ public class GrappleHandController : MonoBehaviour
         this.playerRb = player.GetComponent<Rigidbody>();
         this.rb = this.GetComponent<Rigidbody>();
 
+        this.player.layer = LayerMask.NameToLayer("Player");
+
         this.resetToResting();
     }
 
@@ -75,6 +77,9 @@ public class GrappleHandController : MonoBehaviour
         this.controlState = ControlState.Resting;
         this.transform.SetParent(this.player.transform);
         this.transform.localRotation = Quaternion.identity;
+        this.transform.localPosition = this.returnPoint.localPosition;
+
+        this.playerRb.isKinematic = false;
     }
 
     private void LaunchingUpdate()
@@ -93,7 +98,13 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerUpdate()
     {
+        this.playerRb.isKinematic = true;
 
+        this.player.transform.position = Vector3.MoveTowards(this.player.transform.position, this.transform.position, this.speed * Time.deltaTime);
+        if (this.player.transform.position == this.transform.position)
+        {
+            this.resetToResting();
+        }
     }
 
     void FixedUpdate()

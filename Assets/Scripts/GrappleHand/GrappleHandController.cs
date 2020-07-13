@@ -7,13 +7,20 @@ public class GrappleHandController : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private KeyCode launchKey;
+    private KeyCode launchKey = KeyCode.LeftShift;
     [SerializeField]
-    private float speed;
+    private float speed = 10;
+    [SerializeField]
+    private float maxDistance = 20;
 
     private Rigidbody rb;
     private Rigidbody playerRb;
-    
+
+    private Vector3 restingOffset;
+    private Vector3 globalRestingPosition;
+
+    private string grabbableWallTag = "GrabbableWall";
+
     private enum ControlState
     {
         Resting, Launching, Retracting, PullingPlayer
@@ -26,10 +33,13 @@ public class GrappleHandController : MonoBehaviour
         this.playerRb = player.GetComponent<Rigidbody>();
         this.rb = this.GetComponent<Rigidbody>();
         controlState = ControlState.Resting;
+        this.restingOffset = this.transform.position - this.player.transform.position;
     }
 
     void Update()
     {
+        this.globalRestingPosition = this.player.transform.position + this.restingOffset;
+
         switch(this.controlState)
         {
             case ControlState.Resting:
@@ -65,7 +75,11 @@ public class GrappleHandController : MonoBehaviour
 
     private void RetractingUpdate()
     {
-
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.globalRestingPosition, this.speed * Time.deltaTime);
+        if (this.transform.position == this.player.transform.position)
+        {
+            this.controlState = ControlState.Resting;
+        }
     }
 
     private void PullingPlayerUpdate()
@@ -101,6 +115,12 @@ public class GrappleHandController : MonoBehaviour
     {
         Vector3 offset = this.transform.position + (this.transform.forward * this.speed * Time.fixedDeltaTime);
         this.rb.MovePosition(offset);
+
+        float distanceFromPlayer = (this.transform.position - this.player.transform.position).magnitude;
+        if (distanceFromPlayer >= this.maxDistance)
+        {
+            this.controlState = ControlState.Retracting;
+        }
     }
 
     private void RetractingFixedUpdate()
@@ -111,5 +131,18 @@ public class GrappleHandController : MonoBehaviour
     private void PullingPlayerFixedUpdate()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("GrabbableWall"))
+        {
+            this.controlState = ControlState.PullingPlayer;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        this.controlState = ControlState.Retracting;
     }
 }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GrappleHandController : MonoBehaviour
 {
+    [HideInInspector]
+    public ControlState controlState;
+
     [SerializeField]
     private GameObject player;
     [SerializeField]
@@ -22,12 +25,10 @@ public class GrappleHandController : MonoBehaviour
 
     private string grabbableWallTag = "GrabbableWall";
 
-    private enum ControlState
+    public enum ControlState
     {
         Resting, Launching, Retracting, PullingPlayer
     }
-
-    private ControlState controlState;
 
     void Start()
     {
@@ -40,12 +41,24 @@ public class GrappleHandController : MonoBehaviour
         this.rb = this.GetComponent<Rigidbody>();
 
         this.player.layer = LayerMask.NameToLayer("Player");
+        //this.player.AddComponent<GrappleHandPlayerBehaviour>();
 
         this.resetToResting();
     }
 
+    public void resetToResting()
+    {
+        this.controlState = ControlState.Resting;
+        this.transform.SetParent(this.player.transform);
+        this.transform.localPosition = this.returnPoint.localPosition;
+        this.transform.localRotation = Quaternion.identity;
+
+        this.playerRb.isKinematic = false;
+    }
+
     void Update()
     {
+        Debug.Log(this.controlState);
         switch(this.controlState)
         {
             case ControlState.Resting:
@@ -72,16 +85,6 @@ public class GrappleHandController : MonoBehaviour
         }
     }
 
-    private void resetToResting()
-    {
-        this.controlState = ControlState.Resting;
-        this.transform.SetParent(this.player.transform);
-        this.transform.localRotation = Quaternion.identity;
-        this.transform.localPosition = this.returnPoint.localPosition;
-
-        this.playerRb.isKinematic = false;
-    }
-
     private void LaunchingUpdate()
     {
 
@@ -90,10 +93,10 @@ public class GrappleHandController : MonoBehaviour
     private void RetractingUpdate()
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.speed * Time.deltaTime);
-        /*if (this.transform.position == this.returnPoint.position)
+        if (this.transform.position == this.returnPoint.position)
         {
             this.resetToResting();
-        }*/
+        }
     }
 
     private void PullingPlayerUpdate()
@@ -171,7 +174,6 @@ public class GrappleHandController : MonoBehaviour
             this.transform.position = collision.GetContact(0).point;
             if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
             {
-                Debug.Log("A");
                 this.controlState = ControlState.Retracting;
             }
         }

@@ -90,10 +90,10 @@ public class GrappleHandController : MonoBehaviour
     private void RetractingUpdate()
     {
         this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.speed * Time.deltaTime);
-        if (this.transform.position == this.returnPoint.position)
+        /*if (this.transform.position == this.returnPoint.position)
         {
             this.resetToResting();
-        }
+        }*/
     }
 
     private void PullingPlayerUpdate()
@@ -163,6 +163,17 @@ public class GrappleHandController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        this.controlState = ControlState.Retracting;
+        if (collision.transform.gameObject.CompareTag("Player"))
+        {
+            this.resetToResting();
+        } else
+        {
+            this.transform.position = collision.GetContact(0).point;
+            if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
+            {
+                Debug.Log("A");
+                this.controlState = ControlState.Retracting;
+            }
+        }
     }
 }

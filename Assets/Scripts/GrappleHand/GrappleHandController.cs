@@ -7,6 +7,8 @@ public class GrappleHandController : MonoBehaviour
     [SerializeField]
     private GameObject player;
     [SerializeField]
+    private GameObject returnPointPrefab;
+    [SerializeField]
     private KeyCode launchKey = KeyCode.LeftShift;
     [SerializeField]
     private float speed = 10;
@@ -16,8 +18,7 @@ public class GrappleHandController : MonoBehaviour
     private Rigidbody rb;
     private Rigidbody playerRb;
 
-    private Vector3 restingOffset;
-    private Vector3 globalRestingPosition;
+    private Transform returnPoint;
 
     private string grabbableWallTag = "GrabbableWall";
 
@@ -30,16 +31,19 @@ public class GrappleHandController : MonoBehaviour
 
     void Start()
     {
+        GameObject returnPoint = Instantiate(this.returnPointPrefab);
+        returnPoint.transform.position = this.transform.position;
+        returnPoint.transform.SetParent(this.player.transform);
+        this.returnPoint = returnPoint.transform;
+
         this.playerRb = player.GetComponent<Rigidbody>();
         this.rb = this.GetComponent<Rigidbody>();
-        controlState = ControlState.Resting;
-        this.restingOffset = this.transform.position - this.player.transform.position;
+
+        this.resetToResting();
     }
 
     void Update()
     {
-        this.globalRestingPosition = this.player.transform.position + this.restingOffset;
-
         switch(this.controlState)
         {
             case ControlState.Resting:
@@ -59,13 +63,18 @@ public class GrappleHandController : MonoBehaviour
 
     private void RestingUpdate()
     {
-        this.transform.SetParent(this.player.transform);
-
         if (Input.GetKeyDown(this.launchKey))
         {
             this.controlState = ControlState.Launching;
-            this.player.transform.DetachChildren();
+            this.transform.parent = null;
         }
+    }
+
+    private void resetToResting()
+    {
+        this.controlState = ControlState.Resting;
+        this.transform.SetParent(this.player.transform);
+        this.transform.localRotation = Quaternion.identity;
     }
 
     private void LaunchingUpdate()
@@ -75,10 +84,10 @@ public class GrappleHandController : MonoBehaviour
 
     private void RetractingUpdate()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, this.globalRestingPosition, this.speed * Time.deltaTime);
-        if (this.transform.position == this.player.transform.position)
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.speed * Time.deltaTime);
+        if (this.transform.position == this.returnPoint.position)
         {
-            this.controlState = ControlState.Resting;
+            this.resetToResting();
         }
     }
 

@@ -121,26 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &22229854 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6860280539990057799, guid: 6d4668e533561ff44bdebcdf0297e4dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 6860280539624567402}
-  m_PrefabAsset: {fileID: 0}
---- !u!136 &22229855
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 22229854}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 0.99999994
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &102186445
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +494,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 8
   m_Depth: -1
   m_CullingMask:
@@ -650,8 +630,9 @@ GameObject:
   - component: {fileID: 1550758451}
   - component: {fileID: 1550758450}
   - component: {fileID: 1550758454}
+  - component: {fileID: 1550758455}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TestCubePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -747,6 +728,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1550758455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550758449}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf2e3d0e16f395e4ca990064f3d13541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rotateSpeed: 90
 --- !u!1 &1561851594
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +754,6 @@ GameObject:
   - component: {fileID: 1561851597}
   - component: {fileID: 1561851596}
   - component: {fileID: 1561851595}
-  - component: {fileID: 1561851599}
   - component: {fileID: 1561851600}
   - component: {fileID: 1561851601}
   m_Layer: 0
@@ -843,20 +837,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1561851599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561851594}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf2e3d0e16f395e4ca990064f3d13541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rotateSpeed: 90
 --- !u!54 &1561851600
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1043,6 +1023,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrappleHand
       objectReference: {fileID: 0}
+    - target: {fileID: 6860280539990057799, guid: 6d4668e533561ff44bdebcdf0297e4dd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: player
@@ -1050,23 +1035,8 @@ PrefabInstance:
       objectReference: {fileID: 1561851594}
     - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
-      propertyPath: speed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860280539990057817, guid: 6d4668e533561ff44bdebcdf0297e4dd,
-        type: 3}
-      propertyPath: m_IsKinematic
+      propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860280539990057817, guid: 6d4668e533561ff44bdebcdf0297e4dd,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860280539990057817, guid: 6d4668e533561ff44bdebcdf0297e4dd,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
@@ -1123,6 +1093,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6860280539990057796, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}

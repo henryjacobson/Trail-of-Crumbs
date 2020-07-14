@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4038258956919528446}
   - component: {fileID: 4038258956919528447}
-  - component: {fileID: 4518582159738182832}
   - component: {fileID: 3008492162904969941}
+  - component: {fileID: 8886508294835459813}
   m_Layer: 0
   m_Name: Real Spotlight
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4038258956919528441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05000019, y: 0.11, z: 0.029999733}
+  m_LocalPosition: {x: -0.05000019, y: -0.03, z: -0.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4038258957529729846}
@@ -45,8 +45,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6
-  m_Range: 5
+  m_Intensity: 7
+  m_Range: 12
   m_SpotAngle: 35
   m_InnerSpotAngle: 11.608944
   m_CookieSize: 10
@@ -94,19 +94,6 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!135 &4518582159738182832
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038258956919528441}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: -0.0036144257, y: -0.026144028, z: 5}
 --- !u!114 &3008492162904969941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +107,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+--- !u!136 &8886508294835459813
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4038258956919528441}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 2.3044376
+  m_Height: 5.6327357
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.059940595, z: 8.312204}
 --- !u!1 &4038258957529729842
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +133,7 @@ GameObject:
   - component: {fileID: 4038258957529729841}
   - component: {fileID: 4038258957529729840}
   - component: {fileID: 4038258957529729843}
+  - component: {fileID: 393935305}
   m_Layer: 0
   m_Name: Spotlight Cube
   m_TagString: Untagged
@@ -147,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4038258957529729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.17, y: 5, z: -8.72}
+  m_LocalPosition: {x: 6.17, y: 6, z: -8.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4038258956919528446}
@@ -214,3 +216,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &393935305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4038258957529729842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9191675fdeb4b4261896c56d59981eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPosnOne: 90
+  xPosnTwo: 25
+  player: {fileID: 0}
+  spotlight: {fileID: 4038258956919528447}

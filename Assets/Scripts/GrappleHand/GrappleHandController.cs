@@ -4,32 +4,61 @@ using UnityEngine;
 
 public class GrappleHandController : MonoBehaviour
 {
+    [HideInInspector]
+    public ControlState controlState;
+
     [SerializeField]
     private GameObject player;
     [SerializeField]
-    private KeyCode launchKey;
+    private GameObject returnPointPrefab;
     [SerializeField]
-    private float speed;
+    private KeyCode launchKey = KeyCode.LeftShift;
+    [SerializeField]
+    private float speed = 10;
+    [SerializeField]
+    private float maxDistance = 20;
 
     private Rigidbody rb;
     private Rigidbody playerRb;
-    
-    private enum ControlState
+
+    private Transform returnPoint;
+
+    private string grabbableWallTag = "GrabbableWall";
+
+    public enum ControlState
     {
         Resting, Launching, Retracting, PullingPlayer
     }
 
-    private ControlState controlState;
-
     void Start()
     {
+        GameObject returnPoint = Instantiate(this.returnPointPrefab);
+        returnPoint.transform.position = this.transform.position;
+        returnPoint.transform.SetParent(this.player.transform);
+        this.returnPoint = returnPoint.transform;
+
         this.playerRb = player.GetComponent<Rigidbody>();
         this.rb = this.GetComponent<Rigidbody>();
-        controlState = ControlState.Resting;
+
+        this.player.layer = LayerMask.NameToLayer("Player");
+        //this.player.AddComponent<GrappleHandPlayerBehaviour>();
+
+        this.resetToResting();
+    }
+
+    public void resetToResting()
+    {
+        this.controlState = ControlState.Resting;
+        this.transform.SetParent(this.player.transform);
+        this.transform.localPosition = this.returnPoint.localPosition;
+        this.transform.localRotation = Quaternion.identity;
+
+        this.playerRb.isKinematic = false;
     }
 
     void Update()
     {
+        Debug.Log(this.controlState);
         switch(this.controlState)
         {
             case ControlState.Resting:
@@ -49,12 +78,10 @@ public class GrappleHandController : MonoBehaviour
 
     private void RestingUpdate()
     {
-        this.transform.SetParent(this.player.transform);
-
         if (Input.GetKeyDown(this.launchKey))
         {
             this.controlState = ControlState.Launching;
-            this.player.transform.DetachChildren();
+            this.transform.parent = null;
         }
     }
 
@@ -65,12 +92,22 @@ public class GrappleHandController : MonoBehaviour
 
     private void RetractingUpdate()
     {
-
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.speed * Time.deltaTime);
+        if (this.transform.position == this.returnPoint.position)
+        {
+            this.resetToResting();
+        }
     }
 
     private void PullingPlayerUpdate()
     {
+        this.playerRb.isKinematic = true;
 
+        this.player.transform.position = Vector3.MoveTowards(this.player.transform.position, this.transform.position, this.speed * Time.deltaTime);
+        if (this.player.transform.position == this.transform.position)
+        {
+            this.resetToResting();
+        }
     }
 
     void FixedUpdate()
@@ -101,6 +138,12 @@ public class GrappleHandController : MonoBehaviour
     {
         Vector3 offset = this.transform.position + (this.transform.forward * this.speed * Time.fixedDeltaTime);
         this.rb.MovePosition(offset);
+
+        float distanceFromPlayer = (this.transform.position - this.player.transform.position).magnitude;
+        if (distanceFromPlayer >= this.maxDistance)
+        {
+            this.controlState = ControlState.Retracting;
+        }
     }
 
     private void RetractingFixedUpdate()
@@ -111,5 +154,28 @@ public class GrappleHandController : MonoBehaviour
     private void PullingPlayerFixedUpdate()
     {
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("GrabbableWall"))
+        {
+            this.controlState = ControlState.PullingPlayer;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.gameObject.CompareTag("Player"))
+        {
+            this.resetToResting();
+        } else
+        {
+            this.transform.position = collision.GetContact(0).point;
+            if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
+            {
+                this.controlState = ControlState.Retracting;
+            }
+        }
     }
 }

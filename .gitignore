@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/Scripts/Lights/Spotlight Behavior.cs
+Assets/Scripts/Lights/Spotlight Behavior.cs.meta

@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class SpotlightBehavior : MonoBehaviour
 {
-    //can do by rotation amount or by position to look at
-    //for now, using empty objects as markers
-    public Transform markerOne;
-    public Transform markerTwo;
-
+    // x rotation values
     public float xPosnOne = 90;
     public float xPosnTwo = 25;
 
@@ -24,6 +20,11 @@ public class SpotlightBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         posnOneRot = Quaternion.Euler(new Vector3(xPosnOne, 0, 0));
         posnTwoRot = Quaternion.Euler(new Vector3(xPosnTwo, 0, 0));
         maxRotation = posnTwoRot;

@@ -41,15 +41,4 @@ public class TestPlayerControlForGrapple : MonoBehaviour
             }
         }
     }
-
-    private void GrappleStateChanged(ControlState state)
-    {
-        if (state == ControlState.PullingPlayer)
-        {
-            this.active = false;
-        } else
-        {
-            this.active = true;
-        }
-    }
 }

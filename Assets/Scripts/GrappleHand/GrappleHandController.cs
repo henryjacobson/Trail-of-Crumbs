@@ -11,6 +11,7 @@ public class GrappleHandController : MonoBehaviour
 
     [SerializeField]
     private GameObject player;
+    private PlayerWithGrappleBehaviour playerGrappleBehaviour;
     [SerializeField]
     private GameObject returnPointPrefab;
     [SerializeField]
@@ -38,7 +39,8 @@ public class GrappleHandController : MonoBehaviour
         this.rb = this.GetComponent<Rigidbody>();
 
         this.player.layer = LayerMask.NameToLayer("Player");
-        //this.player.AddComponent<GrappleHandPlayerBehaviour>();
+        this.playerGrappleBehaviour = this.player.AddComponent<PlayerWithGrappleBehaviour>();
+        this.playerGrappleBehaviour.SetGrapple(this.gameObject);
 
         this.resetToResting();
         this.previousControlState = this.controlState;
@@ -50,13 +52,11 @@ public class GrappleHandController : MonoBehaviour
         this.transform.SetParent(this.player.transform);
         this.transform.localPosition = this.returnPoint.localPosition;
         this.transform.localRotation = Quaternion.identity;
-
-        this.playerRb.isKinematic = false;
+        this.UnlockPlayerConstraints();
     }
 
     void Update()
     {
-        Debug.Log(this.controlState);
         this.CheckForStateChange();
         switch(this.controlState)
         {
@@ -109,13 +109,10 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerUpdate()
     {
-        this.playerRb.isKinematic = true;
-
-        this.player.transform.position = Vector3.MoveTowards(this.player.transform.position, this.transform.position, this.speed * Time.deltaTime);
-        if (this.player.transform.position == this.transform.position)
+        /*if (this.player.transform.position == this.transform.position)
         {
             this.resetToResting();
-        }
+        }*/
     }
 
     void FixedUpdate()
@@ -161,7 +158,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerFixedUpdate()
     {
-
+        this.playerRb.MovePosition(Vector3.MoveTowards(this.player.transform.position, this.transform.position, this.speed * Time.deltaTime));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -169,18 +166,26 @@ public class GrappleHandController : MonoBehaviour
         if (other.CompareTag("GrabbableWall") && this.controlState != ControlState.PullingPlayer && this.controlState !=  ControlState.Resting)
         {
             this.controlState = ControlState.PullingPlayer;
+            //this.LockPlayerConstraints();
         }
+    }
+
+    private void LockPlayerConstraints()
+    {
+        this.playerRb.constraints = RigidbodyConstraints.FreezeAll;
+    }
+
+    private void UnlockPlayerConstraints()
+    {
+        this.playerRb.constraints = RigidbodyConstraints.None;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        this.transform.position = collision.GetContact(0).point;
+        if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
         {
-            this.transform.position = collision.GetContact(0).point;
-            if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
-            {
-                this.controlState = ControlState.Retracting;
-            }
+            this.controlState = ControlState.Retracting;
         }
     }
 }

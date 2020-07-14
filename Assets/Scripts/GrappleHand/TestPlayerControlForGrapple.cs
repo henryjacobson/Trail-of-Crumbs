@@ -39,6 +39,14 @@ public class TestPlayerControlForGrapple : MonoBehaviour
             {
                 this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + (this.transform.forward * -this.speed), this.speed * Time.deltaTime);
             }
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                this.transform.Rotate(this.rotateSpeed * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                this.transform.Rotate(-this.rotateSpeed * Time.deltaTime, 0, 0);
+            }
         }
     }
 }

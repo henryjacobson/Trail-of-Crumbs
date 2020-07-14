@@ -46,7 +46,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 7
-  m_Range: 8
+  m_Range: 12
   m_SpotAngle: 35
   m_InnerSpotAngle: 11.608944
   m_CookieSize: 10
@@ -117,10 +117,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.8959093
-  m_Height: 6.2893867
+  m_Radius: 2.3044376
+  m_Height: 5.6327357
   m_Direction: 2
-  m_Center: {x: 0, y: 0.049113274, z: 7.643734}
+  m_Center: {x: 0, y: 0.059940595, z: 8.312204}
 --- !u!1 &4038258957529729842
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4038258957529729842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.17, y: 5, z: -8.72}
+  m_LocalPosition: {x: 6.17, y: 6, z: -8.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4038258956919528446}
@@ -228,8 +228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9191675fdeb4b4261896c56d59981eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerOne: {fileID: 0}
-  markerTwo: {fileID: 0}
   xPosnOne: 90
   xPosnTwo: 25
   player: {fileID: 0}

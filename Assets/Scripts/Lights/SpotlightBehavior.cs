@@ -27,6 +27,9 @@ public class SpotlightBehavior : MonoBehaviour
         posnOneRot = Quaternion.Euler(new Vector3(xPosnOne, 0, 0));
         posnTwoRot = Quaternion.Euler(new Vector3(xPosnTwo, 0, 0));
         maxRotation = posnTwoRot;
+
+        //Debug.Log(Vector3.Distance(spotlight.transform.position,
+            //player.position));
     }
 
     // Update is called once per frame
@@ -56,8 +59,7 @@ public class SpotlightBehavior : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation,
             maxRotation, Time.deltaTime);
 
-        Debug.Log(Vector3.Distance(spotlight.transform.position,
-            player.position));
+        
     }
 }
 

@@ -9,15 +9,24 @@ public class SpotlightBehavior : MonoBehaviour
     public Transform markerOne;
     public Transform markerTwo;
 
+    public float xPosnOne = 90;
+    public float xPosnTwo = 25;
+
     // in case light hits player
-    public GameObject player;
+    public Transform player;
     // attached light object
     public Light spotlight;
 
+    Quaternion posnOneRot;
+    Quaternion posnTwoRot;
+    Quaternion maxRotation;
+   
     // Start is called before the first frame update
     void Start()
     {
-
+        posnOneRot = Quaternion.Euler(new Vector3(xPosnOne, 0, 0));
+        posnTwoRot = Quaternion.Euler(new Vector3(xPosnTwo, 0, 0));
+        maxRotation = posnTwoRot;
     }
 
     // Update is called once per frame
@@ -27,11 +36,28 @@ public class SpotlightBehavior : MonoBehaviour
         //transform.LookAt(markerTwo.position);
         //Vector3.Lerp(markerOne.position, markerTwo.position, Time.deltaTime));
 
-        Vector3 dir = markerTwo.position - transform.position;
-        dir.y = 0; // keep the direction strictly horizontal
-        Quaternion rot = Quaternion.LookRotation(dir);
+        /*
+         * dir.y = 0; // keep the direction strictly horizontal
+        Quaternion rotate = Quaternion.LookRotation(dir);
         // slerp to the desired rotation over time
-        transform.rotation = Quaternion.Slerp(markerOne.rotation, markerTwo.rotation, 2.0f * Time.deltaTime);
+        dir = markerTwo.position - transform.position;
+        */
+
+        if (transform.rotation == posnOneRot)
+        {
+            //Quaternion.Set(x, y, z, w);
+            maxRotation = posnTwoRot;
+        }
+        else if (transform.rotation == posnTwoRot)
+        {
+            maxRotation = posnOneRot;
+        }
+
+        transform.rotation = Quaternion.Slerp(transform.rotation,
+            maxRotation, Time.deltaTime);
+
+        Debug.Log(Vector3.Distance(spotlight.transform.position,
+            player.position));
     }
 }
 

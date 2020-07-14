@@ -139,6 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edcf424000ec925478b04d4e45af1c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPostion: {x: 0, y: 0, z: 0}
+  endPosition: {x: 0, y: 0, z: 10}
+  highAlertModifier: 1.5
+  walkSpeed: 5
 --- !u!1 &413884921
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +325,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400002, guid: 6e2bfa8498b0db840865dd4eb42ce0ad, type: 3}
     - target: {fileID: -4216859302048453862, guid: 320b1c2af77554f99a1658df4a6d3d5c,
         type: 3}
       propertyPath: m_LocalPosition.x

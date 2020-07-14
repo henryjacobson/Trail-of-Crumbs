@@ -19,21 +19,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        transform.Translate(speed*Input.GetAxis("Horizontal")*Time.deltaTime,0f,
+        speed * Input.GetAxis("Vertical")*Time.deltaTime);
     }
     
     private void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal") * 5;
-        float moveVertical = Input.GetAxis("Vertical") * 5;
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
         
-        Vector3 forceVector = rb.velocity;
+        //debug
+        //debug
         
-        forceVector.x = moveHorizontal;
-        forceVector.y = moveVertical;
-        rb.velocity = forceVector;
+        Vector3 forceVector = new Vector3(moveHorizontal, 0.0f, moveVertical);
         
-        //rb.AddForce(forceVector * speed);
+        rb.AddForce(forceVector * speed);
         
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -43,3 +43,4 @@ public class PlayerController : MonoBehaviour
         
     }
 }
+

@@ -11,28 +11,45 @@ public class TestPlayerControlForGrapple : MonoBehaviour
 
     private Rigidbody rb;
 
+    bool active;
+
     void Start()
     {
         this.rb = this.GetComponent<Rigidbody>();
+        this.active = true;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (this.active)
         {
-            this.transform.Rotate(Vector3.down, this.rotateSpeed * Time.deltaTime);
+            if (Input.GetKey(KeyCode.A))
+            {
+                this.transform.Rotate(Vector3.down, this.rotateSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                this.transform.Rotate(Vector3.up, this.rotateSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + (this.transform.forward * this.speed), this.speed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + (this.transform.forward * -this.speed), this.speed * Time.deltaTime);
+            }
         }
-        if (Input.GetKey(KeyCode.D))
+    }
+
+    private void GrappleStateChanged(ControlState state)
+    {
+        if (state == ControlState.PullingPlayer)
         {
-            this.transform.Rotate(Vector3.up, this.rotateSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.W))
+            this.active = false;
+        } else
         {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + (this.transform.forward * this.speed), this.speed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + (this.transform.forward * -this.speed), this.speed * Time.deltaTime);
+            this.active = true;
         }
     }
 }

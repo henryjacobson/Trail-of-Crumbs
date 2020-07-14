@@ -52,7 +52,6 @@ public class GrappleHandController : MonoBehaviour
         this.transform.SetParent(this.player.transform);
         this.transform.localPosition = this.returnPoint.localPosition;
         this.transform.localRotation = Quaternion.identity;
-        this.UnlockPlayerConstraints();
     }
 
     void Update()
@@ -90,6 +89,9 @@ public class GrappleHandController : MonoBehaviour
         {
             this.controlState = ControlState.Launching;
             this.transform.parent = null;
+        } else
+        {
+            this.transform.localPosition = this.returnPoint.localPosition;
         }
     }
 
@@ -166,18 +168,7 @@ public class GrappleHandController : MonoBehaviour
         if (other.CompareTag("GrabbableWall") && this.controlState != ControlState.PullingPlayer && this.controlState !=  ControlState.Resting)
         {
             this.controlState = ControlState.PullingPlayer;
-            //this.LockPlayerConstraints();
         }
-    }
-
-    private void LockPlayerConstraints()
-    {
-        this.playerRb.constraints = RigidbodyConstraints.FreezeAll;
-    }
-
-    private void UnlockPlayerConstraints()
-    {
-        this.playerRb.constraints = RigidbodyConstraints.None;
     }
 
     private void OnCollisionEnter(Collision collision)

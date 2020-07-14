@@ -44,8 +44,6 @@ public class PlayerWithGrappleBehaviour : MonoBehaviour
 
         if (state == ControlState.Resting)
         {
-            this.rb.velocity = Vector3.zero;
-            this.rb.angularVelocity = Vector3.zero;
             this.pulling = false;
         }
     }
@@ -54,6 +52,8 @@ public class PlayerWithGrappleBehaviour : MonoBehaviour
     {
         if (this.pulling)
         {
+            this.rb.velocity = Vector3.zero;
+            this.rb.angularVelocity = Vector3.zero;
             this.grappleController.resetToResting();
         }
     }

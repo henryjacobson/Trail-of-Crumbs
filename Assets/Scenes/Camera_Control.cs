@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//CITATION: used tutorial https://www.youtube.com/watch?v=Ov9ekwAGhMA
 public class Camera_Control : MonoBehaviour
 {
     public enum RotationAxis{

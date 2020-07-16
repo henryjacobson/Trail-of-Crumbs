@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//CITATION: used tutorial https://www.youtube.com/watch?v=Ov9ekwAGhMA
 public class Player_Movement : MonoBehaviour
 {
     public float speed = 6.0f;

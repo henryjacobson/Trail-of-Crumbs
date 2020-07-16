@@ -231,4 +231,3 @@ MonoBehaviour:
   xPosnOne: 90
   xPosnTwo: 25
   player: {fileID: 0}
-  spotlight: {fileID: 4038258956919528447}

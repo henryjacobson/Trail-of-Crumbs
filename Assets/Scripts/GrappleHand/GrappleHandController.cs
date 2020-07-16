@@ -56,6 +56,7 @@ public class GrappleHandController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(this.controlState);
         this.CheckForStateChange();
         switch(this.controlState)
         {
@@ -91,8 +92,14 @@ public class GrappleHandController : MonoBehaviour
             this.transform.parent = null;
         } else
         {
-            this.transform.localPosition = this.returnPoint.localPosition;
+            this.EnforceRestingPosition();
         }
+    }
+
+    private void EnforceRestingPosition()
+    {
+        this.transform.localPosition = this.returnPoint.localPosition;
+        this.transform.localRotation = Quaternion.identity;
     }
 
     private void LaunchingUpdate()

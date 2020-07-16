@@ -13,6 +13,8 @@ public class GrappleHandController : MonoBehaviour
     private GameObject player;
     private PlayerWithGrappleBehaviour playerGrappleBehaviour;
     [SerializeField]
+    private GameObject camera;
+    [SerializeField]
     private GameObject returnPointPrefab;
     [SerializeField]
     private KeyCode launchKey = KeyCode.LeftShift;
@@ -50,8 +52,7 @@ public class GrappleHandController : MonoBehaviour
     {
         this.controlState = ControlState.Resting;
         this.transform.SetParent(this.player.transform);
-        this.transform.localPosition = this.returnPoint.localPosition;
-        this.transform.localRotation = Quaternion.identity;
+        this.EnforceRestingPosition();
     }
 
     void Update()
@@ -99,7 +100,14 @@ public class GrappleHandController : MonoBehaviour
     private void EnforceRestingPosition()
     {
         this.transform.localPosition = this.returnPoint.localPosition;
-        this.transform.localRotation = Quaternion.identity;
+
+        if (this.camera == null)
+        {
+            this.transform.localRotation = Quaternion.identity;
+        } else
+        {
+            this.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(this.camera.transform.eulerAngles.x, Vector3.right);
+        }
     }
 
     private void LaunchingUpdate()

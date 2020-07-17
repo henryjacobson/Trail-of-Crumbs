@@ -8,7 +8,7 @@ public class CellPrimeBehavior : MonoBehaviour
     public float speed = 6f;
     Transform player;
     bool following;
-    float height;
+    float playerHeightOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +21,13 @@ public class CellPrimeBehavior : MonoBehaviour
     {
         if(following)
         {
-            if(Vector3.Distance(transform.position, player.position) > followDistance)
+            var self2d = new Vector2(transform.position.x, transform.position.z);
+            var player2d = new Vector2(player.position.x, player.position.z);
+            if (Vector2.Distance(self2d, player2d) > followDistance)
             {
-                var target = player.position;
-                target.y = height;
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+                var offset = (self2d - player2d).normalized * followDistance;
+                var target = player.position + new Vector3(offset.x, playerHeightOffset, offset.y);
+                transform.position = target;
             }
         }
         if (Mathf.Abs(transform.position.x) > 60 || Mathf.Abs(transform.position.z) > 60)
@@ -38,9 +40,8 @@ public class CellPrimeBehavior : MonoBehaviour
     {
         if (other.gameObject.transform.Equals(player))
         {
-            Debug.Log("Collision Enter");
             following = true;
-            height = transform.position.y;
+            playerHeightOffset = transform.position.y - player.position.y;
         }
     }
 }

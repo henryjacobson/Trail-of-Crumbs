@@ -229,7 +229,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6979306906135590102}
   - component: {fileID: 106555006131016025}
-  - component: {fileID: 1355522546679155928}
+  - component: {fileID: 3480765892000070698}
   m_Layer: 0
   m_Name: Flashlight Spot
   m_TagString: Untagged
@@ -312,17 +312,15 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!136 &1355522546679155928
-CapsuleCollider:
+--- !u!114 &3480765892000070698
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8595142017860699894}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.43638945
-  m_Height: 3.6437774
-  m_Direction: 2
-  m_Center: {x: 0, y: 0.017478466, z: 3.0491955}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af90d87b90be5fb4e82a607bc34fb660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

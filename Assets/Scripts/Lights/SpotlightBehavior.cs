@@ -42,18 +42,8 @@ public class SpotlightBehavior : MonoBehaviour
         float delta = 0.01f;
         if (!LevelManager.isGameOver)
         {
-            if (VectorEquals(currentOrientation, orientation1, delta))
-            {
-                //Quaternion.Set(x, y, z, w);
-                targetOrientation = orientation2;
-            }
-            else if (VectorEquals(currentOrientation, orientation2, delta))
-            {
-                targetOrientation = orientation1;
-            }
-
-            currentOrientation = Vector3.RotateTowards(currentOrientation, targetOrientation, Time.deltaTime * rotateSpeed, 0);
-            //currentOrientation = Vector3.Lerp(currentOrientation, targetOrientation, Time.deltaTime * rotateSpeed);
+            float t = Time.time;
+            currentOrientation = Vector3.Lerp(orientation1, orientation2, (Mathf.Sin(t / rotateSpeed) + 1) / 2);
 
             transform.rotation = Quaternion.LookRotation(currentOrientation);
         } else

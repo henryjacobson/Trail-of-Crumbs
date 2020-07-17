@@ -30,6 +30,9 @@ public class GrappleHandController : MonoBehaviour
 
     private string grabbableWallTag = "GrabbableWall";
 
+    private string grabbableItemTag = "GrabbableItem";
+    private bool isHoldingItem;
+
     void Start()
     {
         GameObject returnPoint = Instantiate(this.returnPointPrefab);
@@ -60,6 +63,7 @@ public class GrappleHandController : MonoBehaviour
         if (!LevelManager.isGameOver)
         {
             this.CheckForStateChange();
+            this.isHoldingItem = this.IsHoldingItem();
             switch (this.controlState)
             {
                 case ControlState.Resting:
@@ -85,6 +89,18 @@ public class GrappleHandController : MonoBehaviour
             this.player.SendMessage("GrappleStateChanged", this.controlState);
         }
         this.previousControlState = this.controlState;
+    }
+
+    private bool IsHoldingItem()
+    {
+        foreach(Transform child in this.transform)
+        {
+            if (child.CompareTag(this.grabbableItemTag))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void RestingUpdate()
@@ -124,10 +140,10 @@ public class GrappleHandController : MonoBehaviour
         foreach(Collider c in colliders)
         {
             Debug.Log(c.name);
-            if (c.CompareTag("GrabbableWall"))
+            if (this.IsObjectGrabbable(c.gameObject) && this.ObjectNotThisOrChild(c.gameObject))
             {
                 grabTriggerFound = true;
-            } else if (c.name != this.name)
+            } else if (this.ObjectNotThisOrChild(c.gameObject))
             {
                 obstructionFound = true;
             }
@@ -136,6 +152,24 @@ public class GrappleHandController : MonoBehaviour
         {
             this.controlState = ControlState.Retracting;
         }
+    }
+
+    private bool IsObjectGrabbable(GameObject g)
+    {
+        return g.CompareTag(this.grabbableWallTag) || g.CompareTag(this.grabbableItemTag);
+    }
+
+    private bool ObjectNotThisOrChild(GameObject g)
+    {
+        foreach (Transform child in this.transform)
+        {
+            if (g == child.gameObject)
+            {
+                return false;
+            }
+        }
+
+        return g != this.gameObject;
     }
 
     private void RetractingUpdate()
@@ -214,10 +248,26 @@ public class GrappleHandController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("GrabbableWall") && this.controlState != ControlState.PullingPlayer && this.controlState !=  ControlState.Resting)
+        if (!this.isHoldingItem && this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
         {
-            this.controlState = ControlState.PullingPlayer;
+            if (other.CompareTag(this.grabbableWallTag))
+            {
+                this.controlState = ControlState.PullingPlayer;
+            }
+
+            if (other.CompareTag(this.grabbableItemTag))
+            {
+                this.PickUpObject(other.gameObject);
+                this.controlState = ControlState.Retracting;
+            }
         }
+    }
+
+    private void PickUpObject(GameObject g)
+    {
+        g.transform.SetParent(this.transform);
+        g.transform.localRotation = Quaternion.identity;
+        g.transform.localPosition = Vector3.zero;
     }
 
     /*

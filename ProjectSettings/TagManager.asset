@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - GrabbableWall
+  - GrabbableItem
   layers:
   - Default
   - TransparentFX

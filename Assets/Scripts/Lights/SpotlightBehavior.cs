@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SpotlightBehavior : MonoBehaviour
 {
-    // x rotation values
     public Vector3 rotation1;
     public Vector3 rotation2;
+
+    public float rotateSpeed = .2f;
 
     // in case light hits player
     public Transform player;
@@ -26,9 +27,6 @@ public class SpotlightBehavior : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        float yAngle = this.transform.localEulerAngles.y;
-        float zAngle = this.transform.localEulerAngles.z;
-
         transform.localEulerAngles = rotation1;
         orientation1 = transform.forward;
         transform.localEulerAngles = rotation2;
@@ -41,7 +39,7 @@ public class SpotlightBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float delta = 1f;
+        float delta = 0.01f;
         if (!LevelManager.isGameOver)
         {
             if (VectorEquals(currentOrientation, orientation1, delta))
@@ -54,7 +52,7 @@ public class SpotlightBehavior : MonoBehaviour
                 targetOrientation = orientation1;
             }
 
-            currentOrientation = Vector3.RotateTowards(currentOrientation, targetOrientation, Time.deltaTime, 0);
+            currentOrientation = Vector3.RotateTowards(currentOrientation, targetOrientation, Time.deltaTime * rotateSpeed, 0);
 
             transform.rotation = Quaternion.LookRotation(currentOrientation);
         } else
@@ -69,14 +67,6 @@ public class SpotlightBehavior : MonoBehaviour
         bool yEquals = Mathf.Abs(v1.y - v2.y) < delta;
         bool zEquals = Mathf.Abs(v1.z - v2.z) < delta;
         return xEquals && yEquals && zEquals;
-    }
-
-    private void Print(object message)
-    {
-        if (name == "Spotlight Cube")
-        {
-            Debug.Log(message);
-        }
     }
 
     /*

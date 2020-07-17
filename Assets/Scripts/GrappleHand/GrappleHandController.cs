@@ -57,22 +57,24 @@ public class GrappleHandController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(this.controlState);
-        this.CheckForStateChange();
-        switch(this.controlState)
+        if (!LevelManager.isGameOver)
         {
-            case ControlState.Resting:
-                this.RestingUpdate();
-                break;
-            case ControlState.Launching:
-                this.LaunchingUpdate();
-                break;
-            case ControlState.Retracting:
-                this.RetractingUpdate();
-                break;
-            case ControlState.PullingPlayer:
-                this.PullingPlayerUpdate();
-                break;
+            this.CheckForStateChange();
+            switch (this.controlState)
+            {
+                case ControlState.Resting:
+                    this.RestingUpdate();
+                    break;
+                case ControlState.Launching:
+                    this.LaunchingUpdate();
+                    break;
+                case ControlState.Retracting:
+                    this.RetractingUpdate();
+                    break;
+                case ControlState.PullingPlayer:
+                    this.PullingPlayerUpdate();
+                    break;
+            }
         }
     }
 
@@ -114,7 +116,8 @@ public class GrappleHandController : MonoBehaviour
     {
         Vector3 pointA = this.transform.position + this.transform.forward * 0.25f;
         Vector3 pointB = this.transform.position - this.transform.forward * 0.25f;
-        Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f);
+        LayerMask mask = ~LayerMask.GetMask("Light");
+        Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f, mask);
 
         bool grabTriggerFound = false;
         bool obstructionFound = false;
@@ -162,20 +165,23 @@ public class GrappleHandController : MonoBehaviour
 
     void FixedUpdate()
     {
-        switch (this.controlState)
+        if (!LevelManager.isGameOver)
         {
-            case ControlState.Resting:
-                this.RestingFixedUpdate();
-                break;
-            case ControlState.Launching:
-                this.LaunchingFixedUpdate();
-                break;
-            case ControlState.Retracting:
-                this.RetractingFixedUpdate();
-                break;
-            case ControlState.PullingPlayer:
-                this.PullingPlayerFixedUpdate();
-                break;
+            switch (this.controlState)
+            {
+                case ControlState.Resting:
+                    this.RestingFixedUpdate();
+                    break;
+                case ControlState.Launching:
+                    this.LaunchingFixedUpdate();
+                    break;
+                case ControlState.Retracting:
+                    this.RetractingFixedUpdate();
+                    break;
+                case ControlState.PullingPlayer:
+                    this.PullingPlayerFixedUpdate();
+                    break;
+            }
         }
     }
 

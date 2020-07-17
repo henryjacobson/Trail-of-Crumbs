@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7105552727799542657}
   - component: {fileID: 7105552727799542686}
   - component: {fileID: 7105552727799542659}
-  - component: {fileID: 7105552727799542687}
+  - component: {fileID: 1701801412738850157}
   - component: {fileID: 7105552727799542658}
   m_Layer: 0
   m_Name: Player
@@ -101,7 +101,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7105552727799542687
+--- !u!114 &1701801412738850157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,8 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 1
-  minimumVert: -45
-  maximumVert: 45
+  minimumVert: -75
+  maximumVert: 75
   sensHorizontal: 10
   sensVertical: 10
   _rotationX: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 2
-  minimumVert: -45
-  maximumVert: 45
+  minimumVert: -75
+  maximumVert: 75
   sensHorizontal: 10
   sensVertical: 10
   _rotationX: 0

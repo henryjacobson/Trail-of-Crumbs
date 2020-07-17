@@ -172,7 +172,7 @@ public class GrappleHandController : MonoBehaviour
             }
         }
 
-        return g != this.gameObject;
+        return g != this.gameObject && g != this.player;
     }
 
     private void RetractingUpdate()

@@ -5,18 +5,19 @@ using UnityEngine;
 public class SpotlightBehavior : MonoBehaviour
 {
     // x rotation values
-    public Vector3 orientation1;
-    public Vector3 orientation2;
+    public Vector3 rotation1;
+    public Vector3 rotation2;
 
     // in case light hits player
     public Transform player;
     // attached light object
     //public Light spotlight;
 
-    Quaternion posnOneRot;
-    Quaternion posnTwoRot;
-    Quaternion maxRotation;
-   
+    private Vector3 orientation1;
+    private Vector3 orientation2;
+    private Vector3 currentOrientation;
+    private Vector3 targetOrientation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +29,13 @@ public class SpotlightBehavior : MonoBehaviour
         float yAngle = this.transform.localEulerAngles.y;
         float zAngle = this.transform.localEulerAngles.z;
 
-        posnOneRot = Quaternion.LookRotation(orientation1);
-        Debug.Log(posnOneRot.eulerAngles);
-        posnTwoRot = Quaternion.LookRotation(orientation2);
-        maxRotation = posnTwoRot;
+        transform.localEulerAngles = rotation1;
+        orientation1 = transform.forward;
+        transform.localEulerAngles = rotation2;
+        orientation2 = transform.forward;
+
+        currentOrientation = orientation1;
+        targetOrientation = orientation2;
     }
 
     // Update is called once per frame
@@ -40,31 +44,39 @@ public class SpotlightBehavior : MonoBehaviour
         float delta = 1f;
         if (!LevelManager.isGameOver)
         {
-            if (RotationEquals(transform.rotation, posnOneRot, delta))
+            if (VectorEquals(currentOrientation, orientation1, delta))
             {
                 //Quaternion.Set(x, y, z, w);
-                maxRotation = posnTwoRot;
+                targetOrientation = orientation2;
             }
-            else if (RotationEquals(transform.rotation, posnTwoRot, delta))
+            else if (VectorEquals(currentOrientation, orientation2, delta))
             {
-                maxRotation = posnOneRot;
+                targetOrientation = orientation1;
             }
 
-            transform.rotation = Quaternion.Slerp(transform.rotation,
-                maxRotation, Time.deltaTime);
+            currentOrientation = Vector3.RotateTowards(currentOrientation, targetOrientation, Time.deltaTime, 0);
+
+            transform.rotation = Quaternion.LookRotation(currentOrientation);
         } else
         {
             transform.LookAt(this.player);
         }
     }
 
-    private bool RotationEquals(Quaternion q1, Quaternion q2, float delta)
+    private bool VectorEquals(Vector3 v1, Vector3 v2, float delta)
     {
-        bool xEquals = Mathf.Abs(q1.x - q2.x) < delta;
-        bool yEquals = Mathf.Abs(q1.y - q2.y) < delta;
-        bool zEquals = Mathf.Abs(q1.z - q2.z) < delta;
-        bool wEquals = Mathf.Abs(q1.w - q2.w) < delta;
-        return xEquals && yEquals && zEquals && wEquals;
+        bool xEquals = Mathf.Abs(v1.x - v2.x) < delta;
+        bool yEquals = Mathf.Abs(v1.y - v2.y) < delta;
+        bool zEquals = Mathf.Abs(v1.z - v2.z) < delta;
+        return xEquals && yEquals && zEquals;
+    }
+
+    private void Print(object message)
+    {
+        if (name == "Spotlight Cube")
+        {
+            Debug.Log(message);
+        }
     }
 
     /*

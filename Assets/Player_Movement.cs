@@ -21,7 +21,7 @@ public class Player_Movement : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        if (controlsActive)
+        if (controlsActive && !LevelManager.isGameOver)
         {
             float deltaX = Input.GetAxis("Horizontal") * speed;
             float deltaZ = Input.GetAxis("Vertical") * speed;

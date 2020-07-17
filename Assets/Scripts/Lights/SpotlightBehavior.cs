@@ -33,18 +33,24 @@ public class SpotlightBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.rotation == posnOneRot)
+        if (!LevelManager.isGameOver)
         {
-            //Quaternion.Set(x, y, z, w);
-            maxRotation = posnTwoRot;
-        }
-        else if (transform.rotation == posnTwoRot)
-        {
-            maxRotation = posnOneRot;
-        }
+            if (transform.rotation == posnOneRot)
+            {
+                //Quaternion.Set(x, y, z, w);
+                maxRotation = posnTwoRot;
+            }
+            else if (transform.rotation == posnTwoRot)
+            {
+                maxRotation = posnOneRot;
+            }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation,
-            maxRotation, Time.deltaTime);   
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                maxRotation, Time.deltaTime);
+        } else
+        {
+            transform.LookAt(this.player);
+        }
     }
 }
 

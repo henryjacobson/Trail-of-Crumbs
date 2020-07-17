@@ -5076,6 +5076,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestKey
       objectReference: {fileID: 0}
+    - target: {fileID: 6553760446457021535, guid: 53ee278380604524d800ba4f3bb54006,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78d1722331c0b8348a05ea53e8963e24, type: 2}
     - target: {fileID: 6553760446457021600, guid: 53ee278380604524d800ba4f3bb54006,
         type: 3}
       propertyPath: lockedDoor

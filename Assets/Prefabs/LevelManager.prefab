@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevel: 
-  gameOverText: {fileID: 0}
+  gameOverText: {fileID: 7638253298374806328}
 --- !u!1 &7638253298150012181
 GameObject:
   m_ObjectHideFlags: 0

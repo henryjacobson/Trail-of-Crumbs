@@ -26,6 +26,8 @@ public class PlayerDetection : MonoBehaviour
         if (other.gameObject.CompareTag(player.tag))
         {
             Debug.Log("Player has been detected by " + gameObject.name);
+
+            FindObjectOfType<LevelManager>().LevelLost();
         }
     }
 }

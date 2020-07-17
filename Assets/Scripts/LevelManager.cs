@@ -1,18 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static bool isGameOver;
+
     void Start()
+    {
+        isGameOver = false;
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LevelLost()
     {
-        
+        Debug.Log("Level Lost");
+
+        isGameOver = true;
+
+        Invoke("LoadThisLevel", 2);
+    }
+
+    private void LoadThisLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

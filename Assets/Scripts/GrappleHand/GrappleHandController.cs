@@ -133,7 +133,7 @@ public class GrappleHandController : MonoBehaviour
             this.playerCC.Move(offset);
         } else
         {
-            this.controlState = ControlState.Resting;
+            this.resetToResting();
         }
     }
 

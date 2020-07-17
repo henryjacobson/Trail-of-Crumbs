@@ -345,6 +345,11 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 2131140661}
+    - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
+        type: 3}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -25,8 +25,11 @@ public class SpotlightBehavior : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        posnOneRot = Quaternion.Euler(new Vector3(xPosnOne, 0, 0));
-        posnTwoRot = Quaternion.Euler(new Vector3(xPosnTwo, 0, 0));
+        float yAngle = this.transform.localEulerAngles.y;
+        float zAngle = this.transform.localEulerAngles.z;
+
+        posnOneRot = Quaternion.Euler(new Vector3(xPosnOne, yAngle, zAngle));
+        posnTwoRot = Quaternion.Euler(new Vector3(xPosnTwo, yAngle, zAngle));
         maxRotation = posnTwoRot;
     }
 

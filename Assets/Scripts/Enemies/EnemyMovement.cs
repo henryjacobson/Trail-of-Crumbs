@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        height = transform.position.y;
         highAlert = false;
         towardsEnd = true;
         if (path[0] == null)
@@ -33,7 +34,6 @@ public class EnemyMovement : MonoBehaviour
         {
             vecPath.Add(t.position);
         }
-        height = vecPath[0].y;
         towards = 1;
     }
 

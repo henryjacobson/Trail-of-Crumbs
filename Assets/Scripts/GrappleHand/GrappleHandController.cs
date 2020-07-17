@@ -185,7 +185,7 @@ public class GrappleHandController : MonoBehaviour
     private void PullingPlayerUpdate()
     {
         Vector3 toHook = this.transform.position - this.player.transform.position;
-        if (toHook.magnitude > 1)
+        if (toHook.magnitude > 1.5f)
         {
             Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
             this.playerCC.Move(offset);

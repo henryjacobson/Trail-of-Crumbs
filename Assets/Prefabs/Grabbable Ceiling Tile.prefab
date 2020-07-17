@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 5098634325390076141}
   - component: {fileID: 5098634325390076140}
   m_Layer: 0
-  m_Name: Grabbable Ceiling Piece
+  m_Name: Grabbable Ceiling Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 0fa0b0b13c80d4905987f3c824fb5d65, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

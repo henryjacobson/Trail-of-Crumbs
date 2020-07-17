@@ -53,6 +53,7 @@ public class SpotlightBehavior : MonoBehaviour
             }
 
             currentOrientation = Vector3.RotateTowards(currentOrientation, targetOrientation, Time.deltaTime * rotateSpeed, 0);
+            //currentOrientation = Vector3.Lerp(currentOrientation, targetOrientation, Time.deltaTime * rotateSpeed);
 
             transform.rotation = Quaternion.LookRotation(currentOrientation);
         } else

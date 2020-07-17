@@ -21,6 +21,11 @@ public class Camera_Control : MonoBehaviour
     
     public float _rotationX = 0;
 
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     // Update is called once per frame
     void Update() {
         if(axes == RotationAxis.MouseX) {

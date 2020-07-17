@@ -13,6 +13,8 @@ public class GrappleHandController : MonoBehaviour
     private GameObject player;
     private PlayerWithGrappleBehaviour playerGrappleBehaviour;
     [SerializeField]
+    private GameObject camera;
+    [SerializeField]
     private GameObject returnPointPrefab;
     [SerializeField]
     private KeyCode launchKey = KeyCode.LeftShift;
@@ -22,7 +24,7 @@ public class GrappleHandController : MonoBehaviour
     private float maxDistance = 20;
 
     private Rigidbody rb;
-    private Rigidbody playerRb;
+    private CharacterController playerCC;
 
     private Transform returnPoint;
 
@@ -35,7 +37,7 @@ public class GrappleHandController : MonoBehaviour
         returnPoint.transform.SetParent(this.player.transform);
         this.returnPoint = returnPoint.transform;
 
-        this.playerRb = player.GetComponent<Rigidbody>();
+        this.playerCC = player.GetComponent<CharacterController>();
         this.rb = this.GetComponent<Rigidbody>();
 
         this.player.layer = LayerMask.NameToLayer("Player");
@@ -50,8 +52,7 @@ public class GrappleHandController : MonoBehaviour
     {
         this.controlState = ControlState.Resting;
         this.transform.SetParent(this.player.transform);
-        this.transform.localPosition = this.returnPoint.localPosition;
-        this.transform.localRotation = Quaternion.identity;
+        this.EnforceRestingPosition();
     }
 
     void Update()
@@ -99,7 +100,14 @@ public class GrappleHandController : MonoBehaviour
     private void EnforceRestingPosition()
     {
         this.transform.localPosition = this.returnPoint.localPosition;
-        this.transform.localRotation = Quaternion.identity;
+
+        if (this.camera == null)
+        {
+            this.transform.localRotation = Quaternion.identity;
+        } else
+        {
+            this.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(this.camera.transform.eulerAngles.x, Vector3.right);
+        }
     }
 
     private void LaunchingUpdate()
@@ -118,10 +126,15 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerUpdate()
     {
-        /*if (this.player.transform.position == this.transform.position)
+        Vector3 toHook = this.transform.position - this.player.transform.position;
+        if (toHook.magnitude > 1)
+        {
+            Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
+            this.playerCC.Move(offset);
+        } else
         {
             this.resetToResting();
-        }*/
+        }
     }
 
     void FixedUpdate()
@@ -167,7 +180,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerFixedUpdate()
     {
-        this.playerRb.MovePosition(Vector3.MoveTowards(this.player.transform.position, this.transform.position, this.speed * Time.deltaTime));
+
     }
 
     private void OnTriggerEnter(Collider other)

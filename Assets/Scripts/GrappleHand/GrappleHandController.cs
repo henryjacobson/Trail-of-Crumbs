@@ -139,7 +139,6 @@ public class GrappleHandController : MonoBehaviour
         bool obstructionFound = false;
         foreach(Collider c in colliders)
         {
-            Debug.Log(c.name);
             if (this.IsObjectGrabbable(c.gameObject) && this.ObjectNotThisOrChild(c.gameObject))
             {
                 grabTriggerFound = true;

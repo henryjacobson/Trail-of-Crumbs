@@ -31,7 +31,7 @@ public class GrappleHandController : MonoBehaviour
     private string grabbableWallTag = "GrabbableWall";
 
     private string grabbableItemTag = "GrabbableItem";
-    private bool isHoldingItem;
+    private List<Transform> items;
 
     void Start()
     {
@@ -49,6 +49,8 @@ public class GrappleHandController : MonoBehaviour
 
         this.resetToResting();
         this.previousControlState = this.controlState;
+
+        this.items = new List<Transform>();
     }
 
     public void resetToResting()
@@ -63,7 +65,6 @@ public class GrappleHandController : MonoBehaviour
         if (!LevelManager.isGameOver)
         {
             this.CheckForStateChange();
-            this.isHoldingItem = this.IsHoldingItem();
             switch (this.controlState)
             {
                 case ControlState.Resting:
@@ -91,20 +92,21 @@ public class GrappleHandController : MonoBehaviour
         this.previousControlState = this.controlState;
     }
 
-    private bool IsHoldingItem()
+    private void UpdateItemList()
     {
+        this.items.Clear();
         foreach(Transform child in this.transform)
         {
             if (child.CompareTag(this.grabbableItemTag))
             {
-                return true;
+                this.items.Add(child);
             }
         }
-        return false;
     }
 
     private void RestingUpdate()
     {
+        this.UpdateItemList();
         if (Input.GetKeyDown(this.launchKey))
         {
             this.controlState = ControlState.Launching;
@@ -247,7 +249,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!this.isHoldingItem && this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
+        if (this.items.Count == 0 && this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
         {
             if (other.CompareTag(this.grabbableWallTag))
             {

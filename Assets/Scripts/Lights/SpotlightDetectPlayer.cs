@@ -8,6 +8,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
     private Light light;
 
     private Transform player;
+    private Transform grappleHand;
 
     void Start()
     {
@@ -15,6 +16,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
         this.light.type = LightType.Spot;
 
         this.player = GameObject.FindGameObjectWithTag("Player").transform;
+        this.grappleHand = GameObject.FindGameObjectWithTag("GrappleHand").transform;
     }
 
     void Update()
@@ -22,6 +24,14 @@ public class SpotlightDetectPlayer : MonoBehaviour
         if (this.DetectPlayer())
         {
             FindObjectOfType<LevelManager>().LevelLost();
+        }
+        if (this.DetectGrappleHand())
+        {
+            var enemies = FindObjectsOfType<EnemyMovement>();
+            foreach (EnemyMovement enemy in enemies)
+            {
+                enemy.Alert(grappleHand);
+            }
         }
     }
 
@@ -44,6 +54,36 @@ public class SpotlightDetectPlayer : MonoBehaviour
             {
                 return true;
             } else
+            {
+                return false;
+            }
+        }
+    }
+
+    private bool DetectGrappleHand()
+    {
+        Vector3 toObject = (this.grappleHand.position - this.transform.position).normalized;
+
+        float angleToObject = Mathf.Rad2Deg * Mathf.Acos(Vector3.Dot(toObject, this.transform.forward));
+
+        if (angleToObject > this.light.spotAngle / 2)
+        {
+            return false;
+        }
+        else
+        {
+            Debug.Log("look");
+            RaycastHit hit = this.castToPlayer(toObject);
+            if (hit.collider == null)
+            {
+                return false;
+            }
+            else if (hit.collider.CompareTag("GrappleHand"))
+            {
+                Debug.Log("Seen");
+                return true;
+            }
+            else
             {
                 return false;
             }

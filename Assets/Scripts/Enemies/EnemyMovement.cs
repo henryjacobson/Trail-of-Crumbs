@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     int towards; // whihc target it's currently walking towards
     bool towardsEnd;
     bool alerted;
-    Vector3 alertTarget; // target when alerted
+    Transform alertTarget; // target when alerted
     float alertTime;
 
     // Start is called before the first frame update
@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
     {
         var speed = highAlert ? walkSpeed * highAlertModifier : walkSpeed;
         speed = alerted ? speed / alertedSlowDown : speed;
-        var destination = alerted ? alertTarget : vecPath[towards];
+        var destination = alerted ? alertTarget.position : vecPath[towards];
         destination.y = height;
         transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         transform.LookAt(destination);
@@ -63,9 +63,9 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void Alert(GameObject target)
+    public void Alert(Transform target)
     {
-        alertTarget = target.transform.position;
+        alertTarget = target.transform;
         alerted = true;
         alertTime = alertDuration;
     }

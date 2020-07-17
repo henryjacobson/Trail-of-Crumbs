@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4038258956919528447}
   - component: {fileID: 3008492162904969941}
   - component: {fileID: 8886508294835459813}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Real Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

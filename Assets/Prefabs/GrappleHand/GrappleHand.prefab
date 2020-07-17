@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlState: 0
   player: {fileID: 0}
+  camera: {fileID: 0}
   returnPointPrefab: {fileID: 7650263600005131288, guid: ab12ac677e6192b4b8a70d2a5307ce09,
     type: 3}
   launchKey: 304
@@ -125,7 +126,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6860280539990057799}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 0.99999994

@@ -112,7 +112,27 @@ public class GrappleHandController : MonoBehaviour
 
     private void LaunchingUpdate()
     {
+        Vector3 pointA = this.transform.position + this.transform.forward * 0.25f;
+        Vector3 pointB = this.transform.position - this.transform.forward * 0.25f;
+        Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f);
 
+        bool grabTriggerFound = false;
+        bool obstructionFound = false;
+        foreach(Collider c in colliders)
+        {
+            Debug.Log(c.name);
+            if (c.CompareTag("GrabbableWall"))
+            {
+                grabTriggerFound = true;
+            } else if (c.name != this.name)
+            {
+                obstructionFound = true;
+            }
+        }
+        if (!grabTriggerFound && obstructionFound)
+        {
+            this.controlState = ControlState.Retracting;
+        }
     }
 
     private void RetractingUpdate()
@@ -194,6 +214,7 @@ public class GrappleHandController : MonoBehaviour
         }
     }
 
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         this.transform.position = collision.GetContact(0).point;
@@ -202,6 +223,7 @@ public class GrappleHandController : MonoBehaviour
             this.controlState = ControlState.Retracting;
         }
     }
+    */
 }
 
 public enum ControlState

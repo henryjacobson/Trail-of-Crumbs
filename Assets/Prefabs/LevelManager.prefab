@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae21b829f0a16d4281c1e7f3d1a2fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  caughtText: {fileID: 7638253298374806328}
+  nextLevel: 
+  gameOverText: {fileID: 0}
 --- !u!1 &7638253298150012181
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ GameObject:
   - component: {fileID: 7638253298374806331}
   - component: {fileID: 7638253298374806328}
   m_Layer: 5
-  m_Name: GotCaughtText
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

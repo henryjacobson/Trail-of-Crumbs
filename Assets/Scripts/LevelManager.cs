@@ -9,7 +9,9 @@ public class LevelManager : MonoBehaviour
     public static bool isGameOver;
 
     [SerializeField]
-    private Text caughtText;
+    private string nextLevel;
+    [SerializeField]
+    private Text gameOverText;
 
     void Start()
     {
@@ -23,20 +25,37 @@ public class LevelManager : MonoBehaviour
 
     public void LevelLost()
     {
-        this.SetCaughtText("YOU GOT CAUGHT");
+        this.SetGameOverText("YOU GOT CAUGHT");
 
         isGameOver = true;
 
         Invoke("LoadThisLevel", 2);
     }
 
-    private void SetCaughtText(string text)
+    public void LevelWon()
     {
-        this.caughtText.text = text;
+        this.SetGameOverText("OBJECTIVE COMPLETE");
+
+        isGameOver = true;
+
+        Invoke("LoadNextLevel", 2);
+    }
+
+    private void SetGameOverText(string text)
+    {
+        this.gameOverText.text = text;
     }
 
     private void LoadThisLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void LoadNextLevel()
+    {
+        if (this.nextLevel != "")
+        {
+            SceneManager.LoadScene(this.nextLevel);
+        }
     }
 }

@@ -43,7 +43,7 @@ public class SpotlightBehavior : MonoBehaviour
         if (!LevelManager.isGameOver)
         {
             float t = Time.time;
-            currentOrientation = Vector3.Lerp(orientation1, orientation2, (Mathf.Sin(t / rotateSpeed) + 1) / 2);
+            currentOrientation = Vector3.Lerp(orientation1, orientation2, (Mathf.Sin(t * rotateSpeed) + 1) / 2);
 
             transform.rotation = Quaternion.LookRotation(currentOrientation);
         } else

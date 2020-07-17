@@ -989,6 +989,10 @@ PrefabInstance:
       propertyPath: rotation2.y
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 393935305, guid: e022f2a57a8724b0b9aa2350a14adc24, type: 3}
+      propertyPath: rotateSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4038258956919528447, guid: e022f2a57a8724b0b9aa2350a14adc24,
         type: 3}
       propertyPath: m_Range
@@ -2763,7 +2767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 393935305, guid: e022f2a57a8724b0b9aa2350a14adc24, type: 3}
       propertyPath: rotateSpeed
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4038258956919528447, guid: e022f2a57a8724b0b9aa2350a14adc24,
         type: 3}

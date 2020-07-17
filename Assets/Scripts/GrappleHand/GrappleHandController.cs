@@ -24,7 +24,7 @@ public class GrappleHandController : MonoBehaviour
     private float maxDistance = 20;
 
     private Rigidbody rb;
-    private Rigidbody playerRb;
+    private CharacterController playerCC;
 
     private Transform returnPoint;
 
@@ -37,7 +37,7 @@ public class GrappleHandController : MonoBehaviour
         returnPoint.transform.SetParent(this.player.transform);
         this.returnPoint = returnPoint.transform;
 
-        this.playerRb = player.GetComponent<Rigidbody>();
+        this.playerCC = player.GetComponent<CharacterController>();
         this.rb = this.GetComponent<Rigidbody>();
 
         this.player.layer = LayerMask.NameToLayer("Player");
@@ -126,10 +126,15 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerUpdate()
     {
-        /*if (this.player.transform.position == this.transform.position)
+        Vector3 toHook = this.transform.position - this.player.transform.position;
+        if (toHook.magnitude > 1)
         {
-            this.resetToResting();
-        }*/
+            Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
+            this.playerCC.Move(offset);
+        } else
+        {
+            this.controlState = ControlState.Resting;
+        }
     }
 
     void FixedUpdate()
@@ -175,7 +180,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void PullingPlayerFixedUpdate()
     {
-        this.playerRb.MovePosition(Vector3.MoveTowards(this.player.transform.position, this.transform.position, this.speed * Time.deltaTime));
+
     }
 
     private void OnTriggerEnter(Collider other)

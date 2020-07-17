@@ -21,7 +21,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
     {
         if (this.DetectPlayer())
         {
-            Debug.Log(this.name + " detects the player");
+            FindObjectOfType<LevelManager>().LevelLost();
         }
     }
 
@@ -52,8 +52,9 @@ public class SpotlightDetectPlayer : MonoBehaviour
 
     private RaycastHit castToPlayer(Vector3 toPlayer)
     {
+        //TRIGGERS SHOULD BE IN THE IgnoreRaycast LAYER
         RaycastHit hit;
-        Physics.Raycast(this.transform.position, toPlayer, out hit, this.light.range);
+        Physics.Raycast(this.transform.position, toPlayer, out hit, this.light.range, ~LayerMask.GetMask("IgnoreRaycast"));
         return hit;
     }
 }

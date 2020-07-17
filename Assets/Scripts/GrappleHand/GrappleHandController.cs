@@ -22,6 +22,8 @@ public class GrappleHandController : MonoBehaviour
     private float speed = 10;
     [SerializeField]
     private float maxDistance = 20;
+    [SerializeField]
+    private float distanceToGrappleToStop = 2;
 
     private Rigidbody rb;
     private CharacterController playerCC;
@@ -185,17 +187,15 @@ public class GrappleHandController : MonoBehaviour
     private void PullingPlayerUpdate()
     {
         Vector3 toHook = this.transform.position - this.player.transform.position;
-        if (toHook.magnitude > 1.5f)
-        {
-            Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
-            this.playerCC.Move(offset);
-        } else
+        Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
+        this.playerCC.Move(offset);
+        if (toHook.magnitude <= this.distanceToGrappleToStop)
         {
             if (Input.GetKeyDown(this.launchKey))
             {
                 this.resetToResting();
             }
-        }
+        } 
     }
 
     void FixedUpdate()

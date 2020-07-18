@@ -1731,10 +1731,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 199182241302083241}
     m_Modifications:
+    - target: {fileID: 106555006131016025, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 106555006131016025, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_Range
+      value: 5.4
+      objectReference: {fileID: 0}
     - target: {fileID: 3446326965258346525, guid: d89e6490d9d4d435db1ba6e73e895075,
         type: 3}
       propertyPath: m_Name
       value: Flashlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979306906135590102, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.039346967
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979306906135590102, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9992257
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979306906135590102, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 4.51
       objectReference: {fileID: 0}
     - target: {fileID: 7125307674169856644, guid: d89e6490d9d4d435db1ba6e73e895075,
         type: 3}

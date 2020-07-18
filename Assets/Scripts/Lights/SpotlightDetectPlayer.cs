@@ -30,7 +30,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
             var enemies = FindObjectsOfType<EnemyMovement>();
             foreach (EnemyMovement enemy in enemies)
             {
-                enemy.Alert(grappleHand);
+                enemy.Alert(player);
             }
         }
     }

@@ -9,6 +9,9 @@ public class GrappleHandController : MonoBehaviour
 
     private ControlState previousControlState;
 
+    public bool attackPowerup;
+    private float attackPowerupTimer;
+
     [SerializeField]
     private GameObject player;
     private PlayerWithGrappleBehaviour playerGrappleBehaviour;
@@ -35,6 +38,7 @@ public class GrappleHandController : MonoBehaviour
     private string grabbableItemTag = "GrabbableItem";
     private List<Transform> items;
 
+
     void Start()
     {
         GameObject returnPoint = Instantiate(this.returnPointPrefab);
@@ -53,6 +57,8 @@ public class GrappleHandController : MonoBehaviour
         this.previousControlState = this.controlState;
 
         this.items = new List<Transform>();
+
+        attackPowerup = false;
     }
 
     public void resetToResting()
@@ -83,6 +89,12 @@ public class GrappleHandController : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void AttackPowerup(float time)
+    {
+        attackPowerup = true;
+        attackPowerupTimer = time;
     }
 
     private void CheckForStateChange()
@@ -259,6 +271,12 @@ public class GrappleHandController : MonoBehaviour
             if (other.CompareTag(this.grabbableItemTag))
             {
                 this.PickUpObject(other.gameObject);
+                this.controlState = ControlState.Retracting;
+            }
+
+            if (other.CompareTag("Enemy") && attackPowerup)
+            {
+                other.gameObject.GetComponent<AttackPowerupDestroy>().Attack();
                 this.controlState = ControlState.Retracting;
             }
         }

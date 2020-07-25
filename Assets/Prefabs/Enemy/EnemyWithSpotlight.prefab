@@ -758,9 +758,11 @@ GameObject:
   - component: {fileID: 8386597222678749010}
   - component: {fileID: 3538027704204155047}
   - component: {fileID: 3538027704204155040}
+  - component: {fileID: 862715810090993482}
+  - component: {fileID: -97552639060219411}
   m_Layer: 0
   m_Name: EnemyWithSpotlight
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -807,21 +809,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4771691784547708225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edcf424000ec925478b04d4e45af1c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  path: []
   highAlert: 0
   highAlertModifier: 1.5
   walkSpeed: 5
   alertDuration: 3
   alertedSlowDown: 4
+--- !u!114 &862715810090993482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771691784547708225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64727e25970ab9548b5f66ae61e2359b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sparks: {fileID: 5429140531108130443, guid: 9993344e5ec193345b4a9c158081dfd9, type: 3}
+  smoke: {fileID: 2648380968690630768, guid: a5d8263042915a0419eb0b276edff277, type: 3}
+--- !u!65 &-97552639060219411
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771691784547708225}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.62, z: 1.09}
+  m_Center: {x: 0, y: 0.84, z: 0.22}
 --- !u!1 &5049498504771451014
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ TagManager:
   - GrappleHand
   - Key
   - LockedDoor
+  - Enemy
   layers:
   - Default
   - TransparentFX

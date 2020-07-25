@@ -9667,6 +9667,27 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1039972361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6325053886416698163, guid: 5d49ab22bdb004cf3864b2de300aa21f,
+    type: 3}
+  m_PrefabInstance: {fileID: 645006721878881200}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1039972362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039972361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3123607464b45259e659aa787ff94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reticleImage: {fileID: 1822976074}
+  reticleDementorColor: {r: 1, g: 0, b: 0.11818838, a: 1}
+  reductoColor: {r: 0, g: 0.14357352, b: 1, a: 1}
 --- !u!43 &1050375900
 Mesh:
   m_ObjectHideFlags: 0
@@ -15215,6 +15236,18 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1822976074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2007044719815369633, guid: 5d49ab22bdb004cf3864b2de300aa21f,
+    type: 3}
+  m_PrefabInstance: {fileID: 645006721878881200}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1834950515
 Mesh:
   m_ObjectHideFlags: 0

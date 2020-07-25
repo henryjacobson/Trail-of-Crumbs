@@ -8,11 +8,16 @@ public class Player_Movement : MonoBehaviour
 {
     public float speed = 6.0f;
     public float gravity = -9.0f;
-    
+
+    public FootstepSFX footstepSFX;
+    public float footstepDelay = 0.5f;
+
     private CharacterController _charCont;
 
     private bool controlsActive;
-    
+
+    private float footstepCounter;
+
     // Start is called before the first frame update
     void Start(){
         _charCont = GetComponent<CharacterController>();
@@ -28,6 +33,17 @@ public class Player_Movement : MonoBehaviour
             Vector3 movement = new Vector3(deltaX, 0, deltaZ);
             movement = Vector3.ClampMagnitude(movement, speed);
 
+            if (_charCont.isGrounded)
+            {
+                if (deltaX != 0 || deltaZ != 0)
+                {
+                    this.HandleFootstepSFX();
+                }
+            } else
+            {
+                this.ResetFootstepSFX();
+            }
+
             movement.y = gravity;
 
             movement *= Time.deltaTime;
@@ -39,5 +55,22 @@ public class Player_Movement : MonoBehaviour
     private void GrappleStateChanged(ControlState controlState)
     {
         controlsActive = controlState != ControlState.PullingPlayer;
+    }
+
+    private void HandleFootstepSFX()
+    {
+        if (this.footstepCounter > 0)
+        {
+            this.footstepCounter -= Time.deltaTime;
+        } else
+        {
+            this.footstepCounter = this.footstepDelay;
+            this.footstepSFX.PlaySFX();
+        }
+    }
+
+    private void ResetFootstepSFX()
+    {
+        this.footstepCounter = 0;
     }
 }

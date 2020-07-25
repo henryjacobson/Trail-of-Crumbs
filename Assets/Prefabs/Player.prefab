@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 7105552727799542659}
   - component: {fileID: 1701801412738850157}
   - component: {fileID: 7105552727799542658}
+  - component: {fileID: 1337690817380850643}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -197,6 +198,23 @@ MonoBehaviour:
   gravity: -9
   footstepSFX: {fileID: 6639230920555208901}
   footstepDelay: 0.3
+--- !u!114 &1337690817380850643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105552727799542684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82af6fa83c929804e83458250e5ca82e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  landSFX:
+  - {fileID: 8300000, guid: 8ce4499bbd5a13e408937e979191ac28, type: 3}
+  - {fileID: 8300000, guid: 27ff539436f259348b7138c14d3885cc, type: 3}
+  - {fileID: 8300000, guid: a6e2596331387124da8e81d37da68ae2, type: 3}
+  - {fileID: 8300000, guid: 02dc709a1e386674e8d05d3c04baa6f7, type: 3}
 --- !u!1 &7105552727862554756
 GameObject:
   m_ObjectHideFlags: 0

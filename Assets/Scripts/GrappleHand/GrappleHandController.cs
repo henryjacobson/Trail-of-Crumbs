@@ -35,6 +35,8 @@ public class GrappleHandController : MonoBehaviour
     private string grabbableItemTag = "GrabbableItem";
     private List<Transform> items;
 
+    private Dictionary<PowerUp, float> powerUpTimers;
+
     void Start()
     {
         GameObject returnPoint = Instantiate(this.returnPointPrefab);
@@ -53,6 +55,17 @@ public class GrappleHandController : MonoBehaviour
         this.previousControlState = this.controlState;
 
         this.items = new List<Transform>();
+
+        this.powerUpTimers = this.initPowerUpFlags();
+    }
+
+    private Dictionary<PowerUp, float> initPowerUpFlags()
+    {
+        Dictionary<PowerUp, float> result = new Dictionary<PowerUp, float>();
+
+        result.Add(PowerUp.ExtendedRange, 0);
+
+        return result;
     }
 
     public void resetToResting()
@@ -64,6 +77,8 @@ public class GrappleHandController : MonoBehaviour
 
     void Update()
     {
+        this.DepletePowerUpTimers();
+
         if (!LevelManager.isGameOver)
         {
             this.CheckForStateChange();
@@ -231,7 +246,7 @@ public class GrappleHandController : MonoBehaviour
         this.rb.MovePosition(offset);
 
         float distanceFromPlayer = (this.transform.position - this.player.transform.position).magnitude;
-        if (distanceFromPlayer >= this.maxDistance)
+        if (distanceFromPlayer >= this.GetGrappleRange())
         {
             this.controlState = ControlState.Retracting;
         }
@@ -271,19 +286,58 @@ public class GrappleHandController : MonoBehaviour
         g.transform.localPosition = Vector3.zero;
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
+    public void SetPowerUp(PowerUp powerUp, float time)
     {
-        this.transform.position = collision.GetContact(0).point;
-        if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
+        this.UpdatePowerUp(powerUp, time);
+    }
+
+    private void UpdatePowerUp(PowerUp powerUp, float time)
+    {
+        if (this.powerUpTimers.TryGetValue(powerUp, out float x))
         {
-            this.controlState = ControlState.Retracting;
+            this.powerUpTimers.Remove(powerUp);
+            this.powerUpTimers.Add(powerUp, time);
         }
     }
-    */
+
+    private void DepletePowerUpTimers()
+    {
+        Dictionary<PowerUp, float>.KeyCollection keys = new Dictionary<PowerUp, float>.KeyCollection(this.powerUpTimers);
+
+        foreach(PowerUp p in keys)
+        {
+            if (this.powerUpTimers.TryGetValue(p, out float t))
+            {
+                if (t > 0)
+                {
+                    t -= Time.deltaTime;
+                } else
+                {
+                    t = 0;
+                }
+                this.UpdatePowerUp(p, t);
+            }
+        }
+    }
+
+    private float GetGrappleRange()
+    {
+        if (this.powerUpTimers.TryGetValue(PowerUp.ExtendedRange, out float t) && t > 0)
+        {
+            return this.maxDistance * 2;
+        } else
+        {
+            return this.maxDistance;
+        }
+    }
 }
 
 public enum ControlState
 {
     Resting, Launching, Retracting, PullingPlayer
+}
+
+public enum PowerUp
+{
+    ExtendedRange
 }

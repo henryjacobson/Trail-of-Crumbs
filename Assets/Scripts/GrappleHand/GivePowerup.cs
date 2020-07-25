@@ -31,7 +31,7 @@ public class GivePowerup : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && this.rechargeTimer > 0)
+        if (other.CompareTag("Player") && this.rechargeTimer <= 0)
         {
             this.rechargeTimer = this.rechargeDuration;
             GameObject.FindObjectOfType<GrappleHandController>().SetPowerUp(this.powerUp, this.duration);

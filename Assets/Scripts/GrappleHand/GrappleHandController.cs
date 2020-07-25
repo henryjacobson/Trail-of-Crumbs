@@ -328,6 +328,7 @@ public class GrappleHandController : MonoBehaviour
         {
             if (this.powerUpTimers.TryGetValue(p, out float t))
             {
+                Debug.Log(t);
                 if (t > 0)
                 {
                     t -= Time.deltaTime;

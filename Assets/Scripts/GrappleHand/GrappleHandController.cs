@@ -70,7 +70,10 @@ public class GrappleHandController : MonoBehaviour
     {
         Dictionary<PowerUp, float> result = new Dictionary<PowerUp, float>();
 
-        result.Add(PowerUp.ExtendedRange, 0);
+        foreach(PowerUp p in GetPowerUpList())
+        {
+            result.Add(p, 0);
+        }
 
         return result;
     }
@@ -279,6 +282,12 @@ public class GrappleHandController : MonoBehaviour
     {
         if (this.items.Count == 0 && this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
         {
+            if (other.CompareTag("Enemy") && this.IsPowerUpActive(PowerUp.Attack))
+            {
+                other.gameObject.GetComponent<AttackPowerupDestroy>().Attack();
+                this.controlState = ControlState.Retracting;
+            }
+
             if (other.CompareTag(this.grabbableWallTag))
             {
                 this.controlState = ControlState.PullingPlayer;
@@ -339,7 +348,7 @@ public class GrappleHandController : MonoBehaviour
 
     public static PowerUp[] GetPowerUpList()
     {
-        return new PowerUp[1] { PowerUp.ExtendedRange };
+        return new PowerUp[2] { PowerUp.ExtendedRange, PowerUp.Attack };
     }
 
     private float GetGrappleRange()
@@ -372,5 +381,5 @@ public enum ControlState
 
 public enum PowerUp
 {
-    ExtendedRange
+    ExtendedRange, Attack
 }

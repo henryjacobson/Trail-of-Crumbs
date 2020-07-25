@@ -23,6 +23,8 @@ public class GrappleHandController : MonoBehaviour
     [SerializeField]
     private float maxDistance = 20;
     [SerializeField]
+    private float extendedGrappleMultiplier = 2;
+    [SerializeField]
     private float distanceToGrappleToStop = 2;
 
     private Rigidbody rb;
@@ -151,7 +153,7 @@ public class GrappleHandController : MonoBehaviour
     {
         Vector3 pointA = this.transform.position + this.transform.forward * 0.25f;
         Vector3 pointB = this.transform.position - this.transform.forward * 0.25f;
-        LayerMask mask = ~LayerMask.GetMask("Light");
+        LayerMask mask = ~LayerMask.GetMask("Light", "Ignore Raycast");
         Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f, mask);
 
         bool grabTriggerFound = false;
@@ -192,7 +194,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void RetractingUpdate()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.speed * Time.deltaTime);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.GetGrappleSpeed() * Time.deltaTime);
         if (this.transform.position == this.returnPoint.position)
         {
             this.resetToResting();
@@ -202,7 +204,7 @@ public class GrappleHandController : MonoBehaviour
     private void PullingPlayerUpdate()
     {
         Vector3 toHook = this.transform.position - this.player.transform.position;
-        Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
+        Vector3 offset = toHook.normalized * this.GetGrappleSpeed() * Time.deltaTime;
         this.playerCC.Move(offset);
         if (toHook.magnitude <= this.distanceToGrappleToStop)
         {
@@ -242,7 +244,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void LaunchingFixedUpdate()
     {
-        Vector3 offset = this.transform.position + (this.transform.forward * this.speed * Time.fixedDeltaTime);
+        Vector3 offset = this.transform.position + (this.transform.forward * this.GetGrappleSpeed() * Time.fixedDeltaTime);
         this.rb.MovePosition(offset);
 
         float distanceFromPlayer = (this.transform.position - this.player.transform.position).magnitude;
@@ -302,12 +304,11 @@ public class GrappleHandController : MonoBehaviour
 
     private void DepletePowerUpTimers()
     {
-        Dictionary<PowerUp, float>.KeyCollection keys = new Dictionary<PowerUp, float>.KeyCollection(this.powerUpTimers);
-
-        foreach(PowerUp p in keys)
+        foreach(PowerUp p in GetPowerUpList())
         {
             if (this.powerUpTimers.TryGetValue(p, out float t))
             {
+                Debug.Log(t);
                 if (t > 0)
                 {
                     t -= Time.deltaTime;
@@ -320,14 +321,35 @@ public class GrappleHandController : MonoBehaviour
         }
     }
 
+    private bool IsPowerUpActive(PowerUp powerUp)
+    {
+        return this.powerUpTimers.TryGetValue(powerUp, out float t) && t > 0;
+    }
+
+    public static PowerUp[] GetPowerUpList()
+    {
+        return new PowerUp[1] { PowerUp.ExtendedRange };
+    }
+
     private float GetGrappleRange()
     {
-        if (this.powerUpTimers.TryGetValue(PowerUp.ExtendedRange, out float t) && t > 0)
+        if (this.IsPowerUpActive(PowerUp.ExtendedRange))
         {
-            return this.maxDistance * 2;
+            return this.maxDistance * this.extendedGrappleMultiplier;
         } else
         {
             return this.maxDistance;
+        }
+    }
+
+    private float GetGrappleSpeed()
+    {
+        if (this.IsPowerUpActive(PowerUp.ExtendedRange))
+        {
+            return this.speed * this.extendedGrappleMultiplier;
+        } else
+        {
+            return this.speed;
         }
     }
 }

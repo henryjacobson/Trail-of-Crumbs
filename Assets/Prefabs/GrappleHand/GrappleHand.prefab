@@ -104,7 +104,7 @@ MonoBehaviour:
   maxDistance: 20
   extendedGrappleMultiplier: 2
   distanceToGrappleToStop: 2
-  fireSFX: {fileID: 8300000, guid: 30114844b380b88418785402b1e582c0, type: 3}
+  fireSFX: {fileID: 8300000, guid: 230d59294c9857140b63dd308ea4bd63, type: 3}
   returnSFX: {fileID: 8300000, guid: 406c929b7299afb469c82778f8d15d5b, type: 3}
 --- !u!54 &6860280539990057817
 Rigidbody:

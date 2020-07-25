@@ -27,6 +27,11 @@ public class GrappleHandController : MonoBehaviour
     [SerializeField]
     private float distanceToGrappleToStop = 2;
 
+    [SerializeField]
+    private AudioClip fireSFX;
+    [SerializeField]
+    private AudioClip returnSFX;
+
     private Rigidbody rb;
     private CharacterController playerCC;
 
@@ -128,6 +133,8 @@ public class GrappleHandController : MonoBehaviour
         this.UpdateItemList();
         if (Input.GetKeyDown(this.launchKey))
         {
+            AudioSource.PlayClipAtPoint(this.fireSFX, this.transform.position);
+
             this.controlState = ControlState.Launching;
             this.transform.parent = null;
         } else
@@ -197,6 +204,8 @@ public class GrappleHandController : MonoBehaviour
         this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.GetGrappleSpeed() * Time.deltaTime);
         if (this.transform.position == this.returnPoint.position)
         {
+            AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
+
             this.resetToResting();
         }
     }
@@ -210,6 +219,8 @@ public class GrappleHandController : MonoBehaviour
         {
             if (Input.GetKeyDown(this.launchKey))
             {
+                AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
+
                 this.resetToResting();
             }
         } 

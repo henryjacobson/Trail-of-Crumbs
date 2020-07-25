@@ -9,9 +9,6 @@ public class GrappleHandController : MonoBehaviour
 
     private ControlState previousControlState;
 
-    public bool attackPowerup;
-    private float attackPowerupTimer;
-
     [SerializeField]
     private GameObject player;
     private PlayerWithGrappleBehaviour playerGrappleBehaviour;
@@ -26,7 +23,14 @@ public class GrappleHandController : MonoBehaviour
     [SerializeField]
     private float maxDistance = 20;
     [SerializeField]
+    private float extendedGrappleMultiplier = 2;
+    [SerializeField]
     private float distanceToGrappleToStop = 2;
+
+    [SerializeField]
+    private AudioClip fireSFX;
+    [SerializeField]
+    private AudioClip returnSFX;
 
     private Rigidbody rb;
     private CharacterController playerCC;
@@ -38,6 +42,7 @@ public class GrappleHandController : MonoBehaviour
     private string grabbableItemTag = "GrabbableItem";
     private List<Transform> items;
 
+    private Dictionary<PowerUp, float> powerUpTimers;
 
     void Start()
     {
@@ -58,7 +63,16 @@ public class GrappleHandController : MonoBehaviour
 
         this.items = new List<Transform>();
 
-        attackPowerup = false;
+        this.powerUpTimers = this.initPowerUpFlags();
+    }
+
+    private Dictionary<PowerUp, float> initPowerUpFlags()
+    {
+        Dictionary<PowerUp, float> result = new Dictionary<PowerUp, float>();
+
+        result.Add(PowerUp.ExtendedRange, 0);
+
+        return result;
     }
 
     public void resetToResting()
@@ -70,6 +84,8 @@ public class GrappleHandController : MonoBehaviour
 
     void Update()
     {
+        this.DepletePowerUpTimers();
+
         if (!LevelManager.isGameOver)
         {
             this.CheckForStateChange();
@@ -89,12 +105,6 @@ public class GrappleHandController : MonoBehaviour
                     break;
             }
         }
-    }
-
-    public void AttackPowerup(float time)
-    {
-        attackPowerup = true;
-        attackPowerupTimer = time;
     }
 
     private void CheckForStateChange()
@@ -123,6 +133,8 @@ public class GrappleHandController : MonoBehaviour
         this.UpdateItemList();
         if (Input.GetKeyDown(this.launchKey))
         {
+            AudioSource.PlayClipAtPoint(this.fireSFX, this.transform.position);
+
             this.controlState = ControlState.Launching;
             this.transform.parent = null;
         } else
@@ -148,7 +160,7 @@ public class GrappleHandController : MonoBehaviour
     {
         Vector3 pointA = this.transform.position + this.transform.forward * 0.25f;
         Vector3 pointB = this.transform.position - this.transform.forward * 0.25f;
-        LayerMask mask = ~LayerMask.GetMask("Light");
+        LayerMask mask = ~LayerMask.GetMask("Light", "Ignore Raycast");
         Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f, mask);
 
         bool grabTriggerFound = false;
@@ -189,9 +201,11 @@ public class GrappleHandController : MonoBehaviour
 
     private void RetractingUpdate()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.speed * Time.deltaTime);
+        this.transform.position = Vector3.MoveTowards(this.transform.position, this.returnPoint.position, this.GetGrappleSpeed() * Time.deltaTime);
         if (this.transform.position == this.returnPoint.position)
         {
+            AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
+
             this.resetToResting();
         }
     }
@@ -199,12 +213,14 @@ public class GrappleHandController : MonoBehaviour
     private void PullingPlayerUpdate()
     {
         Vector3 toHook = this.transform.position - this.player.transform.position;
-        Vector3 offset = toHook.normalized * this.speed * Time.deltaTime;
+        Vector3 offset = toHook.normalized * this.GetGrappleSpeed() * Time.deltaTime;
         this.playerCC.Move(offset);
         if (toHook.magnitude <= this.distanceToGrappleToStop)
         {
             if (Input.GetKeyDown(this.launchKey))
             {
+                AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
+
                 this.resetToResting();
             }
         } 
@@ -239,11 +255,11 @@ public class GrappleHandController : MonoBehaviour
 
     private void LaunchingFixedUpdate()
     {
-        Vector3 offset = this.transform.position + (this.transform.forward * this.speed * Time.fixedDeltaTime);
+        Vector3 offset = this.transform.position + (this.transform.forward * this.GetGrappleSpeed() * Time.fixedDeltaTime);
         this.rb.MovePosition(offset);
 
         float distanceFromPlayer = (this.transform.position - this.player.transform.position).magnitude;
-        if (distanceFromPlayer >= this.maxDistance)
+        if (distanceFromPlayer >= this.GetGrappleRange())
         {
             this.controlState = ControlState.Retracting;
         }
@@ -273,12 +289,6 @@ public class GrappleHandController : MonoBehaviour
                 this.PickUpObject(other.gameObject);
                 this.controlState = ControlState.Retracting;
             }
-
-            if (other.CompareTag("Enemy") && attackPowerup)
-            {
-                other.gameObject.GetComponent<AttackPowerupDestroy>().Attack();
-                this.controlState = ControlState.Retracting;
-            }
         }
     }
 
@@ -289,19 +299,78 @@ public class GrappleHandController : MonoBehaviour
         g.transform.localPosition = Vector3.zero;
     }
 
-    /*
-    private void OnCollisionEnter(Collision collision)
+    public void SetPowerUp(PowerUp powerUp, float time)
     {
-        this.transform.position = collision.GetContact(0).point;
-        if (this.controlState != ControlState.PullingPlayer && this.controlState != ControlState.Resting)
+        this.UpdatePowerUp(powerUp, time);
+    }
+
+    private void UpdatePowerUp(PowerUp powerUp, float time)
+    {
+        if (this.powerUpTimers.TryGetValue(powerUp, out float x))
         {
-            this.controlState = ControlState.Retracting;
+            this.powerUpTimers.Remove(powerUp);
+            this.powerUpTimers.Add(powerUp, time);
         }
     }
-    */
+
+    private void DepletePowerUpTimers()
+    {
+        foreach(PowerUp p in GetPowerUpList())
+        {
+            if (this.powerUpTimers.TryGetValue(p, out float t))
+            {
+                Debug.Log(t);
+                if (t > 0)
+                {
+                    t -= Time.deltaTime;
+                } else
+                {
+                    t = 0;
+                }
+                this.UpdatePowerUp(p, t);
+            }
+        }
+    }
+
+    private bool IsPowerUpActive(PowerUp powerUp)
+    {
+        return this.powerUpTimers.TryGetValue(powerUp, out float t) && t > 0;
+    }
+
+    public static PowerUp[] GetPowerUpList()
+    {
+        return new PowerUp[1] { PowerUp.ExtendedRange };
+    }
+
+    private float GetGrappleRange()
+    {
+        if (this.IsPowerUpActive(PowerUp.ExtendedRange))
+        {
+            return this.maxDistance * this.extendedGrappleMultiplier;
+        } else
+        {
+            return this.maxDistance;
+        }
+    }
+
+    private float GetGrappleSpeed()
+    {
+        if (this.IsPowerUpActive(PowerUp.ExtendedRange))
+        {
+            return this.speed * this.extendedGrappleMultiplier;
+        } else
+        {
+            return this.speed;
+        }
+    }
 }
 
 public enum ControlState
 {
     Resting, Launching, Retracting, PullingPlayer
+}
+
+public enum PowerUp
+{
+    ExtendedRange
 }

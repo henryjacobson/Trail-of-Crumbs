@@ -19054,7 +19054,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -19111,7 +19111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 645006722650304793}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -13.505792, y: 4.2360034, z: 26.275564}
+  m_LocalPosition: {x: -6.1, y: -8.2, z: 13.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9077317546444884742}
@@ -116964,6 +116964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   gravity: -9
+  footstepSFX: {fileID: 0}
+  footstepDelay: 0.5
 --- !u!143 &7667511120727865695
 CharacterController:
   m_ObjectHideFlags: 0

@@ -7945,7 +7945,7 @@ PrefabInstance:
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.92
+      value: -19.2
       objectReference: {fileID: 0}
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
@@ -7975,7 +7975,7 @@ PrefabInstance:
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
@@ -39518,7 +39518,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &6382063429045562572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -67497,7 +67497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6382063430319822960
 Transform:
   m_ObjectHideFlags: 0
@@ -87400,8 +87400,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6382063430985243449}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.63947296, y: 9, z: 23.6}
-  m_LocalScale: {x: 60, y: 1, z: 64}
+  m_LocalPosition: {x: 0.63947296, y: 9, z: 19.62}
+  m_LocalScale: {x: 60, y: 1, z: 55}
   m_Children:
   - {fileID: 6382063430132388390}
   - {fileID: 6382063429074076100}
@@ -95688,7 +95688,7 @@ Transform:
   m_Children:
   - {fileID: 7130043553814290017}
   m_Father: {fileID: 9077317546444884742}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7130043553650191078
 GameObject:
@@ -102297,8 +102297,8 @@ Transform:
   m_Children:
   - {fileID: 5438931155264371351}
   - {fileID: 645006722650304775}
-  - {fileID: 1001205022}
   - {fileID: 7130043553650191072}
+  - {fileID: 1001205022}
   - {fileID: 6382063429210874987}
   m_Father: {fileID: 0}
   m_RootOrder: 0

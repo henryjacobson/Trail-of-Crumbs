@@ -10,6 +10,7 @@ TagManager:
   - Key
   - LockedDoor
   - Enemy
+  - PowerupTimerText
   layers:
   - Default
   - TransparentFX

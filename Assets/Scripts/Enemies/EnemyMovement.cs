@@ -44,9 +44,10 @@ public class EnemyMovement : MonoBehaviour
         speed = alerted ? speed / alertedSlowDown : speed;
         var destination = alerted ? alertTarget.position : vecPath[towards];
         destination.y = height;
-        transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-        transform.LookAt(destination);
-        if (Vector3.Distance(transform.position, destination) < 0.1f)
+        FaceTarget(destination);
+        transform.position += transform.forward * speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, destination) < 1f)
         {
             if (towards == 0 || towards == path.Count - 1)
             {
@@ -61,6 +62,14 @@ public class EnemyMovement : MonoBehaviour
             {
                 alerted = false;            }
         }
+    }
+
+    void FaceTarget(Vector3 target)
+    {
+        Vector3 lookRotation = target - transform.position;
+        lookRotation.y = 0;
+        Quaternion lookQuat = Quaternion.LookRotation(lookRotation);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookQuat, Time.deltaTime * 5);
     }
 
     public void Alert(Transform target)

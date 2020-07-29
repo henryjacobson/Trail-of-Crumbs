@@ -11,6 +11,8 @@ public class GivePowerup : MonoBehaviour
     private float duration = 25;
     [SerializeField]
     private float rechargeDuration = 30;
+    [SerializeField]
+    private GameObject powerupTimerTextObject;
 
     private float rechargeTimer;
     
@@ -19,6 +21,10 @@ public class GivePowerup : MonoBehaviour
     void Start()
     {
         this.rechargeTimer = 0;
+        if (powerupTimerTextObject == null)
+        {
+            this.powerupTimerTextObject = GameObject.Find("PowerupTimerText");
+        }
     }
 
     void Update()
@@ -32,11 +38,7 @@ public class GivePowerup : MonoBehaviour
                 
             Transform lmTransform = lm.transform;
             
-            GameObject powerupText;
-            
-            Transform ptt = lmTransform.GetChild(1);
-            
-            Text powerTime = ptt.GetComponent<Text>();
+            Text powerTime = powerupTimerTextObject.GetComponent<Text>();
             
             powerTime.text = 
                     rechargeTimer.ToString("f2");

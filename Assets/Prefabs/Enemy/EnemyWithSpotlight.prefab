@@ -809,7 +809,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4771691784547708225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edcf424000ec925478b04d4e45af1c90, type: 3}
   m_Name: 
@@ -834,6 +834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sparks: {fileID: 5429140531108130443, guid: 9993344e5ec193345b4a9c158081dfd9, type: 3}
   smoke: {fileID: 2648380968690630768, guid: a5d8263042915a0419eb0b276edff277, type: 3}
+  sound: {fileID: 8300000, guid: 33791f3ad5ee4b145ad9456d3b825787, type: 3}
 --- !u!65 &-97552639060219411
 BoxCollider:
   m_ObjectHideFlags: 0

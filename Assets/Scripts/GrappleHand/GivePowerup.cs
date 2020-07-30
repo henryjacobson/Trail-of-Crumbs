@@ -52,8 +52,13 @@ public class GivePowerup : MonoBehaviour
     {
         if (other.CompareTag("Player") && this.rechargeTimer <= 0)
         {
-            this.rechargeTimer = this.rechargeDuration;
-            GameObject.FindObjectOfType<GrappleHandController>().SetPowerUp(this.powerUp, this.duration);
+            bool noPowerupActive = !FindObjectOfType<GrappleHandController>().AnyPowerupActive();
+
+            if (noPowerupActive)
+            {
+                this.rechargeTimer = this.rechargeDuration;
+                GameObject.FindObjectOfType<GrappleHandController>().SetPowerUp(this.powerUp, this.duration);
+            }
         }
     }
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class KeyObject : MonoBehaviour
 {
-    public Collider lockedDoor;
+    [SerializeField]
+    private DoorLockPad doorLockPad;
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
-        if (lockedDoor == other)
+        if (this.doorLockPad.gameObject == other.gameObject)
         {
-            Destroy(other.gameObject);
+            this.doorLockPad.Unlock();
             Destroy(this.gameObject);
         }
     }

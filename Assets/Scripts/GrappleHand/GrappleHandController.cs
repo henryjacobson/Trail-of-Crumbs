@@ -314,7 +314,7 @@ public class GrappleHandController : MonoBehaviour
     {
         g.transform.SetParent(this.transform);
         g.transform.localRotation = Quaternion.identity;
-        g.transform.localPosition = Vector3.zero;
+        g.transform.localPosition = Vector3.zero + (Vector3.forward * .5f);
     }
 
     public void SetPowerUp(PowerUp powerUp, float time)

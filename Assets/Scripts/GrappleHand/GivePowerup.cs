@@ -13,6 +13,8 @@ public class GivePowerup : MonoBehaviour
     private float rechargeDuration = 30;
     [SerializeField]
     private GameObject powerupTimerTextObject;
+    [SerializeField]
+    private GameObject powerupIndicatorObject;
 
     private float rechargeTimer;
     
@@ -46,6 +48,19 @@ public class GivePowerup : MonoBehaviour
         } else
         {
             rechargeTimer = 0;
+        }
+
+        this.UpdatePowerupIndicator();
+    }
+
+    private void UpdatePowerupIndicator()
+    {
+        if (this.rechargeTimer > 0)
+        {
+            this.powerupIndicatorObject.SetActive(false);
+        } else
+        {
+            this.powerupIndicatorObject.SetActive(true);
         }
     }
 

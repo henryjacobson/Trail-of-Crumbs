@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2326706}
   - component: {fileID: 5497992}
   - component: {fileID: 6548474}
+  - component: {fileID: 4980444606713702551}
   m_Layer: 0
   m_Name: sciFiTablet_whiteGold
   m_TagString: Untagged
@@ -106,8 +107,21 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175748}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.40000007, z: 0.008173076}
-  m_Center: {x: -5.7366972e-11, y: -3.044705e-11, z: 0.0040865345}
+  m_Size: {x: 0.3225827, y: 0.42216355, z: 0.038314015}
+  m_Center: {x: 0.0006735474, y: 0.00054636603, z: 0.0041890386}
+--- !u!114 &4980444606713702551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6758ef298a28c64ab7b98a98caa9ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorLockPad: {fileID: 0}

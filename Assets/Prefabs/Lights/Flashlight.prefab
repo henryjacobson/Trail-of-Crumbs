@@ -38,10 +38,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7125307674169856644}
     m_Modifications:
+    - target: {fileID: 106555006131016025, guid: 4adcf319d96c944128bcde5b61202d93,
+        type: 3}
+      propertyPath: m_SpotAngle
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 3446326965258346525, guid: 4adcf319d96c944128bcde5b61202d93,
         type: 3}
       propertyPath: m_Name
       value: New Flashlight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979306906135590102, guid: 4adcf319d96c944128bcde5b61202d93,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979306906135590102, guid: 4adcf319d96c944128bcde5b61202d93,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979306906135590102, guid: 4adcf319d96c944128bcde5b61202d93,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7125307674169856644, guid: 4adcf319d96c944128bcde5b61202d93,
         type: 3}

@@ -9,7 +9,6 @@ public class KeyObject : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (this.doorLockPad.gameObject == other.gameObject)
         {
             this.doorLockPad.Unlock();

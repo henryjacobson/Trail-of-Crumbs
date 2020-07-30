@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 64d25c958770f21468bf1cb96632fbd7, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -46251,7 +46251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6758ef298a28c64ab7b98a98caa9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedDoor: {fileID: 6382063431033575787}
+  doorLockPad: {fileID: 0}
 --- !u!4 &6382063429150543070
 Transform:
   m_ObjectHideFlags: 0
@@ -67634,7 +67634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6758ef298a28c64ab7b98a98caa9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedDoor: {fileID: 6382063429137929077}
+  doorLockPad: {fileID: 0}
 --- !u!33 &6382063430240769313
 MeshFilter:
   m_ObjectHideFlags: 0

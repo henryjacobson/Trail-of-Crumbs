@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GrappleHandController : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class GrappleHandController : MonoBehaviour
     private AudioClip fireSFX;
     [SerializeField]
     private AudioClip returnSFX;
+
+    [SerializeField]
+    private Text powerupTimerText;
 
     private Rigidbody rb;
     private CharacterController playerCC;
@@ -64,6 +68,11 @@ public class GrappleHandController : MonoBehaviour
         this.items = new List<Transform>();
 
         this.powerUpTimers = this.initPowerUpFlags();
+
+        if (this.powerupTimerText == null)
+        {
+            this.powerupTimerText = GameObject.Find("PowerupTimerText").GetComponent<Text>();
+        }
     }
 
     private Dictionary<PowerUp, float> initPowerUpFlags()
@@ -324,19 +333,42 @@ public class GrappleHandController : MonoBehaviour
 
     private void DepletePowerUpTimers()
     {
+        bool anythingActive = false;
+
         foreach(PowerUp p in GetPowerUpList())
         {
             if (this.powerUpTimers.TryGetValue(p, out float t))
             {
                 if (t > 0)
                 {
+                    anythingActive = true;
                     t -= Time.deltaTime;
                 } else
                 {
                     t = 0;
                 }
                 this.UpdatePowerUp(p, t);
+                if (this.IsPowerUpActive(p))
+                {
+                    this.UpdateTimerText(t);
+                }
             }
+        }
+        
+        if (!anythingActive)
+        {
+            this.UpdateTimerText(0);
+        }
+    }
+
+    private void UpdateTimerText(float amount)
+    {
+        if (amount > 0)
+        {
+            this.powerupTimerText.text = amount.ToString("f2");
+        } else
+        {
+            this.powerupTimerText.text = "";
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorLockPad : MonoBehaviour
 {
     [SerializeField]
-    private DoorSlideX lockedDoor;
+    private DoorSlide lockedDoor;
 
     private bool isUnlocked;
 

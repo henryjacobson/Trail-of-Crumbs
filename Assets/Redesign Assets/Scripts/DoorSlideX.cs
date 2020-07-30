@@ -82,7 +82,7 @@ public class DoorSlideX : MonoBehaviour
 
 		if (status != DoubleSlidingDoorStatus.Animating)
 		{
-			if (status == DoubleSlidingDoorStatus.Closed)
+			if (status == DoubleSlidingDoorStatus.Closed && this.enabled)
 			{
 				StartCoroutine("OpenDoors");
 			}

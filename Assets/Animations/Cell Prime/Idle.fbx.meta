@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 43a4900e7c038a945aee02a4a37cdacd
+guid: df772778a85b22944b9488e66f16637c
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
@@ -21,7 +21,11 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'mixamo.com' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'FirstProximal.L' is inbetween humanoid
+      transforms and has rotation animation that will be discarded.\n\t'FirstProximal.R'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -39,7 +43,7 @@ ModelImporter:
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 79
+      lastFrame: 59
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

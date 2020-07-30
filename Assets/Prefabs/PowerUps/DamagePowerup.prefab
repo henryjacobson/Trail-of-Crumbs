@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2974819028764914026}
   - component: {fileID: 2974819028764914069}
   m_Layer: 0
-  m_Name: ExtendedRangePowerup
+  m_Name: DamagePowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43403882bb47c674289e4a9b6ec04d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUp: 0
+  powerUp: 1
   duration: 25
   rechargeDuration: 30
   powerupIndicatorObject: {fileID: 7816686101911308600}
@@ -321,11 +321,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 23000010846125742, guid: 686fd8e833c62714e8d90ea73c3873e2,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fc2376d45951bcb479a16be85bf57b31, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 686fd8e833c62714e8d90ea73c3873e2, type: 3}
 --- !u!1 &7816686101911308600 stripped

@@ -333,15 +333,12 @@ public class GrappleHandController : MonoBehaviour
 
     private void DepletePowerUpTimers()
     {
-        bool anythingActive = false;
-
         foreach(PowerUp p in GetPowerUpList())
         {
             if (this.powerUpTimers.TryGetValue(p, out float t))
             {
                 if (t > 0)
                 {
-                    anythingActive = true;
                     t -= Time.deltaTime;
                 } else
                 {
@@ -355,7 +352,7 @@ public class GrappleHandController : MonoBehaviour
             }
         }
         
-        if (!anythingActive)
+        if (!this.AnyPowerupActive())
         {
             this.UpdateTimerText(0);
         }
@@ -375,6 +372,18 @@ public class GrappleHandController : MonoBehaviour
     private bool IsPowerUpActive(PowerUp powerUp)
     {
         return this.powerUpTimers.TryGetValue(powerUp, out float t) && t > 0;
+    }
+
+    public bool AnyPowerupActive()
+    {
+        foreach(PowerUp p in GetPowerUpList())
+        {
+            if (this.IsPowerUpActive(p))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static PowerUp[] GetPowerUpList()

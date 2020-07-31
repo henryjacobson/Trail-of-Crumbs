@@ -232,7 +232,13 @@ public class GrappleHandController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
 
-            this.controlState = ControlState.Retracting;
+            if (toHook.magnitude <= this.distanceToGrappleToStop)
+            {
+                this.resetToResting();
+            } else
+            {
+                this.controlState = ControlState.Retracting;
+            }
         }
     }
 

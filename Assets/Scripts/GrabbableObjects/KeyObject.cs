@@ -11,7 +11,7 @@ public class KeyObject : MonoBehaviour
     {
         if (other.gameObject.CompareTag("GrappleHand"))
         {
-            gameObject.transform.localScale = new Vector3(5, 5, 5);
+            gameObject.transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
         }
 
         if (this.doorLockPad.gameObject == other.gameObject)

@@ -107,5 +107,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockedDoor: {fileID: 0}
-  lockedColor: {r: 1, g: 0.19916238, b: 0, a: 0}
-  unlockedColor: {r: 0.47682667, g: 1, b: 0, a: 0}
+  lockedColor: {r: 1, g: 0.19916238, b: 0, a: 0.47058824}
+  unlockedColor: {r: 0, g: 1, b: 0.06234169, a: 0.47058824}

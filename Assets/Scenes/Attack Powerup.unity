@@ -13516,7 +13516,7 @@ PrefabInstance:
     - target: {fileID: 4771691784547708225, guid: a2872a76d65815942b7131d915be6472,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8386597222678749010, guid: a2872a76d65815942b7131d915be6472,
         type: 3}
@@ -42795,7 +42795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6758ef298a28c64ab7b98a98caa9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedDoor: {fileID: 4336047654506414662}
+  doorLockPad: {fileID: 0}
 --- !u!136 &4336047653537411973
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -80653,7 +80653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6758ef298a28c64ab7b98a98caa9ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedDoor: {fileID: 4336047653818599512}
+  doorLockPad: {fileID: 0}
 --- !u!136 &4336047654628089327
 CapsuleCollider:
   m_ObjectHideFlags: 0

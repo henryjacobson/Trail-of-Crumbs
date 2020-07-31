@@ -149,6 +149,7 @@ public class GrappleHandController : MonoBehaviour
 
             this.controlState = ControlState.Launching;
             this.transform.parent = null;
+            this.transform.position = this.camera.transform.position + this.camera.transform.forward;
         } else
         {
             this.EnforceRestingPosition();
@@ -227,15 +228,12 @@ public class GrappleHandController : MonoBehaviour
         Vector3 toHook = this.transform.position - this.player.transform.position;
         Vector3 offset = toHook.normalized * this.GetGrappleSpeed() * Time.deltaTime;
         this.playerCC.Move(offset);
-        if (toHook.magnitude <= this.distanceToGrappleToStop)
+        if (Input.GetKeyDown(this.launchKey))
         {
-            if (Input.GetKeyDown(this.launchKey))
-            {
-                AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
+            AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
 
-                this.resetToResting();
-            }
-        } 
+            this.controlState = ControlState.Retracting;
+        }
     }
 
     void FixedUpdate()

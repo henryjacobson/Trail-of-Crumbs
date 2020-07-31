@@ -9,6 +9,8 @@ public class Player_Movement : MonoBehaviour
     public float speed = 6.0f;
     public float gravity = -9.0f;
 
+    private float yVelocity;
+
     public FootstepSFX footstepSFX;
     public float footstepDelay = 0.5f;
 
@@ -35,16 +37,18 @@ public class Player_Movement : MonoBehaviour
 
             if (_charCont.isGrounded)
             {
+                this.yVelocity = gravity;
                 if (deltaX != 0 || deltaZ != 0)
                 {
                     this.HandleFootstepSFX();
                 }
             } else
             {
+                this.yVelocity += gravity * Time.deltaTime;
                 this.ResetFootstepSFX();
             }
 
-            movement.y = gravity;
+            movement.y = this.yVelocity;
 
             movement *= Time.deltaTime;
             movement = transform.TransformDirection(movement);

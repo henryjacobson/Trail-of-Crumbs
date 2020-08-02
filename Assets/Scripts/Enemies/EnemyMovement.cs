@@ -26,7 +26,6 @@ public class EnemyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         height = transform.position.y;
-        highAlert = false;
         towardsEnd = true;
         if (path[0] == null)
         {

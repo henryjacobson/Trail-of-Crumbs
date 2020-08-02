@@ -20,6 +20,6 @@ public class AlertExample : MonoBehaviour
 
     void Alert()
     {
-        enemy.Alert(gameObject.transform);
+        enemy.Alert(gameObject.transform, true);
     }
 }

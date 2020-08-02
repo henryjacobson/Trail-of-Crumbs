@@ -20,6 +20,7 @@ public class EnemyMovement : MonoBehaviour
     bool alerted;
     Transform alertTarget; // target when alerted
     float alertTime;
+    bool playReturn;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class EnemyMovement : MonoBehaviour
             vecPath.Add(t.position);
         }
         towards = 1;
+        GetComponentInChildren<SpotlightDetectPlayer>().SetParent(this);
     }
 
     // Update is called once per frame
@@ -62,7 +64,10 @@ public class EnemyMovement : MonoBehaviour
             if (alertTime <= 0)
             {
                 alerted = false;
-                AudioSource.PlayClipAtPoint(returning, transform.position);
+                if (playReturn)
+                {
+                    AudioSource.PlayClipAtPoint(returning, transform.position);
+                }
             }
         }
     }
@@ -75,9 +80,25 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, lookQuat, Time.deltaTime * 5);
     }
 
-    public void Alert(Transform target)
+    public void Alert(Transform target, bool initialEnemy)
     {
-        AudioSource.PlayClipAtPoint(spotted, transform.position);
+        if (initialEnemy)
+        {
+            AudioSource.PlayClipAtPoint(spotted, transform.position);
+            playReturn = true;
+            var enemies = FindObjectsOfType<EnemyMovement>();
+            foreach (EnemyMovement enemy in enemies)
+            {
+                if (enemy != this)
+                {
+                    enemy.Alert(target, false);
+                }
+            }
+        }
+        else
+        {
+            playReturn = false;
+        }
         alertTarget = target.transform;
         alerted = true;
         alertTime = alertDuration;

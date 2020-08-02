@@ -9,6 +9,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
 
     private Transform player;
     private Transform grappleHand;
+    private EnemyMovement parentEnemy;
 
     void Start()
     {
@@ -27,10 +28,9 @@ public class SpotlightDetectPlayer : MonoBehaviour
         }
         if (this.DetectGrappleHand())
         {
-            var enemies = FindObjectsOfType<EnemyMovement>();
-            foreach (EnemyMovement enemy in enemies)
+            if (parentEnemy != null)
             {
-                enemy.Alert(player);
+                parentEnemy.Alert(player, true);
             }
         }
     }
@@ -72,7 +72,6 @@ public class SpotlightDetectPlayer : MonoBehaviour
         }
         else
         {
-            Debug.Log("look");
             RaycastHit hit = this.castToPlayer(toObject);
             if (hit.collider == null)
             {
@@ -80,7 +79,6 @@ public class SpotlightDetectPlayer : MonoBehaviour
             }
             else if (hit.collider.CompareTag("GrappleHand"))
             {
-                Debug.Log("Seen");
                 return true;
             }
             else
@@ -96,5 +94,10 @@ public class SpotlightDetectPlayer : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast(this.transform.position, toPlayer, out hit, this.light.range, ~LayerMask.GetMask("IgnoreRaycast"));
         return hit;
+    }
+
+    public void SetParent(EnemyMovement parent)
+    {
+        parentEnemy = parent;
     }
 }

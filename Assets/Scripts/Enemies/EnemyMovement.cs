@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
     public List<Transform> path;
-    public bool highAlert;
-    public float highAlertModifier = 1.5f;
     public float walkSpeed = 5f;
     public float alertDuration = 5f;
     public float alertedSlowDown = 2f;
+    public AudioClip spotted;
+    public AudioClip returning;
 
+    NavMeshAgent agent;
     float height; // stays the same height
     List<Vector3> vecPath;
     int towards; // whihc target it's currently walking towards
@@ -22,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         height = transform.position.y;
         highAlert = false;
         towardsEnd = true;
@@ -40,12 +43,11 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var speed = highAlert ? walkSpeed * highAlertModifier : walkSpeed;
-        speed = alerted ? speed / alertedSlowDown : speed;
+        agent.speed = alerted ? walkSpeed / alertedSlowDown : walkSpeed;
         var destination = alerted ? alertTarget.position : vecPath[towards];
         destination.y = height;
         FaceTarget(destination);
-        transform.position += transform.forward * speed * Time.deltaTime;
+        agent.SetDestination(destination);
         //transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
         if (Vector3.Distance(transform.position, destination) < 1f)
         {
@@ -60,7 +62,9 @@ public class EnemyMovement : MonoBehaviour
             alertTime -= Time.deltaTime;
             if (alertTime <= 0)
             {
-                alerted = false;            }
+                alerted = false;
+                AudioSource.PlayClipAtPoint(returning, transform.position);
+            }
         }
     }
 
@@ -74,6 +78,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Alert(Transform target)
     {
+        AudioSource.PlayClipAtPoint(spotted, transform.position);
         alertTarget = target.transform;
         alerted = true;
         alertTime = alertDuration;

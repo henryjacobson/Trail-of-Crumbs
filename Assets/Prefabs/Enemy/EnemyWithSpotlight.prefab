@@ -760,6 +760,7 @@ GameObject:
   - component: {fileID: 3538027704204155040}
   - component: {fileID: 862715810090993482}
   - component: {fileID: -97552639060219411}
+  - component: {fileID: 5166936217364718258}
   m_Layer: 0
   m_Name: EnemyWithSpotlight
   m_TagString: Enemy
@@ -820,6 +821,8 @@ MonoBehaviour:
   walkSpeed: 5
   alertDuration: 3
   alertedSlowDown: 4
+  spotted: {fileID: 8300000, guid: 57618f9da26e8b54f964ca71af8dec08, type: 3}
+  returning: {fileID: 8300000, guid: a68e86d499191704cb198aec7c67f4bd, type: 3}
 --- !u!114 &862715810090993482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,6 +851,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.62, z: 1.09}
   m_Center: {x: 0, y: 0.84, z: 0.22}
+--- !u!195 &5166936217364718258
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771691784547708225}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &5049498504771451014
 GameObject:
   m_ObjectHideFlags: 0

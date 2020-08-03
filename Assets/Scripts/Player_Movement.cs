@@ -54,6 +54,16 @@ public class Player_Movement : MonoBehaviour
             movement = transform.TransformDirection(movement);
             _charCont.Move(movement);
         }
+        
+        //crouching
+        if (Input.GetKey(KeyCode.C))
+        {
+            _charCont.height = 0.0f;
+        }
+        else 
+        {
+            _charCont.height = 2.0f;
+        }
     }
 
     private void GrappleStateChanged(ControlState controlState)

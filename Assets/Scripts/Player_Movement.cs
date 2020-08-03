@@ -59,10 +59,12 @@ public class Player_Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.C))
         {
             _charCont.height = 0.0f;
+            speed = 3.0f;
         }
         else 
         {
             _charCont.height = 2.0f;
+            speed = 6.0f;
         }
     }
 

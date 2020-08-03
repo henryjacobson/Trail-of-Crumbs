@@ -6,6 +6,8 @@ public class CellPrimeBehavior : MonoBehaviour
 {
     public float followDistance = 5f;
     public float speed = 6f;
+    public GameObject[] checkpoints;
+
     Transform player;
     bool following;
     float playerHeightOffset;
@@ -79,10 +81,23 @@ public class CellPrimeBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform.Equals(player))
+        if (other.CompareTag("Player") && !following)
         {
             following = true;
             playerHeightOffset = transform.position.y - player.position.y;
+            FindObjectOfType<LevelManager>().SetCheckPoint(other.transform.position);
+            foreach (GameObject checkpoint in checkpoints)
+            {
+                checkpoint.SetActive(true);
+            }
+        }
+    }
+
+    public void Checkpoint()
+    {
+        if (following)
+        {
+            transform.position = player.position;
         }
     }
 }

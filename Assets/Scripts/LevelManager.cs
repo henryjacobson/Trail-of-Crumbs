@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
@@ -12,15 +13,14 @@ public class LevelManager : MonoBehaviour
     private string nextLevel;
     [SerializeField]
     private Text gameOverText;
+    public Transform player;
+    private Vector3 checkpointPosition;
 
     void Start()
     {
         isGameOver = false;
-    }
-
-    void Update()
-    {
-        
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        checkpointPosition = player.position;
     }
 
     public void LevelLost()
@@ -44,11 +44,32 @@ public class LevelManager : MonoBehaviour
     private void SetGameOverText(string text)
     {
         this.gameOverText.text = text;
+        gameOverText.enabled = true;
     }
 
     private void LoadThisLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        player.position = checkpointPosition;
+        isGameOver = false;
+        CellPrimeBehavior cellPrime = FindObjectOfType<CellPrimeBehavior>();
+        if (cellPrime != null)
+        {
+            cellPrime.Checkpoint();
+        }
+        DisableGameOverText();
+    }
+
+    public void SetCheckPoint(Vector3 position)
+    {
+        checkpointPosition = position;
+        SetGameOverText("CHECKPOINT REACHED");
+        Invoke("DisableGameOverText", 2);
+    }
+
+    private void DisableGameOverText()
+    {
+        gameOverText.enabled = false;
     }
 
     private void LoadNextLevel()

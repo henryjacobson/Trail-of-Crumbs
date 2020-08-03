@@ -58,8 +58,11 @@ public class Player_Movement : MonoBehaviour
         //crouching
         if (Input.GetKey(KeyCode.C))
         {
-            _charCont.height = 0.0f;
-            speed = 3.0f;
+            if (_charCont.isGrounded)
+            {
+                    _charCont.height = 0.0f;
+                    speed = 3.0f;
+            }
         }
         else 
         {

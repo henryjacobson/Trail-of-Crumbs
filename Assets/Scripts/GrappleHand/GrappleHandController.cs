@@ -165,7 +165,7 @@ public class GrappleHandController : MonoBehaviour
             this.transform.localRotation = Quaternion.identity;
         } else
         {
-            this.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(this.camera.transform.eulerAngles.x, Vector3.right);
+            this.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(this.camera.transform.localEulerAngles.x, Vector3.right);
         }
     }
 

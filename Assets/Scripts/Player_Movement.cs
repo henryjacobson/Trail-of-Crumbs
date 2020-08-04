@@ -14,6 +14,8 @@ public class Player_Movement : MonoBehaviour
     public FootstepSFX footstepSFX;
     public float footstepDelay = 0.5f;
 
+    private Transform groundChecker;
+
     private CharacterController _charCont;
 
     private bool controlsActive;
@@ -24,6 +26,7 @@ public class Player_Movement : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+        groundChecker = transform.Find("GroundChecker");
         _charCont = GetComponent<CharacterController>();
         controlsActive = true;
     }
@@ -37,7 +40,7 @@ public class Player_Movement : MonoBehaviour
             Vector3 movement = new Vector3(deltaX, 0, deltaZ);
             movement = Vector3.ClampMagnitude(movement, speed);
 
-            if (_charCont.isGrounded)
+            if (this.IsGrounded())
             {
                 this.yVelocity = gravity;
                 if (deltaX != 0 || deltaZ != 0)
@@ -60,7 +63,7 @@ public class Player_Movement : MonoBehaviour
         //crouching
         if (Input.GetKey(KeyCode.C))
         {
-            if (_charCont.isGrounded)
+            if (this.IsGrounded())
             {
                     _charCont.height = 0.0f;
                     speed = 3.0f;
@@ -120,5 +123,18 @@ public class Player_Movement : MonoBehaviour
 
         this.transform.rotation = rotation;
         this.flippingGravity = false;
+    }
+
+    private bool IsGrounded()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.groundChecker.position, this._charCont.radius, ~LayerMask.GetMask("Ignore Raycast"));
+        foreach(Collider collider in colliders)
+        {
+            if (!collider.isTrigger)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

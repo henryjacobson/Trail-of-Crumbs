@@ -17301,6 +17301,36 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3066058647318400932, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1001205024}
+    - target: {fileID: 3066058647318400932, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1775904873}
+    - target: {fileID: 3066058647318400935, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066058647318400935, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066058647318400935, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066058647318400953, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bbd90e6ae7d104efa895c3da0677f5e6, type: 2}
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.x

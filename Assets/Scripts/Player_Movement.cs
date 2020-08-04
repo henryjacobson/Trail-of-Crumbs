@@ -97,16 +97,21 @@ public class Player_Movement : MonoBehaviour
 
     private void FlipGravity()
     {
-        StartCoroutine("SmoothRotate", this.transform.rotation * Quaternion.AngleAxis(180, Vector3.forward));
+        StartCoroutine(this.StartGravityFlip());
     }
 
-    private IEnumerator SmoothRotate(Quaternion rotation)
+    private IEnumerator StartGravityFlip()
     {
         while(this.flippingGravity)
         {
             yield return null;
         }
         this.flippingGravity = true;
+        StartCoroutine("SmoothRotate", this.transform.rotation * Quaternion.AngleAxis(180, Vector3.forward));
+    }
+
+    private IEnumerator SmoothRotate(Quaternion rotation)
+    {
         while(Quaternion.Angle(this.transform.rotation, rotation) >= 1)
         {
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * 12);

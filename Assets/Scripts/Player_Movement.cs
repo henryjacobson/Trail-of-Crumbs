@@ -127,7 +127,7 @@ public class Player_Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        Collider[] colliders = Physics.OverlapSphere(this.groundChecker.position, this._charCont.radius, ~LayerMask.GetMask("Ignore Raycast"));
+        Collider[] colliders = Physics.OverlapSphere(this.groundChecker.position, this._charCont.radius, ~LayerMask.GetMask("Ignore Raycast", "Player"));
         foreach(Collider collider in colliders)
         {
             if (!collider.isTrigger)
@@ -136,5 +136,11 @@ public class Player_Movement : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Gizmos.DrawSphere(this.groundChecker.position, this._charCont.radius);
     }
 }

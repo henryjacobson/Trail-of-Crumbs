@@ -1039,6 +1039,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &1295413541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5459203501315338947, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 7105552728751378609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &1295413542
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295413541}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1858724302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,6 +1565,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1775904874, guid: 21762196f83b67341b72cc7b8b3c6a9c, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296139472657488545, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549130324216296459, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,

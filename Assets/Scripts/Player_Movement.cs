@@ -20,6 +20,8 @@ public class Player_Movement : MonoBehaviour
 
     private float footstepCounter;
 
+    private bool flippingGravity;
+
     // Start is called before the first frame update
     void Start(){
         _charCont = GetComponent<CharacterController>();
@@ -91,5 +93,32 @@ public class Player_Movement : MonoBehaviour
     private void ResetFootstepSFX()
     {
         this.footstepCounter = 0;
+    }
+
+    private void FlipGravity()
+    {
+        StartCoroutine(this.StartGravityFlip());
+    }
+
+    private IEnumerator StartGravityFlip()
+    {
+        while(this.flippingGravity)
+        {
+            yield return null;
+        }
+        this.flippingGravity = true;
+        StartCoroutine("SmoothRotate", this.transform.rotation * Quaternion.AngleAxis(180, Vector3.forward));
+    }
+
+    private IEnumerator SmoothRotate(Quaternion rotation)
+    {
+        while(Quaternion.Angle(this.transform.rotation, rotation) >= 1)
+        {
+            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * 12);
+            yield return null;
+        }
+
+        this.transform.rotation = rotation;
+        this.flippingGravity = false;
     }
 }

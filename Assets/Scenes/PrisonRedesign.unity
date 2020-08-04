@@ -17296,6 +17296,11 @@ PrefabInstance:
       propertyPath: powerupTimerText
       value: 
       objectReference: {fileID: 1188157935}
+    - target: {fileID: 30052998170004977, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7105552727799542656, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17374,12 +17379,12 @@ PrefabInstance:
     - target: {fileID: 7946949925559747274, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.38
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 7946949925559747274, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.49
+      value: 3.51
       objectReference: {fileID: 0}
     - target: {fileID: 7946949925559747274, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
@@ -17394,7 +17399,7 @@ PrefabInstance:
     - target: {fileID: 7946949925559747274, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.14
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 7946949925559747274, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}

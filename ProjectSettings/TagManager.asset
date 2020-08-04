@@ -11,6 +11,7 @@ TagManager:
   - LockedDoor
   - Enemy
   - PowerupTimerText
+  - PodCar1
   layers:
   - Default
   - TransparentFX

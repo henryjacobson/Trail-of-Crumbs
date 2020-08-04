@@ -4680,7 +4680,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh288522
+  m_Name: pb_Mesh141196
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7011,7 +7011,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh289390
+  m_Name: pb_Mesh142064
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20163,7 +20163,7 @@ PrefabInstance:
     - target: {fileID: 485422904228665821, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
       propertyPath: m_Name
-      value: Final Spotlight (2)
+      value: Problematic Final Spotlights
       objectReference: {fileID: 0}
     - target: {fileID: 485422904228665821, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
@@ -20249,6 +20249,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734047137342244378, guid: 284877ebe95a842edb6b3cc50795e507,
+        type: 3}
+      propertyPath: m_Range
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734047137342244378, guid: 284877ebe95a842edb6b3cc50795e507,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 30.9
       objectReference: {fileID: 0}
     - target: {fileID: 8734047137342244380, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
@@ -28608,7 +28618,7 @@ PrefabInstance:
     - target: {fileID: 485422904228665821, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
       propertyPath: m_Name
-      value: Final Spotlight
+      value: Problematic Final Spotlights
       objectReference: {fileID: 0}
     - target: {fileID: 485422904228665821, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
@@ -28694,6 +28704,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734047137342244378, guid: 284877ebe95a842edb6b3cc50795e507,
+        type: 3}
+      propertyPath: m_Range
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734047137342244378, guid: 284877ebe95a842edb6b3cc50795e507,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 30.9
       objectReference: {fileID: 0}
     - target: {fileID: 8734047137342244380, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
@@ -34135,7 +34155,7 @@ PrefabInstance:
     - target: {fileID: 485422904228665821, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
       propertyPath: m_Name
-      value: Final Spotlight (1)
+      value: Problematic Final Spotlights
       objectReference: {fileID: 0}
     - target: {fileID: 485422904228665821, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}
@@ -34221,6 +34241,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734047137342244378, guid: 284877ebe95a842edb6b3cc50795e507,
+        type: 3}
+      propertyPath: m_Range
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8734047137342244378, guid: 284877ebe95a842edb6b3cc50795e507,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 30.9
       objectReference: {fileID: 0}
     - target: {fileID: 8734047137342244380, guid: 284877ebe95a842edb6b3cc50795e507,
         type: 3}

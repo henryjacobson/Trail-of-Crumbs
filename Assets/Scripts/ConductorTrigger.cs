@@ -10,7 +10,6 @@ public class ConductorTrigger : MonoBehaviour
         {
             FindObjectOfType<ConductorBehavior>().PlayerSeen();
             other.gameObject.GetComponent<GrappleHandController>().controlState = ControlState.Retracting;
-            Destroy(gameObject);
         }
     }
 }

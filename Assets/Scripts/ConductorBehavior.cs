@@ -139,7 +139,16 @@ public class ConductorBehavior : MonoBehaviour
 
     public void GameOver()
     {
+        player.GetComponent<Player_Movement>().enabled = true;
+        Camera_Control[] controls = player.GetComponentsInChildren<Camera_Control>();
+        foreach (Camera_Control control in controls)
+        {
+            control.enabled = true;
+        }
+        dead = false;
+        anim.enabled = true;
         anim.SetTrigger("gameOver");
+        GetComponent<CapsuleCollider>().enabled = true;
         transform.position = startPos;
         transform.rotation = startRot;
     }

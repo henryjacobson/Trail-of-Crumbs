@@ -63,6 +63,8 @@ public class LevelManager : MonoBehaviour
 
         FindObjectOfType<GrappleHandController>().DeactivatePowerups();
 
+        GivePowerup.ResetPowerupTimers();
+
         ConductorBehavior cb = FindObjectOfType<ConductorBehavior>();
         if (cb != null)
         {

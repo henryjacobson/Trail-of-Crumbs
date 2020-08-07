@@ -69,6 +69,8 @@ public class LevelManager : MonoBehaviour
             cb.GameOver();
         }
 
+        FindObjectOfType<GrappleHandController>().controlState = ControlState.Retracting;
+
         DisableGameOverText();
     }
 

@@ -52,6 +52,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
                 return false;
             } else if (hit.collider.CompareTag("Player"))
             {
+                //Time.timeScale = 0;
                 return true;
             } else
             {
@@ -99,5 +100,10 @@ public class SpotlightDetectPlayer : MonoBehaviour
     public void SetParent(EnemyMovement parent)
     {
         parentEnemy = parent;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Debug.DrawLine(transform.position, player.position, Color.red);
     }
 }

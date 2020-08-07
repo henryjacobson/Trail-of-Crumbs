@@ -18,6 +18,8 @@ public class ConductorBehavior : MonoBehaviour
     Camera mainCamera;
     bool dead;
 
+
+
     enum FSMStates
     {
         Driving,
@@ -84,6 +86,10 @@ public class ConductorBehavior : MonoBehaviour
                 control.enabled = false;
             }
             AudioSource.PlayClipAtPoint(attackSFX, transform.position);
+            Vector3 target = player.transform.position;
+            target.y = transform.position.y;
+            transform.LookAt(target);
+            transform.Rotate(Vector3.up, 60f);
         }
     }
 
@@ -91,9 +97,6 @@ public class ConductorBehavior : MonoBehaviour
     {
         mainCamera.transform.LookAt(head);
         player.transform.LookAt(new Vector3(head.position.x, player.transform.position.y, head.position.z));
-        Vector3 target = player.transform.position;
-        target.y = transform.position.y;
-        transform.LookAt(target);
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         if (info.IsName("Attack") && info.normalizedTime >= .4)
         {
@@ -126,5 +129,7 @@ public class ConductorBehavior : MonoBehaviour
         anim.enabled = false;
         agent.enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        FindObjectOfType<LevelManager>().LevelWon();
     }
+
 }

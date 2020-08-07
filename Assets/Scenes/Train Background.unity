@@ -20503,6 +20503,41 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 6219855545102124650, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219855545526763315, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219855545771022271, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219855546187704050, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219855546374309202, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219855546781452022, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 6219855547179364481, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: slideDistance
+      value: 0.88
+      objectReference: {fileID: 0}
     - target: {fileID: 6221843125159009717, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
       propertyPath: m_StaticEditorFlags

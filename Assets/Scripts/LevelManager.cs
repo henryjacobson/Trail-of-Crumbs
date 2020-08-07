@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour
         Invoke("LoadNextLevel", 2);
     }
 
-    private void SetGameOverText(string text)
+    public void SetGameOverText(string text)
     {
         this.gameOverText.text = text;
         gameOverText.enabled = true;
@@ -50,7 +50,8 @@ public class LevelManager : MonoBehaviour
     private void LoadThisLevel()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        player.position = checkpointPosition;
+
+        this.WarpPlayer(this.checkpointPosition);
         isGameOver = false;
         CellPrimeBehavior cellPrime = FindObjectOfType<CellPrimeBehavior>();
         if (cellPrime != null)
@@ -58,6 +59,14 @@ public class LevelManager : MonoBehaviour
             cellPrime.Checkpoint();
         }
         DisableGameOverText();
+    }
+
+    private void WarpPlayer(Vector3 newPos)
+    {
+        CharacterController cc = this.player.gameObject.GetComponent<CharacterController>();
+        cc.enabled = false;
+        this.player.position = newPos;
+        cc.enabled = true;
     }
 
     public void SetCheckPoint(Vector3 position)

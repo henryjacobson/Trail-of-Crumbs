@@ -140,13 +140,16 @@ public class GrappleHandController : MonoBehaviour
             
             Debug.Log("launching");
             
-            laserFlash.Play();
-
-            RaycastHit hit;
-            
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            if(laserFlash != null && fpsCam != null)
             {
-                Debug.Log(hit.transform.name);
+                laserFlash.Play();
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+                {
+                    Debug.Log(hit.transform.name);
+                }
             }
         }
     }

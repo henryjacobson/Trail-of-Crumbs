@@ -32,6 +32,11 @@ public class DoorLockPad : MonoBehaviour
         this.SetUnlock(true);
     }
 
+    public void Lock()
+    {
+        this.SetUnlock(false);
+    }
+
     private void SetUnlock(bool isUnlocked)
     {
         this.isUnlocked = isUnlocked;

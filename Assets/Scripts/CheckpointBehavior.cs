@@ -9,6 +9,7 @@ public class CheckpointBehavior : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FindObjectOfType<LevelManager>().SetCheckPoint(other.transform.position);
+            PodBreak.ClearPodCache();
             Destroy(gameObject);
         }
     }

@@ -161,7 +161,7 @@ MonoBehaviour:
   halfDoorRightTransform: {fileID: 2916036480136802812}
   openDirection: 0
   slideDistance: 0.88
-  speed: 1
+  speed: 1.5
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,
     type: 3}
   doorClosingSoundClip: {fileID: 8300000, guid: 4547fb4d1627d4ce6acc55af375f84f4,

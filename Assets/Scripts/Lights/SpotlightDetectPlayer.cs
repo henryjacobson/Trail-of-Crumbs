@@ -101,9 +101,4 @@ public class SpotlightDetectPlayer : MonoBehaviour
     {
         parentEnemy = parent;
     }
-
-    private void OnDrawGizmos()
-    {
-        Debug.DrawLine(transform.position, player.position, Color.red);
-    }
 }

@@ -6,9 +6,10 @@ public class ConductorTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("GrappleHand"))
         {
             FindObjectOfType<ConductorBehavior>().PlayerSeen();
+            other.gameObject.GetComponent<GrappleHandController>().controlState = ControlState.Retracting;
             Destroy(gameObject);
         }
     }

@@ -102,6 +102,11 @@ public class ConductorBehavior : MonoBehaviour
         }
     }
 
+    public void DelayPlayerSeen()
+    {
+        Invoke("PlayerSeen", 0.25f);
+    }
+
     public void PlayerSeen()
     {
         anim.SetTrigger("playerSeen");

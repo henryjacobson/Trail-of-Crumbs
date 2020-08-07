@@ -61,6 +61,8 @@ public class LevelManager : MonoBehaviour
 
         PodBreak.ResetPodCache();
 
+        FindObjectOfType<GrappleHandController>().DeactivatePowerups();
+
         DisableGameOverText();
     }
 

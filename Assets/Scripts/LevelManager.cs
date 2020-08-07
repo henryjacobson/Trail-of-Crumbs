@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     private string nextLevel;
     [SerializeField]
     private Text gameOverText;
+    public bool canBreakPods;
     public Transform player;
     private Vector3 checkpointPosition;
 
@@ -59,7 +60,10 @@ public class LevelManager : MonoBehaviour
             cellPrime.Checkpoint();
         }
 
-        PodBreak.ResetPodCache();
+        if (canBreakPods)
+        {
+            PodBreak.ResetPodCache();
+        }
 
         FindObjectOfType<GrappleHandController>().DeactivatePowerups();
 

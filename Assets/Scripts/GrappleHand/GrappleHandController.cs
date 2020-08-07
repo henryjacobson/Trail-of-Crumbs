@@ -47,6 +47,16 @@ public class GrappleHandController : MonoBehaviour
     private List<Transform> items;
 
     private Dictionary<PowerUp, float> powerUpTimers;
+    
+    //laser stuff
+    
+    public float damage = 10f;
+    public float range = 100f;
+    
+    public Camera fpsCam;
+    public ParticleSystem laserFlash;
+    
+    //laser stuff
 
     void Start()
     {
@@ -115,6 +125,28 @@ public class GrappleHandController : MonoBehaviour
                 case ControlState.PullingPlayer:
                     this.PullingPlayerUpdate();
                     break;
+            }
+        }
+        
+        if (Input.GetKeyDown(this.launchKey))
+        {
+            Shoot();
+        }
+    }
+    
+    void Shoot() 
+    {   
+        if(this.controlState == ControlState.Launching){
+            
+            Debug.Log("launching");
+            
+            laserFlash.Play();
+
+            RaycastHit hit;
+            
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            {
+                Debug.Log(hit.transform.name);
             }
         }
     }

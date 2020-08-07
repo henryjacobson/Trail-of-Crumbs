@@ -21,12 +21,23 @@ public class Gun : MonoBehaviour {
     
     void Shoot ()
     {
-        laserFlash.Play();
+        GrappleHandController gr = GetComponent<GrappleHandController>();
         
-        RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
-        {
-            Debug.Log(hit.transform.name);
+        //this prints Resting
+        Debug.Log(gr.controlState);
+        
+        if(gr.controlState == ControlState.Launching){
+            
+            Debug.Log("launching");
+            
+            laserFlash.Play();
+
+            RaycastHit hit;
+            
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            {
+                Debug.Log(hit.transform.name);
+            }
         }
     }
 }

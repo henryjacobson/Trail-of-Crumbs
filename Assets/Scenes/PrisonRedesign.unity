@@ -13752,13 +13752,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799340819}
   serializedVersion: 6
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -22066,6 +22066,16 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1775904873}
+    - target: {fileID: 3066058647318400932, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: fpsCam
+      value: 
+      objectReference: {fileID: 1001205031}
+    - target: {fileID: 3066058647318400932, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: laserFlash
+      value: 
+      objectReference: {fileID: 799340822}
     - target: {fileID: 3066058647318400935, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -22286,6 +22296,10 @@ MonoBehaviour:
   fireSFX: {fileID: 8300000, guid: 230d59294c9857140b63dd308ea4bd63, type: 3}
   returnSFX: {fileID: 8300000, guid: 406c929b7299afb469c82778f8d15d5b, type: 3}
   powerupTimerText: {fileID: 1188157935}
+  damage: 10
+  range: 100
+  fpsCam: {fileID: 0}
+  laserFlash: {fileID: 0}
 --- !u!1 &1001205028 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3066058647318400955, guid: 21762196f83b67341b72cc7b8b3c6a9c,
@@ -23941,7 +23955,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1e-45, y: 3.8271913e+12, z: 1e-45, w: 7.676236e-21}
+  m_BoundingSphereOverride: {x: 4.7019774e-38, y: 0.03125, z: 2.3509887e-38, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0

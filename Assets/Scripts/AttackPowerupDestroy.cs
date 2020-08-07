@@ -25,6 +25,6 @@ public class AttackPowerupDestroy : MonoBehaviour
         AudioSource.PlayClipAtPoint(sound, transform.position);
         Instantiate(sparks, transform.position + Vector3.up, Quaternion.Euler(90 * Vector3.left));
         Instantiate(smoke, transform.position + Vector3.up, Quaternion.Euler(90 * Vector3.left));
-        Destroy(gameObject, 0.5f);
+        this.GetComponent<CacheOnCheckpoint>().OnCache(0.5f);
     }
 }

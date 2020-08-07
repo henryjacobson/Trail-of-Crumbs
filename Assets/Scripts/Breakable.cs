@@ -6,6 +6,13 @@ public class Breakable : MonoBehaviour
 {
     public AudioClip brokenSFX;
 
+    private CacheOnCheckpoint coc;
+
+    void Awake()
+    {
+        this.coc = this.gameObject.AddComponent<CacheOnCheckpoint>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("GrappleHand"))
@@ -15,7 +22,7 @@ public class Breakable : MonoBehaviour
                 AudioSource.PlayClipAtPoint(brokenSFX, transform.position);
             }
 
-            Destroy(gameObject, 0.25f);
+            this.coc.OnCache(0.25f);
         }
     }
 }

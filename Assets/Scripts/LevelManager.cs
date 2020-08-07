@@ -65,6 +65,8 @@ public class LevelManager : MonoBehaviour
 
         GivePowerup.ResetPowerupTimers();
 
+        CacheOnCheckpoint.ResetCache();
+
         ConductorBehavior cb = FindObjectOfType<ConductorBehavior>();
         if (cb != null)
         {

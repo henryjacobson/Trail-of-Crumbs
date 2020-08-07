@@ -33,6 +33,11 @@ public class Player_Movement : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            FindObjectOfType<LevelManager>().LevelLost();
+        }
+
         if (controlsActive && !LevelManager.isGameOver)
         {
             float deltaX = Input.GetAxis("Horizontal") * speed;

@@ -25,7 +25,7 @@ public class PodBreak : MonoBehaviour
             //Debug.Log("here");
             isBroken = true;
             Instantiate(brokenPod, currTransform.position, currTransform.rotation);
-            Destroy(gameObject, 0.15f);
+            Destroy(gameObject);
         }
     }
 

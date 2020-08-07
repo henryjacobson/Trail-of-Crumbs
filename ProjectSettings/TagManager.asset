@@ -13,6 +13,11 @@ TagManager:
   - PowerupTimerText
   - PodCar1
   - Conductor
+  - PodCar2
+  - PodCar3
+  - PodCar4
+  - PodCar5
+  - PodCar6
   layers:
   - Default
   - TransparentFX

@@ -870,6 +870,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotGrappleHand
       objectReference: {fileID: 0}
+    - target: {fileID: 6860280539990057799, guid: 6d4668e533561ff44bdebcdf0297e4dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: player

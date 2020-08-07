@@ -128,7 +128,7 @@ public class GrappleHandController : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(this.launchKey))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
@@ -178,7 +178,7 @@ public class GrappleHandController : MonoBehaviour
     private void RestingUpdate()
     {
         this.UpdateItemList();
-        if (Input.GetKeyDown(this.launchKey))
+        if (Input.GetMouseButtonDown(0))
         {
             AudioSource.PlayClipAtPoint(this.fireSFX, this.transform.position);
 
@@ -263,7 +263,7 @@ public class GrappleHandController : MonoBehaviour
         Vector3 toHook = this.transform.position - this.player.transform.position;
         Vector3 offset = toHook.normalized * this.GetGrappleSpeed() * Time.deltaTime;
         this.playerCC.Move(offset);
-        if (Input.GetKeyDown(this.launchKey))
+        if (Input.GetMouseButtonDown(0))
         {
             AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
 

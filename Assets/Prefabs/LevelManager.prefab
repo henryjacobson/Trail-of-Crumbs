@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae21b829f0a16d4281c1e7f3d1a2fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 
+  nextLevel: PrisonRedesign
   gameOverText: {fileID: 7638253298374806328}
+  canBreakPods: 0
+  player: {fileID: 0}
 --- !u!1 &7638253298150012181
 GameObject:
   m_ObjectHideFlags: 0

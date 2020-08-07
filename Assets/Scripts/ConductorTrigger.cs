@@ -9,6 +9,7 @@ public class ConductorTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             FindObjectOfType<ConductorBehavior>().PlayerSeen();
+            Destroy(gameObject);
         }
     }
 }

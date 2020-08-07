@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - PowerupTimerText
   - PodCar1
+  - Conductor
   layers:
   - Default
   - TransparentFX

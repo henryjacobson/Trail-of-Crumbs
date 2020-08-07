@@ -61,7 +61,7 @@ public class Player_Movement : MonoBehaviour
         }
         
         //crouching
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.Q))
         {
             if (this.IsGrounded())
             {

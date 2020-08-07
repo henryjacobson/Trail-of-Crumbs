@@ -58,6 +58,9 @@ public class LevelManager : MonoBehaviour
         {
             cellPrime.Checkpoint();
         }
+
+        PodBreak.ResetPodCache();
+
         DisableGameOverText();
     }
 

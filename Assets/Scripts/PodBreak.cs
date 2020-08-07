@@ -11,8 +11,13 @@ public class PodBreak : MonoBehaviour
     public AudioClip glassBreaking;
     public int carNumber;
 
+    private static List<PodBreak> podCache;
+
+    private GameObject brokenPodSpawned;
+
     private void Start()
     {
+        podCache = new List<PodBreak>();
         isBroken = false;
     }
 
@@ -24,9 +29,18 @@ public class PodBreak : MonoBehaviour
             AudioSource.PlayClipAtPoint(glassBreaking, currTransform.position);
             //Debug.Log("here");
             isBroken = true;
-            Instantiate(brokenPod, currTransform.position, currTransform.rotation);
-            Destroy(gameObject);
+            this.brokenPodSpawned = Instantiate(brokenPod, currTransform.position, currTransform.rotation);
+            this.ClearPod();
         }
+    }
+
+    private void ClearPod()
+    {
+        podCache.Add(this);
+
+        this.gameObject.SetActive(false);
+
+        this.OnDestroy();
     }
 
     private void OnDestroy()
@@ -41,6 +55,40 @@ public class PodBreak : MonoBehaviour
         if (allBroken)
         {
             this.doorLockPad.Unlock();
+        }
+    }
+
+    public static void ClearPodCache()
+    {
+        podCache = new List<PodBreak>();
+    }
+    
+    public static void ResetPodCache()
+    {
+        foreach(PodBreak pb in podCache)
+        {
+            pb.ReplacePod();
+            pb.LockDoor();
+        }
+
+        ClearPodCache();
+    }
+
+    public void ReplacePod()
+    {
+        if (this.isBroken)
+        {
+            Destroy(this.brokenPodSpawned);
+            this.gameObject.SetActive(true);
+            this.isBroken = false;
+        }
+    }
+
+    public void LockDoor()
+    {
+        if (!this.isBroken)
+        {
+            this.doorLockPad.Lock();
         }
     }
 }

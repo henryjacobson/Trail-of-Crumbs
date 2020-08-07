@@ -22,7 +22,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
 
     void Update()
     {
-        if (this.DetectPlayer())
+        if (!LevelManager.isGameOver && this.DetectPlayer())
         {
             FindObjectOfType<LevelManager>().LevelLost();
         }

@@ -15,12 +15,14 @@ public class GivePowerup : MonoBehaviour
     private GameObject powerupIndicatorObject;
 
     private float rechargeTimer;
-    
-    
+
+    private static List<GivePowerup> powerupTimers = new List<GivePowerup>();
 
     void Start()
     {
         this.rechargeTimer = 0;
+
+        powerupTimers.Add(this);
     }
 
     void Update()
@@ -60,5 +62,18 @@ public class GivePowerup : MonoBehaviour
                 GameObject.FindObjectOfType<GrappleHandController>().SetPowerUp(this.powerUp, this.duration);
             }
         }
+    }
+
+    public static void ResetPowerupTimers()
+    {
+        foreach(GivePowerup gp in powerupTimers)
+        {
+            gp.Reset();
+        }
+    }
+
+    public void Reset()
+    {
+        this.rechargeTimer = 0;
     }
 }

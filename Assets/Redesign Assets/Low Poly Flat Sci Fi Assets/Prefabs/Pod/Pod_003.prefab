@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1570375755671127958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3031426308617078406}
+  - component: {fileID: 3175395528797389846}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3031426308617078406
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570375755671127958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6588832165079915988}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &3175395528797389846
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570375755671127958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300038, guid: fe8bb5221257840c2805e380fc94544a, type: 3}
 --- !u!1 &6591726708498088424
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +59,7 @@ GameObject:
   - component: {fileID: 6593133066288896394}
   - component: {fileID: 1415156951343055}
   - component: {fileID: 1415156951343056}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pod_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +76,8 @@ Transform:
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -1.21, y: 14.110277, z: 32.07715}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3031426308617078406}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
@@ -95,9 +141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5344069b737f429e89b1086b33d42f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBroken: 0
+  doorLockPad: {fileID: 0}
   brokenPod: {fileID: 6987964640508949394, guid: 4d70077473bc1481da2a93278b7f3cfc,
     type: 3}
   glassBreaking: {fileID: 8300000, guid: 0b82392d733dd4265a82795edd5aa471, type: 3}
+  carNumber: 0
 --- !u!136 &1415156951343055
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -106,12 +155,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6591726708498088424}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.6116784
+  m_Radius: 0.83
   m_Height: 1.9838786
   m_Direction: 2
-  m_Center: {x: -0.08286697, y: 0.0043069124, z: 1.0977939}
+  m_Center: {x: 0, y: 0.0043069124, z: 1.0977939}
 --- !u!64 &1415156951343056
 MeshCollider:
   m_ObjectHideFlags: 0

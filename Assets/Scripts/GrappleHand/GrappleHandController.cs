@@ -436,6 +436,15 @@ public class GrappleHandController : MonoBehaviour
         return new PowerUp[2] { PowerUp.ExtendedRange, PowerUp.Attack };
     }
 
+    public void DeactivatePowerups()
+    {
+        foreach(PowerUp p in GetPowerUpList())
+        {
+            this.powerUpTimers.Remove(p);
+            this.powerUpTimers.Add(p, 0);
+        }
+    }
+
     private float GetGrappleRange()
     {
         if (this.IsPowerUpActive(PowerUp.ExtendedRange))

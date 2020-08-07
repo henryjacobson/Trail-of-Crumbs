@@ -664,7 +664,7 @@ Transform:
   m_GameObject: {fileID: 866961428596139227}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.88, y: 0, z: 3.72}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2, y: 1.8, z: 2}
   m_Children:
   - {fileID: 4263752911813858388}
   - {fileID: 2132232743905302818}
@@ -734,7 +734,7 @@ NavMeshAgent:
   m_Speed: 7.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 720
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1

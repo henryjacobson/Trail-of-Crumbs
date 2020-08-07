@@ -7,11 +7,12 @@ using UnityEngine.AI;
 public class ConductorBehavior : MonoBehaviour
 {
     public float attackDistance = 5f;
+    public Transform head;
 
     FSMStates state;
     Animator anim;
     NavMeshAgent agent;
-    Transform player;
+    GameObject player;
     Camera mainCamera;
 
     enum FSMStates
@@ -28,7 +29,7 @@ public class ConductorBehavior : MonoBehaviour
         state = FSMStates.Driving;
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         mainCamera = Camera.main;
     }
 
@@ -61,20 +62,26 @@ public class ConductorBehavior : MonoBehaviour
 
     void RunningUpdate()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(player.transform.position);
 
-        if (Vector3.Distance(transform.position, player.position) <= attackDistance)
+        if (Vector3.Distance(transform.position, player.transform.position) <= attackDistance)
         {
             anim.SetTrigger("nearPlayer");
             state = FSMStates.Attacking;
+            player.GetComponent<Player_Movement>().enabled = false;
+            Camera_Control[] controls = player.GetComponentsInChildren<Camera_Control>();
+            foreach (Camera_Control control in controls)
+            {
+                control.enabled = false;
+            }
         }
     }
 
     void AttackingUpdate()
     {
-        mainCamera.transform.LookAt(transform);
+        mainCamera.transform.LookAt(head);
         agent.enabled = false;
-        Vector3 target = player.position;
+        Vector3 target = player.transform.position;
         target.y = transform.position.y;
         transform.LookAt(target);
     }
@@ -83,5 +90,10 @@ public class ConductorBehavior : MonoBehaviour
     {
         anim.SetTrigger("playerSeen");
         state = FSMStates.Standing;
+    }
+
+    public void Attack()
+    {
+
     }
 }

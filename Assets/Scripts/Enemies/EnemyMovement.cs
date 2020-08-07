@@ -82,25 +82,29 @@ public class EnemyMovement : MonoBehaviour
 
     public void Alert(Transform target, bool initialEnemy)
     {
-        if (initialEnemy)
+        if (!alerted)
         {
-            AudioSource.PlayClipAtPoint(spotted, transform.position);
-            playReturn = true;
-            var enemies = FindObjectsOfType<EnemyMovement>();
-            foreach (EnemyMovement enemy in enemies)
+            if (initialEnemy)
             {
-                if (enemy != this)
+                AudioSource.PlayClipAtPoint(spotted, transform.position);
+                playReturn = true;
+                var enemies = FindObjectsOfType<EnemyMovement>();
+                foreach (EnemyMovement enemy in enemies)
                 {
-                    enemy.Alert(target, false);
+                    if (enemy != this)
+                    {
+                        enemy.Alert(target, false);
+                    }
                 }
             }
+            else
+            {
+                playReturn = false;
+            }
+            alertTarget = target.transform;
+            alerted = true;
+            alertTime = alertDuration;
         }
-        else
-        {
-            playReturn = false;
-        }
-        alertTarget = target.transform;
-        alerted = true;
-        alertTime = alertDuration;
+
     }
 }

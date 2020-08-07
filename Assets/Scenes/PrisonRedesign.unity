@@ -25713,6 +25713,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9077317546444884742}
     m_Modifications:
+    - target: {fileID: 7638253298053005714, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: nextLevel
+      value: Train Background
+      objectReference: {fileID: 0}
     - target: {fileID: 7638253298053005715, guid: 57155f8690699384da62dac4e49fbe18,
         type: 3}
       propertyPath: m_Name

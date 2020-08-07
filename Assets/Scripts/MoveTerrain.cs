@@ -30,6 +30,7 @@ public class MoveTerrain : MonoBehaviour
             Destroy(first);
             first = next;
             next = Instantiate(terrainPrefab, first.transform.position + (Vector3.forward * 1000), transform.rotation);
+            next.transform.rotation = Quaternion.Euler(90, 90, 0);
             next.transform.SetParent(gameObject.transform);
         }
     }

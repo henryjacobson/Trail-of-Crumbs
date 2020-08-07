@@ -49251,6 +49251,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WinTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 2972699415803995260, guid: 08241ad2b676d594b93ea1eb26765bdc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2972699415803995261, guid: 08241ad2b676d594b93ea1eb26765bdc,
         type: 3}
       propertyPath: m_LocalPosition.x

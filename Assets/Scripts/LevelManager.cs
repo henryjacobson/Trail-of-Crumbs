@@ -63,6 +63,12 @@ public class LevelManager : MonoBehaviour
 
         FindObjectOfType<GrappleHandController>().DeactivatePowerups();
 
+        ConductorBehavior cb = FindObjectOfType<ConductorBehavior>();
+        if (cb != null)
+        {
+            cb.GameOver();
+        }
+
         DisableGameOverText();
     }
 

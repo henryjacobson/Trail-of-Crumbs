@@ -18,6 +18,8 @@ public class ConductorBehavior : MonoBehaviour
     Camera mainCamera;
     bool dead;
 
+    Vector3 startPos;
+    Quaternion startRot;
 
 
     enum FSMStates
@@ -38,6 +40,9 @@ public class ConductorBehavior : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         mainCamera = Camera.main;
         dead = false;
+
+        startPos = transform.position;
+        startRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -132,4 +137,10 @@ public class ConductorBehavior : MonoBehaviour
         FindObjectOfType<LevelManager>().LevelWon();
     }
 
+    public void GameOver()
+    {
+        anim.SetTrigger("gameOver");
+        transform.position = startPos;
+        transform.rotation = startRot;
+    }
 }

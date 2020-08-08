@@ -464,6 +464,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 138827762}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &190300420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7105552727862554756, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 251002174}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &251002174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -486,6 +492,16 @@ PrefabInstance:
       propertyPath: powerupTimerText
       value: 
       objectReference: {fileID: 1347240760}
+    - target: {fileID: 3066058647318400932, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 711790946}
+    - target: {fileID: 3066058647318400932, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 190300420}
     - target: {fileID: 3066058647318400955, guid: 21762196f83b67341b72cc7b8b3c6a9c,
         type: 3}
       propertyPath: m_IsActive
@@ -824,6 +840,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3697045054842040597, guid: 0ba6ea8d51e34ff4d90b582c6a3aecdc,
     type: 3}
   m_PrefabInstance: {fileID: 559229829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &711790946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7105552727799542684, guid: 21762196f83b67341b72cc7b8b3c6a9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 251002174}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &890907009
 Mesh:
@@ -8821,7 +8843,7 @@ PrefabInstance:
     - target: {fileID: 2328611989902689347, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -70.8
+      value: -70.66
       objectReference: {fileID: 0}
     - target: {fileID: 2336942930102070777, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}

@@ -1,5 +1,63 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &5282604012258796720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612177396116251382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406a937d7497b254cb03ae01be0415d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlState: 0
+  player: {fileID: 0}
+  camera: {fileID: 0}
+  returnPointPrefab: {fileID: 7650263600005131288, guid: ab12ac677e6192b4b8a70d2a5307ce09,
+    type: 3}
+  launchKey: 304
+  speed: 25
+  maxDistance: 20
+  extendedGrappleMultiplier: 2
+  distanceToGrappleToStop: 2
+  fireSFX: {fileID: 8300000, guid: 230d59294c9857140b63dd308ea4bd63, type: 3}
+  returnSFX: {fileID: 8300000, guid: 406c929b7299afb469c82778f8d15d5b, type: 3}
+  powerupTimerText: {fileID: 0}
+  damage: 10
+  range: 100
+  fpsCam: {fileID: 0}
+  laserFlash: {fileID: 0}
+--- !u!54 &3411246546508076741
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612177396116251382}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &4979877272157595241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4612177396116251382}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10394844, y: 0.13908525, z: 0.14045294}
+  m_Center: {x: 0.050391153, y: -0.05654479, z: 0.015382496}
 --- !u!1 &5459203501315338947
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7105552727799542684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.92, z: -3808}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_Children:
   - {fileID: 7105552727862554759}
@@ -763,6 +821,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49e0828d2dc5a4ff7a424cb3c0553f06, type: 3}
+--- !u!1 &4612177396116251382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5544845753660060948, guid: 49e0828d2dc5a4ff7a424cb3c0553f06,
+    type: 3}
+  m_PrefabInstance: {fileID: 932950124595107810}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6872028793418690230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -774,6 +838,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GrappleHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860280539990057799, guid: 6d4668e533561ff44bdebcdf0297e4dd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
@@ -860,6 +929,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7105552727799542656}
     m_Modifications:
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057797, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -873,32 +946,37 @@ PrefabInstance:
     - target: {fileID: 6860280539990057799, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7105552727799542684}
     - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: camera
       value: 
+      objectReference: {fileID: 7105552727862554756}
+    - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7712078
+      value: 0.423
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.087336
+      value: 0.27
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3775.7104
+      value: 0.586
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}

@@ -1478,6 +1478,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3545957979066541150, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081286613562562798, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081286613562562798, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 7638253298053005714, guid: 57155f8690699384da62dac4e49fbe18,
         type: 3}
       propertyPath: canBreakPods

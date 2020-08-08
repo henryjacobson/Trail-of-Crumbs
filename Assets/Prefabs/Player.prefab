@@ -5227,8 +5227,8 @@ MonoBehaviour:
   axes: 2
   minimumVert: -75
   maximumVert: 75
-  sensHorizontal: 2
-  sensVertical: 4
+  sensHorizontal: 4
+  sensVertical: 3
   _rotationX: 0
 --- !u!82 &1775904874
 AudioSource:

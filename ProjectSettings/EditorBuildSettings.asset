@@ -7,7 +7,10 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 2c4af4308317d8446b47b5af71f1ecc3
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 02b579db4ab7d9c40a5a5fa69e95cb66
   - enabled: 1
     path: Assets/Scenes/PrisonRedesign.unity
     guid: f035b3fd1b56842c980fa2eb7fe597a9

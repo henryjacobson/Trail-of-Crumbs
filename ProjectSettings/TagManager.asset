@@ -18,6 +18,7 @@ TagManager:
   - PodCar4
   - PodCar5
   - PodCar6
+  - UI
   layers:
   - Default
   - TransparentFX

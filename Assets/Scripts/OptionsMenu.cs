@@ -28,7 +28,7 @@ namespace SlimUI.ModernMenu{
 
 			if (!PlayerPrefs.HasKey("MusicVolume"))
             {
-				PlayerPrefs.SetFloat("MusicVolume", 0.17f);
+				PlayerPrefs.SetFloat("MusicVolume", 0.1f);
 			}
 
 			if (!PlayerPrefs.HasKey("XSensitivity"))

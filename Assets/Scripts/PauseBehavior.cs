@@ -12,25 +12,21 @@ public class PauseBehavior : MonoBehaviour
     public GameObject settings;
 
     GameObject UI;
-    Player_Movement playerMovement;
-    Camera_Control[] cameraControls;
-    GrappleHandController grappleHand;
+    DisableControls disableControls;
 
     // Start is called before the first frame update
     void Start()
     {
         isPaused = false;
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = player.GetComponent<Player_Movement>();
-        cameraControls = player.GetComponentsInChildren<Camera_Control>();
-        grappleHand = player.GetComponentInChildren<GrappleHandController>();
+        disableControls = player.GetComponent<DisableControls>();
         UI = GameObject.FindGameObjectWithTag("UI");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !IntroBehavior.intro)
         {
             if (isPaused)
             {
@@ -54,12 +50,7 @@ public class PauseBehavior : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
 
-        playerMovement.enabled = false;
-        grappleHand.enabled = false;
-        foreach (Camera_Control camera in cameraControls)
-        {
-            camera.enabled = false;
-        }
+        disableControls.Disable();
     }
 
     public void Resume()
@@ -75,12 +66,7 @@ public class PauseBehavior : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
 
-        playerMovement.enabled = true;
-        grappleHand.enabled = true; 
-        foreach (Camera_Control camera in cameraControls)
-        {
-            camera.enabled = true;
-        }
+        disableControls.Enable();
     }
 
     public void MainMenu()

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class PauseBehavior : MonoBehaviour
 {
+    public static bool isPaused;
+
     public GameObject background;
     public GameObject mainMenu;
     public GameObject settings;
@@ -13,7 +15,6 @@ public class PauseBehavior : MonoBehaviour
     Player_Movement playerMovement;
     Camera_Control[] cameraControls;
     GrappleHandController grappleHand;
-    bool isPaused;
 
     // Start is called before the first frame update
     void Start()

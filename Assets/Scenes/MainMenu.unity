@@ -2855,6 +2855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4029689810951199}
+  - component: {fileID: 1273326974686760}
   m_Layer: 0
   m_Name: Main_Menu
   m_TagString: Untagged
@@ -2862,6 +2863,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1273326974686760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273326974686759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f6aa6586f77764fab668a0a62d8f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMainMenu: 1
+  musicSlider: {fileID: 1485894898892679}
+  sensitivityXSlider: {fileID: 531837005}
+  sensitivityYSlider: {fileID: 698042183}
 --- !u!1 &1275305011632273
 GameObject:
   m_ObjectHideFlags: 0
@@ -23678,38 +23695,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6aa6586f77764fab668a0a62d8f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform: 0
-  mobileSFXtext: {fileID: 0}
-  mobileMusictext: {fileID: 0}
-  mobileShadowofftextLINE: {fileID: 0}
-  mobileShadowlowtextLINE: {fileID: 0}
-  mobileShadowhightextLINE: {fileID: 0}
-  fullscreentext: {fileID: 1632052965881557}
-  ambientocclusiontext: {fileID: 1893194645462171}
-  shadowofftextLINE: {fileID: 1513267278052823}
-  shadowlowtextLINE: {fileID: 1148273290211259}
-  shadowhightextLINE: {fileID: 1075888701668709}
-  aaofftextLINE: {fileID: 1116426181229055}
-  aa2xtextLINE: {fileID: 1060212908091417}
-  aa4xtextLINE: {fileID: 1566915210013265}
-  aa8xtextLINE: {fileID: 1251429760827669}
-  vsynctext: {fileID: 1002790564807541}
-  motionblurtext: {fileID: 1020219781670201}
-  texturelowtextLINE: {fileID: 1068748185955863}
-  texturemedtextLINE: {fileID: 1239698850285445}
-  texturehightextLINE: {fileID: 1306830706790149}
-  cameraeffectstext: {fileID: 1504220356897449}
-  showhudtext: {fileID: 1375573785599059}
-  tooltipstext: {fileID: 1517242515405725}
-  difficultynormaltext: {fileID: 1909431235257583}
-  difficultynormaltextLINE: {fileID: 1775885530410917}
-  difficultyhardcoretext: {fileID: 1645284159200005}
-  difficultyhardcoretextLINE: {fileID: 0}
-  invertmousetext: {fileID: 1236356757507151}
+  isMainMenu: 0
   musicSlider: {fileID: 1485894898892679}
   sensitivityXSlider: {fileID: 1460852600211209}
   sensitivityYSlider: {fileID: 1675337573396389}
-  mouseSmoothSlider: {fileID: 1868450974968579}
 --- !u!114 &114713355095009227
 MonoBehaviour:
   m_ObjectHideFlags: 0

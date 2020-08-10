@@ -20,7 +20,10 @@ namespace SlimUI.ModernMenu{
 		AudioSource musicSource;
 
 		public void  Start (){
-			cameraControls = GameObject.FindGameObjectWithTag("Player").GetComponentsInChildren<Camera_Control>();
+            if (!isMainMenu)
+            {
+				cameraControls = GameObject.FindGameObjectWithTag("Player").GetComponentsInChildren<Camera_Control>();
+			}
 			musicSource = Camera.main.GetComponent<AudioSource>();
 
 			if (!PlayerPrefs.HasKey("MusicVolume"))
@@ -52,10 +55,13 @@ namespace SlimUI.ModernMenu{
 			sliderValueYSensitivity = sensitivityYSlider.GetComponent<Slider>().value;
 
 			musicSource.volume = sliderValue;
-			foreach (Camera_Control cam in cameraControls)
+			if (!isMainMenu)
 			{
-				cam.sensHorizontal = sliderValueXSensitivity;
-				cam.sensVertical = sliderValueYSensitivity;
+				foreach (Camera_Control cam in cameraControls)
+				{
+					cam.sensHorizontal = sliderValueXSensitivity;
+					cam.sensVertical = sliderValueYSensitivity;
+				}
 			}
 		}
 
@@ -71,10 +77,13 @@ namespace SlimUI.ModernMenu{
 				PlayerPrefs.SetFloat("YSensitivity", sliderValueYSensitivity);
 
 				musicSource.volume = sliderValue;
-				foreach (Camera_Control cam in cameraControls)
-				{
-					cam.sensHorizontal = sliderValueXSensitivity;
-					cam.sensVertical = sliderValueYSensitivity;
+				if (!isMainMenu)
+                {
+					foreach (Camera_Control cam in cameraControls)
+					{
+						cam.sensHorizontal = sliderValueXSensitivity;
+						cam.sensVertical = sliderValueYSensitivity;
+					}
 				}
 			}
 		}

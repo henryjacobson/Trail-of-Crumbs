@@ -9,7 +9,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
 
     private Transform player;
     private Transform grappleHand;
-    private EnemyMovement parentEnemy;
+    private EnemyAI parentEnemy;
 
     void Start()
     {
@@ -25,6 +25,11 @@ public class SpotlightDetectPlayer : MonoBehaviour
         if (!LevelManager.isGameOver && this.DetectPlayer())
         {
             FindObjectOfType<LevelManager>().LevelLost();
+
+            if (parentEnemy != null)
+            {
+                parentEnemy.GameOver();
+            }
         }
         if (this.DetectGrappleHand())
         {
@@ -97,7 +102,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
         return hit;
     }
 
-    public void SetParent(EnemyMovement parent)
+    public void SetParent(EnemyAI parent)
     {
         parentEnemy = parent;
     }

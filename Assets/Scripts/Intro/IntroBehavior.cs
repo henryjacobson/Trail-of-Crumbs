@@ -54,6 +54,7 @@ public class IntroBehavior : MonoBehaviour
                 intro = false;
                 disableControls.Enable();
                 AudioSource.PlayClipAtPoint(finalClip, GameObject.FindGameObjectWithTag("Player").transform.position);
+                canvas.SetActive(true);
                 gameObject.SetActive(false);
             }
         }

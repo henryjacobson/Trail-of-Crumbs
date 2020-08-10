@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AlertExample : MonoBehaviour
 {
-    public EnemyMovement enemy;
+    public EnemyAI enemy;
     public float delay = 5f;
     // Start is called before the first frame update
     void Start()

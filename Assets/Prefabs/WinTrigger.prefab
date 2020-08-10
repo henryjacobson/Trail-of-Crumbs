@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2972699415803995261}
   - component: {fileID: 2972699415803995259}
   - component: {fileID: 2972699415803995258}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WinTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

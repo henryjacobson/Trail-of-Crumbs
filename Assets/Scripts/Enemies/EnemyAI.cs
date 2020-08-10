@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
     public AudioClip spotted;
     public AudioClip returning;
     public AudioClip gameOver;
+    public AudioClip haha;
     AudioSource audioSource;
 
     NavMeshAgent agent;
@@ -23,11 +24,15 @@ public class EnemyAI : MonoBehaviour
     float alertTime;
     bool playReturn;
 
-    FSMStates state;
+    //[HideInInspector]
+    public FSMStates state;
+
+    [HideInInspector]
+    public Animator anim;
 
     Transform player;
 
-    enum FSMStates
+    public enum FSMStates
     {
         Patrol,
         Alerted,
@@ -53,6 +58,8 @@ public class EnemyAI : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -111,7 +118,7 @@ public class EnemyAI : MonoBehaviour
     void GameOverUpdate()
     {
         agent.isStopped = true;
-        var destination = alertTarget;
+        var destination = player.position;
         destination.y = transform.position.y;
         transform.LookAt(destination);
     }
@@ -145,10 +152,35 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    public void GameOver()
+    public void GameOver(bool initialEnemy)
     {
+        if (initialEnemy)
+        {
+            audioSource.clip = gameOver;
+            audioSource.Play();
+            var enemies = FindObjectsOfType<EnemyAI>();
+            foreach (EnemyAI enemy in enemies)
+            {
+                if (enemy != this)
+                {
+                    enemy.GameOver(false);
+                }
+            }
+            player.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
+            Camera.main.transform.LookAt(transform.position + Vector3.up * 1.5f);
+        }
+        else
+        {
+            Invoke("Haha", Random.Range(.2f, 1f));
+        }
+
         state = FSMStates.GameOver;
-        audioSource.clip = gameOver;
+        anim.enabled = false;
+    }
+
+    void Haha()
+    {
+        audioSource.clip = haha;
         audioSource.Play();
     }
 }

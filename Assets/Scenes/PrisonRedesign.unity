@@ -18271,24 +18271,6 @@ MonoBehaviour:
   rotation2: {x: 60, y: 90, z: 0}
   rotateSpeed: 0.5
   player: {fileID: 0}
---- !u!1 &942860577 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7105552727799542684, guid: 21762196f83b67341b72cc7b8b3c6a9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1001205021}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &942860584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 942860577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1100e9529d77384b89da411149c127c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &946317907
 GameObject:
   m_ObjectHideFlags: 0

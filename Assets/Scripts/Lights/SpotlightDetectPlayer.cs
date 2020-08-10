@@ -28,7 +28,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
 
             if (parentEnemy != null)
             {
-                parentEnemy.GameOver();
+                parentEnemy.GameOver(true);
             }
         }
         if (this.DetectGrappleHand())

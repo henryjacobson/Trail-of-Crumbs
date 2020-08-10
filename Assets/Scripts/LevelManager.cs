@@ -79,6 +79,13 @@ public class LevelManager : MonoBehaviour
 
         FindObjectOfType<GrappleHandController>().controlState = ControlState.Retracting;
 
+        EnemyAI[] enemies = FindObjectsOfType<EnemyAI>();
+        foreach(EnemyAI enemy in enemies)
+        {
+            enemy.state = EnemyAI.FSMStates.Patrol;
+            enemy.anim.enabled = true;
+        }
+
         DisableGameOverText();
     }
 

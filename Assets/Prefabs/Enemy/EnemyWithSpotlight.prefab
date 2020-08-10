@@ -839,6 +839,8 @@ MonoBehaviour:
   spotted: {fileID: 8300000, guid: 57618f9da26e8b54f964ca71af8dec08, type: 3}
   returning: {fileID: 8300000, guid: a68e86d499191704cb198aec7c67f4bd, type: 3}
   gameOver: {fileID: 8300000, guid: 4852161efedd58c47a5026e4b91c01fa, type: 3}
+  haha: {fileID: 8300000, guid: 116da761518a25c4cb87b10aa6746b66, type: 3}
+  state: 0
 --- !u!114 &862715810090993482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,6 +1918,21 @@ PrefabInstance:
       propertyPath: m_Range
       value: 5.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2069738485401391756, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.08715578
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069738485401391756, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9961947
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069738485401391756, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3446326965258346525, guid: d89e6490d9d4d435db1ba6e73e895075,
         type: 3}
       propertyPath: m_Name
@@ -2005,6 +2022,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.19999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014172075619841795, guid: d89e6490d9d4d435db1ba6e73e895075,
+        type: 3}
+      propertyPath: m_Range
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d89e6490d9d4d435db1ba6e73e895075, type: 3}

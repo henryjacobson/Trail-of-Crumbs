@@ -80,6 +80,9 @@ public class LevelManager : MonoBehaviour
         CacheOnCheckpoint.ResetCache();
 
         ConductorBehavior cb = FindObjectOfType<ConductorBehavior>();
+
+        FindObjectOfType<PowerUpSlider>().SetValue(0);
+
         if (cb != null)
         {
             cb.GameOver();

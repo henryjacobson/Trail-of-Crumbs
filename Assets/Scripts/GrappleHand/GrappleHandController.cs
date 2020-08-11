@@ -411,15 +411,12 @@ public class GrappleHandController : MonoBehaviour
                 if (t > 0)
                 {
                     t -= Time.deltaTime;
+                    this.UpdateTimerSlider(t);
                 } else
                 {
                     t = 0;
                 }
                 this.UpdatePowerUp(p, t);
-                if (this.IsPowerUpActive(p))
-                {
-                    this.UpdateTimerSlider(t);
-                }
             }
         }
         

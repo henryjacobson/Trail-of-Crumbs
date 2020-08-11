@@ -91,6 +91,10 @@ public class Player_Movement : MonoBehaviour
     private void GrappleStateChanged(ControlState controlState)
     {
         controlsActive = controlState != ControlState.PullingPlayer;
+        if (controlState == ControlState.PullingPlayer)
+        {
+            this.yVelocity = 0;
+        }
     }
 
     private void HandleFootstepSFX()

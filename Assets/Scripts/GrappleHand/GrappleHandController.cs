@@ -32,14 +32,21 @@ public class GrappleHandController : MonoBehaviour
     private AudioClip fireSFX;
     [SerializeField]
     private AudioClip returnSFX;
+    [SerializeField]
+    private AudioClip hitSFX;
 
     [SerializeField]
-    private Text powerupTimerText;
+    private PowerUpSlider powerUpTimerSlider;
+    [SerializeField]
+    private Color extendRangeUIColor = Color.green;
+    [SerializeField]
+    private Color attackUIColor = Color.red;
 
     private Rigidbody rb;
     private CharacterController playerCC;
 
     private Transform returnPoint;
+    private Vector3 initialLocalScale;
 
     private string grabbableWallTag = "GrabbableWall";
 
@@ -47,6 +54,7 @@ public class GrappleHandController : MonoBehaviour
     private List<Transform> items;
 
     private Dictionary<PowerUp, float> powerUpTimers;
+    private Dictionary<PowerUp, Color> powerUpUIColors;
     
     //laser stuff
     
@@ -62,8 +70,10 @@ public class GrappleHandController : MonoBehaviour
     {
         GameObject returnPoint = Instantiate(this.returnPointPrefab);
         returnPoint.transform.position = this.transform.position;
-        returnPoint.transform.SetParent(this.player.transform);
+        returnPoint.transform.SetParent(this.camera.transform);
         this.returnPoint = returnPoint.transform;
+
+        this.initialLocalScale = this.transform.localScale;
 
         this.playerCC = player.GetComponent<CharacterController>();
         this.rb = this.GetComponent<Rigidbody>();
@@ -72,16 +82,18 @@ public class GrappleHandController : MonoBehaviour
         this.playerGrappleBehaviour = this.player.AddComponent<PlayerWithGrappleBehaviour>();
         this.playerGrappleBehaviour.SetGrapple(this.gameObject);
 
-        this.resetToResting();
+        this.ResetToResting();
         this.previousControlState = this.controlState;
 
         this.items = new List<Transform>();
 
         this.powerUpTimers = this.initPowerUpFlags();
+        this.powerUpUIColors = this.initPowerUpColors();
+        
 
-        if (this.powerupTimerText == null)
+        if (this.powerUpTimerSlider == null)
         {
-            this.powerupTimerText = GameObject.Find("PowerupTimerText").GetComponent<Text>();
+            this.powerUpTimerSlider = GameObject.Find("PowerUpTimerSlider").GetComponent<PowerUpSlider>();
         }
     }
 
@@ -97,10 +109,20 @@ public class GrappleHandController : MonoBehaviour
         return result;
     }
 
-    public void resetToResting()
+    private Dictionary<PowerUp, Color> initPowerUpColors()
+    {
+        Dictionary<PowerUp, Color> result = new Dictionary<PowerUp, Color>();
+
+        result.Add(PowerUp.ExtendedRange, this.extendRangeUIColor);
+        result.Add(PowerUp.Attack, this.attackUIColor);
+
+        return result;
+    }
+
+    public void ResetToResting()
     {
         this.controlState = ControlState.Resting;
-        this.transform.SetParent(this.player.transform);
+        this.transform.SetParent(this.camera.transform);
         this.EnforceRestingPosition();
     }
 
@@ -195,13 +217,9 @@ public class GrappleHandController : MonoBehaviour
     {
         this.transform.localPosition = this.returnPoint.localPosition;
 
-        if (this.camera == null)
-        {
-            this.transform.localRotation = Quaternion.identity;
-        } else
-        {
-            this.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(this.camera.transform.localEulerAngles.x, Vector3.right);
-        }
+        this.transform.localRotation = Quaternion.identity;
+
+        this.transform.localScale = this.initialLocalScale;
     }
 
     private void LaunchingUpdate()
@@ -225,6 +243,7 @@ public class GrappleHandController : MonoBehaviour
         }
         if (!grabTriggerFound && obstructionFound)
         {
+            AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
             this.controlState = ControlState.Retracting;
         }
     }
@@ -254,7 +273,7 @@ public class GrappleHandController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
 
-            this.resetToResting();
+            this.ResetToResting();
         }
     }
 
@@ -269,7 +288,7 @@ public class GrappleHandController : MonoBehaviour
 
             if (toHook.magnitude <= this.distanceToGrappleToStop)
             {
-                this.resetToResting();
+                this.ResetToResting();
             } else
             {
                 this.controlState = ControlState.Retracting;
@@ -345,6 +364,7 @@ public class GrappleHandController : MonoBehaviour
             if (other.CompareTag(this.grabbableWallTag))
             {
                 this.controlState = ControlState.PullingPlayer;
+                AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
             }
 
             if (other.CompareTag(this.grabbableItemTag))
@@ -364,6 +384,11 @@ public class GrappleHandController : MonoBehaviour
 
     public void SetPowerUp(PowerUp powerUp, float time)
     {
+        this.powerUpTimerSlider.SetMax(time);
+        if (this.powerUpUIColors.TryGetValue(powerUp, out Color c))
+        {
+            this.powerUpTimerSlider.SetColor(c);
+        }
         this.UpdatePowerUp(powerUp, time);
     }
 
@@ -385,24 +410,29 @@ public class GrappleHandController : MonoBehaviour
                 if (t > 0)
                 {
                     t -= Time.deltaTime;
+                    this.UpdateTimerSlider(t);
                 } else
                 {
                     t = 0;
                 }
                 this.UpdatePowerUp(p, t);
-                if (this.IsPowerUpActive(p))
-                {
-                    this.UpdateTimerText(t);
-                }
             }
         }
         
+        /*
         if (!this.AnyPowerupActive())
         {
             this.UpdateTimerText(0);
         }
+        */
     }
 
+    private void UpdateTimerSlider(float amount)
+    {
+        this.powerUpTimerSlider.SetValue(amount);
+    }
+
+    /*
     private void UpdateTimerText(float amount)
     {
         if (amount > 0)
@@ -413,6 +443,7 @@ public class GrappleHandController : MonoBehaviour
             this.powerupTimerText.text = "";
         }
     }
+    */
 
     private bool IsPowerUpActive(PowerUp powerUp)
     {

@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: af99395587d0ca344963c00ba843a1bd
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Gizmo
+  fontNames:
+  - Gizmo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 9ee2937b8f49f6342b10be7193cab10c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

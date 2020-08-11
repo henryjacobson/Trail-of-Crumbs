@@ -81,6 +81,7 @@ public class EnemyAI : MonoBehaviour
 
     void PatrolUpdate()
     {
+        agent.isStopped = false;
         agent.speed = walkSpeed;
         var destination = vecPath[towards];
         destination.y = transform.position.y;
@@ -98,6 +99,7 @@ public class EnemyAI : MonoBehaviour
 
     void AlertedUpdate()
     {
+        agent.isStopped = false;
         agent.speed = walkSpeed / alertedSlowDown;
         var destination = alertTarget;
         destination.y = transform.position.y;

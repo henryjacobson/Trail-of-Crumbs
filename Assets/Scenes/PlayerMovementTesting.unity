@@ -1576,6 +1576,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1380961951228926423, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380961951228926423, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3545957979066541150, guid: 57155f8690699384da62dac4e49fbe18,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -1586,6 +1596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6562618112356159743, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7638253298053005715, guid: 57155f8690699384da62dac4e49fbe18,
         type: 3}

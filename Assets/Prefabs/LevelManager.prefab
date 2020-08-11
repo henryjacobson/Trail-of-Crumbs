@@ -69,7 +69,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -0.19999695, y: 0}
+  m_AnchoredPosition: {x: -0.19998169, y: 0}
   m_SizeDelta: {x: -10.4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3520758159922617658
@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 61}
+  m_SizeDelta: {x: 535.5, y: 23.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1808967770750936974
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afa59656dddf784da25cfe944203ad5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundDarkenMultiplier: 0
+  backgroundDarkenMultiplier: 0.2
 --- !u!1 &3974459691150773799
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +739,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PowerupTimerText
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583318244174282785, guid: 2b82700716dcc41f38a4b1e13a61a493,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b82700716dcc41f38a4b1e13a61a493, type: 3}

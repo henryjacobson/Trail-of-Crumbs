@@ -36,7 +36,11 @@ public class GrappleHandController : MonoBehaviour
     private AudioClip hitSFX;
 
     [SerializeField]
-    private Text powerupTimerText;
+    private PowerUpSlider powerUpTimerSlider;
+    [SerializeField]
+    private Color extendRangeUIColor = Color.green;
+    [SerializeField]
+    private Color attackUIColor = Color.red;
 
     private Rigidbody rb;
     private CharacterController playerCC;
@@ -49,6 +53,7 @@ public class GrappleHandController : MonoBehaviour
     private List<Transform> items;
 
     private Dictionary<PowerUp, float> powerUpTimers;
+    private Dictionary<PowerUp, Color> powerUpUIColors;
     
     //laser stuff
     
@@ -80,10 +85,12 @@ public class GrappleHandController : MonoBehaviour
         this.items = new List<Transform>();
 
         this.powerUpTimers = this.initPowerUpFlags();
+        this.powerUpUIColors = this.initPowerUpColors();
+        
 
-        if (this.powerupTimerText == null)
+        if (this.powerUpTimerSlider == null)
         {
-            this.powerupTimerText = GameObject.Find("PowerupTimerText").GetComponent<Text>();
+            this.powerUpTimerSlider = GameObject.Find("PowerUpTimerSlider").GetComponent<PowerUpSlider>();
         }
     }
 
@@ -95,6 +102,16 @@ public class GrappleHandController : MonoBehaviour
         {
             result.Add(p, 0);
         }
+
+        return result;
+    }
+
+    private Dictionary<PowerUp, Color> initPowerUpColors()
+    {
+        Dictionary<PowerUp, Color> result = new Dictionary<PowerUp, Color>();
+
+        result.Add(PowerUp.ExtendedRange, this.extendRangeUIColor);
+        result.Add(PowerUp.Attack, this.attackUIColor);
 
         return result;
     }
@@ -368,6 +385,11 @@ public class GrappleHandController : MonoBehaviour
 
     public void SetPowerUp(PowerUp powerUp, float time)
     {
+        this.powerUpTimerSlider.SetMax(time);
+        if (this.powerUpUIColors.TryGetValue(powerUp, out Color c))
+        {
+            this.powerUpTimerSlider.SetColor(c);
+        }
         this.UpdatePowerUp(powerUp, time);
     }
 
@@ -396,17 +418,25 @@ public class GrappleHandController : MonoBehaviour
                 this.UpdatePowerUp(p, t);
                 if (this.IsPowerUpActive(p))
                 {
-                    this.UpdateTimerText(t);
+                    this.UpdateTimerSlider(t);
                 }
             }
         }
         
+        /*
         if (!this.AnyPowerupActive())
         {
             this.UpdateTimerText(0);
         }
+        */
     }
 
+    private void UpdateTimerSlider(float amount)
+    {
+        this.powerUpTimerSlider.SetValue(amount);
+    }
+
+    /*
     private void UpdateTimerText(float amount)
     {
         if (amount > 0)
@@ -417,6 +447,7 @@ public class GrappleHandController : MonoBehaviour
             this.powerupTimerText.text = "";
         }
     }
+    */
 
     private bool IsPowerUpActive(PowerUp powerUp)
     {

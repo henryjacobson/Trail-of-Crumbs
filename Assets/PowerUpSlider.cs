@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PowerUpSlider : MonoBehaviour
 {
     [SerializeField]
-    private float backgroundDarkenMultiplier;
+    private float backgroundDarkenMultiplier = 0.2f;
 
     private Slider slider;
     private Image fillImage;
@@ -15,7 +15,7 @@ public class PowerUpSlider : MonoBehaviour
     void Start()
     {
         this.slider = this.GetComponent<Slider>();
-        this.fillImage = this.transform.Find("Fill").GetComponent<Image>();
+        this.fillImage = this.transform.Find("Fill Area").Find("Fill").GetComponent<Image>();
         this.bgImage = this.transform.Find("Background").GetComponent<Image>();
     }
 
@@ -36,6 +36,11 @@ public class PowerUpSlider : MonoBehaviour
     public void SetValue(float value)
     {
         this.slider.value = value;
+    }
+
+    public void SetMax(float value)
+    {
+        this.slider.maxValue = value;
     }
 
     public void SetColor(Color color)

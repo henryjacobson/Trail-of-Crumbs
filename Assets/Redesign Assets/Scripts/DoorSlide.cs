@@ -68,7 +68,7 @@ public class DoorSlide : MonoBehaviour
                 openPosition = new Vector3(slideDistance, 0, 0);
                 break;
             case DoorDirection.Z:
-                openPosition = new Vector3(0, slideDistance, 0);
+                openPosition = new Vector3(0, 0, slideDistance);
                 break;
         }
 

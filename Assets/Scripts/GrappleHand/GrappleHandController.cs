@@ -46,6 +46,7 @@ public class GrappleHandController : MonoBehaviour
     private CharacterController playerCC;
 
     private Transform returnPoint;
+    private Vector3 initialLocalScale;
 
     private string grabbableWallTag = "GrabbableWall";
 
@@ -71,6 +72,8 @@ public class GrappleHandController : MonoBehaviour
         returnPoint.transform.position = this.transform.position;
         returnPoint.transform.SetParent(this.camera.transform);
         this.returnPoint = returnPoint.transform;
+
+        this.initialLocalScale = this.transform.localScale;
 
         this.playerCC = player.GetComponent<CharacterController>();
         this.rb = this.GetComponent<Rigidbody>();
@@ -214,13 +217,9 @@ public class GrappleHandController : MonoBehaviour
     {
         this.transform.localPosition = this.returnPoint.localPosition;
 
-        if (this.camera == null)
-        {
-            this.transform.localRotation = Quaternion.identity;
-        } else
-        {
-            this.transform.localRotation = Quaternion.identity; //* Quaternion.AngleAxis(this.camera.transform.localEulerAngles.x, Vector3.right);
-        }
+        this.transform.localRotation = Quaternion.identity;
+
+        this.transform.localScale = this.initialLocalScale;
     }
 
     private void LaunchingUpdate()

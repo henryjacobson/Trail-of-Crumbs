@@ -40405,6 +40405,11 @@ PrefabInstance:
       propertyPath: laserFlash
       value: 
       objectReference: {fileID: 799340822}
+    - target: {fileID: 6860280539990057816, guid: 6d4668e533561ff44bdebcdf0297e4dd,
+        type: 3}
+      propertyPath: hitSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 7134d63aa5ba2dc46b77a4043e3406b2, type: 3}
     - target: {fileID: 6860280539990057817, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_Interpolate
@@ -40413,7 +40418,7 @@ PrefabInstance:
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.64
+      value: 1.14
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
@@ -40423,7 +40428,7 @@ PrefabInstance:
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.11
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057819, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}

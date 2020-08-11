@@ -32,6 +32,8 @@ public class GrappleHandController : MonoBehaviour
     private AudioClip fireSFX;
     [SerializeField]
     private AudioClip returnSFX;
+    [SerializeField]
+    private AudioClip hitSFX;
 
     [SerializeField]
     private Text powerupTimerText;
@@ -225,6 +227,7 @@ public class GrappleHandController : MonoBehaviour
         }
         if (!grabTriggerFound && obstructionFound)
         {
+            AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
             this.controlState = ControlState.Retracting;
         }
     }
@@ -345,6 +348,7 @@ public class GrappleHandController : MonoBehaviour
             if (other.CompareTag(this.grabbableWallTag))
             {
                 this.controlState = ControlState.PullingPlayer;
+                AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
             }
 
             if (other.CompareTag(this.grabbableItemTag))

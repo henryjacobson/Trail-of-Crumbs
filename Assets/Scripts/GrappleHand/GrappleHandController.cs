@@ -69,7 +69,7 @@ public class GrappleHandController : MonoBehaviour
     {
         GameObject returnPoint = Instantiate(this.returnPointPrefab);
         returnPoint.transform.position = this.transform.position;
-        returnPoint.transform.SetParent(this.player.transform);
+        returnPoint.transform.SetParent(this.camera.transform);
         this.returnPoint = returnPoint.transform;
 
         this.playerCC = player.GetComponent<CharacterController>();
@@ -79,7 +79,7 @@ public class GrappleHandController : MonoBehaviour
         this.playerGrappleBehaviour = this.player.AddComponent<PlayerWithGrappleBehaviour>();
         this.playerGrappleBehaviour.SetGrapple(this.gameObject);
 
-        this.resetToResting();
+        this.ResetToResting();
         this.previousControlState = this.controlState;
 
         this.items = new List<Transform>();
@@ -116,10 +116,10 @@ public class GrappleHandController : MonoBehaviour
         return result;
     }
 
-    public void resetToResting()
+    public void ResetToResting()
     {
         this.controlState = ControlState.Resting;
-        this.transform.SetParent(this.player.transform);
+        this.transform.SetParent(this.camera.transform);
         this.EnforceRestingPosition();
     }
 
@@ -219,7 +219,7 @@ public class GrappleHandController : MonoBehaviour
             this.transform.localRotation = Quaternion.identity;
         } else
         {
-            this.transform.localRotation = Quaternion.identity * Quaternion.AngleAxis(this.camera.transform.localEulerAngles.x, Vector3.right);
+            this.transform.localRotation = Quaternion.identity; //* Quaternion.AngleAxis(this.camera.transform.localEulerAngles.x, Vector3.right);
         }
     }
 
@@ -274,7 +274,7 @@ public class GrappleHandController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(this.returnSFX, this.transform.position);
 
-            this.resetToResting();
+            this.ResetToResting();
         }
     }
 
@@ -289,7 +289,7 @@ public class GrappleHandController : MonoBehaviour
 
             if (toHook.magnitude <= this.distanceToGrappleToStop)
             {
-                this.resetToResting();
+                this.ResetToResting();
             } else
             {
                 this.controlState = ControlState.Retracting;

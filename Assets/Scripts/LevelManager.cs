@@ -83,6 +83,8 @@ public class LevelManager : MonoBehaviour
 
         FindObjectOfType<PowerUpSlider>().SetValue(0);
 
+        FindObjectOfType<GrappleHandController>().ResetToResting();
+
         if (cb != null)
         {
             cb.GameOver();

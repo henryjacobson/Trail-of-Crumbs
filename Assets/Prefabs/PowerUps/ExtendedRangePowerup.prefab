@@ -207,6 +207,7 @@ MonoBehaviour:
   duration: 25
   rechargeDuration: 30
   powerupIndicatorObject: {fileID: 7816686101911308600}
+  getPowerupSFX: {fileID: 8300000, guid: 049dfc8ce2d714b8a8b214adc21b8ca4, type: 3}
 --- !u!1 &7300903557526246085
 GameObject:
   m_ObjectHideFlags: 0

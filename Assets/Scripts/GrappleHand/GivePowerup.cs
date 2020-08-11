@@ -13,6 +13,8 @@ public class GivePowerup : MonoBehaviour
     private float rechargeDuration = 30;
     [SerializeField]
     private GameObject powerupIndicatorObject;
+    [SerializeField]
+    private AudioClip getPowerupSFX;
 
     private float rechargeTimer;
 
@@ -58,6 +60,7 @@ public class GivePowerup : MonoBehaviour
 
             if (noPowerupActive)
             {
+                AudioSource.PlayClipAtPoint(this.getPowerupSFX, this.transform.position);
                 this.rechargeTimer = this.rechargeDuration;
                 GameObject.FindObjectOfType<GrappleHandController>().SetPowerUp(this.powerUp, this.duration);
             }

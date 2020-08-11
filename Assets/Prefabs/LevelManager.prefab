@@ -48,6 +48,8 @@ MonoBehaviour:
   gameOverText: {fileID: 7638253298374806328}
   canBreakPods: 0
   player: {fileID: 0}
+  loseSFX: {fileID: 8300000, guid: 71e886e8b4be141d0b60746c9afcfb50, type: 3}
+  winSFX: {fileID: 8300000, guid: 54baec16e92834b569d448f515e1e4e5, type: 3}
 --- !u!1 &7638253298150012181
 GameObject:
   m_ObjectHideFlags: 0

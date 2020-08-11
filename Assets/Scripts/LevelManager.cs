@@ -16,6 +16,10 @@ public class LevelManager : MonoBehaviour
     public bool canBreakPods;
     public Transform player;
     private Vector3 checkpointPosition;
+    [SerializeField]
+    private AudioClip loseSFX;
+    [SerializeField]
+    private AudioClip winSFX;
 
     void Start()
     {
@@ -28,6 +32,8 @@ public class LevelManager : MonoBehaviour
     {
         this.SetGameOverText("YOU GOT CAUGHT");
 
+        AudioSource.PlayClipAtPoint(this.loseSFX, Camera.main.transform.position);
+
         isGameOver = true;
 
         Invoke("LoadThisLevel", 2);
@@ -36,6 +42,8 @@ public class LevelManager : MonoBehaviour
     public void LevelWon()
     {
         this.SetGameOverText("OBJECTIVE COMPLETE");
+
+        AudioSource.PlayClipAtPoint(this.winSFX, Camera.main.transform.position);
 
         isGameOver = true;
 

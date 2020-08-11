@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class LevelManager : MonoBehaviour
 {
@@ -80,6 +79,11 @@ public class LevelManager : MonoBehaviour
         CacheOnCheckpoint.ResetCache();
 
         ConductorBehavior cb = FindObjectOfType<ConductorBehavior>();
+
+        FindObjectOfType<PowerUpSlider>().SetValue(0);
+
+        FindObjectOfType<GrappleHandController>().ResetToResting();
+
         if (cb != null)
         {
             cb.GameOver();

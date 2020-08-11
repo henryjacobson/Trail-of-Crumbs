@@ -109,3 +109,4 @@ MonoBehaviour:
   lockedDoor: {fileID: 0}
   lockedColor: {r: 1, g: 0.19916238, b: 0, a: 0.47058824}
   unlockedColor: {r: 0, g: 1, b: 0.06234169, a: 0.47058824}
+  unlockSFX: {fileID: 8300000, guid: 025aa80ce83394dbb984ac462d965da6, type: 3}

@@ -8,6 +8,7 @@ public class Player_Movement : MonoBehaviour
 {
     public float speed = 6.0f;
     public float gravity = -9.0f;
+    public float jumpVelocity = 1;
 
     private float yVelocity;
 
@@ -47,7 +48,13 @@ public class Player_Movement : MonoBehaviour
 
             if (this.IsGrounded())
             {
-                this.yVelocity = gravity;
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    this.yVelocity = this.jumpVelocity;
+                } else if (this.yVelocity <= 0)
+                {
+                    this.yVelocity = gravity;
+                }
                 if (deltaX != 0 || deltaZ != 0)
                 {
                     this.HandleFootstepSFX();

@@ -31761,7 +31761,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  gravity: -9
+  gravity: -9.81
+  jumpVelocity: 3.5
   footstepSFX: {fileID: 6639230920555208901}
   footstepDelay: 0.3
 --- !u!114 &1337690817380850643

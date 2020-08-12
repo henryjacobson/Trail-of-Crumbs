@@ -10,6 +10,8 @@ public class DoorLockPad : MonoBehaviour
     private Color lockedColor;
     [SerializeField]
     private Color unlockedColor;
+    [SerializeField]
+    private AudioClip unlockSFX;
 
     private bool isUnlocked;
 
@@ -29,6 +31,7 @@ public class DoorLockPad : MonoBehaviour
 
     public void Unlock()
     {
+        AudioSource.PlayClipAtPoint(this.unlockSFX, this.transform.position);
         this.SetUnlock(true);
     }
 

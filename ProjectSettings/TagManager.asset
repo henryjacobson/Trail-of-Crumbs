@@ -19,6 +19,7 @@ TagManager:
   - PodCar5
   - PodCar6
   - UI
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - GrappleHand
   - Player
   - Light
-  - 
+  - FireLayer
   - 
   - 
   - 

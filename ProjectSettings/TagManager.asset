@@ -20,6 +20,7 @@ TagManager:
   - PodCar6
   - UI
   - Fire
+  - CrumbsBanks
   layers:
   - Default
   - TransparentFX

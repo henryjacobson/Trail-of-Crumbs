@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public static bool isGameOver;
+
+    public static event Action onLevelReset;
 
     [SerializeField]
     private string nextLevel;
@@ -66,6 +69,8 @@ public class LevelManager : MonoBehaviour
         {
             cellPrime.Checkpoint();
         }
+
+        onLevelReset.Invoke();
 
         if (canBreakPods)
         {

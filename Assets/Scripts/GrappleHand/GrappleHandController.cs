@@ -361,6 +361,12 @@ public class GrappleHandController : MonoBehaviour
                 this.controlState = ControlState.Retracting;
             }
 
+            if (other.CompareTag("CrumbsBanks"))
+            {
+                other.gameObject.GetComponent<CrumbsBanksAI>().TakeDamage();
+                this.controlState = ControlState.Retracting;
+            }
+
             if (other.CompareTag(this.grabbableWallTag))
             {
                 this.controlState = ControlState.PullingPlayer;

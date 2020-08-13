@@ -14,10 +14,20 @@ public class ColorDroneBehaviour : MonoBehaviour
     private float waitTimer;
 
     private List<Quaternion> orientations;
+    private Quaternion initialOrientation;
 
     void Start()
     {
         this.orientations = this.GetQuaternions(this.rotations);
+        this.initialOrientation = this.orientations[0];
+        this.StartTimer();
+
+        LevelManager.onLevelReset += this.Reset;
+    }
+
+    void OnDestroy()
+    {
+        LevelManager.onLevelReset -= this.Reset;
     }
 
     private List<Quaternion> GetQuaternions(List<Vector3> rotations)
@@ -46,7 +56,7 @@ public class ColorDroneBehaviour : MonoBehaviour
         {
             CycleList<Quaternion>(this.orientations);
             target = this.orientations[0];
-            this.waitTimer = this.waitBetweenPoints;
+            this.StartTimer();
         }
 
         if (this.waitTimer <= 0)
@@ -66,5 +76,16 @@ public class ColorDroneBehaviour : MonoBehaviour
         T t = list[0];
         list.RemoveAt(0);
         list.Add(t);
+    }
+
+    private void Reset()
+    {
+        this.transform.rotation = this.initialOrientation;
+        this.StartTimer();
+    }
+
+    private void StartTimer()
+    {
+        this.waitTimer = this.waitBetweenPoints;
     }
 }

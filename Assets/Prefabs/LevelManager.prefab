@@ -404,6 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7638253298053005717}
   - component: {fileID: 7638253298053005714}
+  - component: {fileID: 1439585005}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -444,6 +445,18 @@ MonoBehaviour:
   player: {fileID: 0}
   loseSFX: {fileID: 8300000, guid: 71e886e8b4be141d0b60746c9afcfb50, type: 3}
   winSFX: {fileID: 8300000, guid: 54baec16e92834b569d448f515e1e4e5, type: 3}
+--- !u!114 &1439585005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638253298053005715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a414ff16d84e2648a0a227a05a8a379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7638253298150012181
 GameObject:
   m_ObjectHideFlags: 0

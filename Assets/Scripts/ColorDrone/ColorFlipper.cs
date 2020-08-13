@@ -9,6 +9,19 @@ public class ColorFlipper : MonoBehaviour
     void Start()
     {
         activeColor = ColorDroneSpotlightColor.Red;
+
+        LevelManager.onLevelReset += this.ResetColor;
+    }
+
+    void OnDestroy()
+    {
+        LevelManager.onLevelReset -= this.ResetColor;
+    }
+
+    private void ResetColor()
+    {
+        Debug.Log("RESET");
+        activeColor = ColorDroneSpotlightColor.Red;
     }
 
     public static void FlipColor()

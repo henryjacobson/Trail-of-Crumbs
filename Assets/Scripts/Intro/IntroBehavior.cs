@@ -38,7 +38,7 @@ public class IntroBehavior : MonoBehaviour
         {
             intro = false;
         }
-        //canvas.SetActive(false);
+        canvas.SetActive(false);
         if (timer <= 0 || !intro)
         {
             cameras[idx].SetActive(false);

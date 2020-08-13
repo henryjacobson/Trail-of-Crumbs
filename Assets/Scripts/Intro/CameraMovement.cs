@@ -11,11 +11,14 @@ public class CameraMovement : MonoBehaviour
     public bool rotate = false;
     public Vector3 destRot;
     public float rotDelay = 0f;
+    public float afterRot = 0f;
     public float duration;
 
     Quaternion initRot;
     float timer;
+    float rotDone;
     Quaternion destQuat;
+    bool doneRotating;
 
     private void Start()
     {
@@ -25,6 +28,7 @@ public class CameraMovement : MonoBehaviour
         initRot = transform.rotation;
         timer = 0;
         destQuat = Quaternion.Euler(destRot);
+        rotDone = duration - afterRot;
     }
 
     // Update is called once per frame
@@ -32,10 +36,15 @@ public class CameraMovement : MonoBehaviour
     {
         timer += Time.deltaTime;
         transform.position += direction * speed * Time.deltaTime;
-        if (rotate && timer >= rotDelay)
+        if (rotate && timer >= rotDelay && timer < rotDone)
         {
-            float t = (timer - rotDelay) / (duration - rotDelay);
+            float t = (timer - rotDelay) / (rotDone - rotDelay);
             transform.rotation = Quaternion.Slerp(initRot, destQuat, t);
+        }
+        else if (rotate && timer > rotDelay && !doneRotating)
+        {
+            doneRotating = true;
+            transform.rotation = destQuat;
         }
     }
 }

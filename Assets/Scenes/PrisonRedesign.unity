@@ -568,7 +568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cb433431ef2ec40bb4fb2c8ce00df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1359173815}
   cameras:
   - {fileID: 791256728}
   - {fileID: 1377281362}
@@ -591,7 +590,7 @@ MonoBehaviour:
   - 5
   - 5
   - 3
-  finalClip: {fileID: 8300000, guid: 4d1cf2236488cc248955d63b6b125346, type: 3}
+  finalClip: {fileID: 8300000, guid: dec23fba018a54e4894c39e2dcecbf5b, type: 3}
 --- !u!1001 &45065123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7203,8 +7202,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: -1, y: 0, z: 0}
   speed: 5
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!81 &462206186
 AudioListener:
   m_ObjectHideFlags: 0
@@ -7266,7 +7270,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: eccc2fcb22140444aa58e0189c16d7e2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 393028b5979e8f64eaf0a6eea3bdb18a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -13006,7 +13010,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 26ed634d41d23264f87f4a9d8bef8986, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f6b39bb4f34b8374ea8574494a220fcd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -15226,8 +15230,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: 1, y: 0, z: 0}
   speed: 5
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!81 &791256731
 AudioListener:
   m_ObjectHideFlags: 0
@@ -15289,7 +15298,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6620c5c6a2f3ded4bbf1eabacee8f268, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c27ccbe3d1149e944af148e1444b9801, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -18425,8 +18434,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: -1, y: 0, z: 1}
   speed: 2.5
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!81 &951118109
 AudioListener:
   m_ObjectHideFlags: 0
@@ -18488,7 +18502,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f95b7fa66481e684c87deeb99f33e14c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 36f9362a643dc164fb593f334efab89f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -18841,8 +18855,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: -1, y: 0, z: 0}
   speed: 5
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!81 &963308343
 AudioListener:
   m_ObjectHideFlags: 0
@@ -18904,7 +18923,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 571f041349655384fbc3699b587dfc42, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 968670d6f53441941aa1f9a14816360b, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -26068,12 +26087,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1349542889}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1359173815 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7638253298150012181, guid: 57155f8690699384da62dac4e49fbe18,
-    type: 3}
-  m_PrefabInstance: {fileID: 1188157933}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1362231300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26642,8 +26655,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: 0, y: 0, z: 1}
   speed: 4
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!82 &1377281367
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26654,7 +26672,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 26040bccb5fe8d7439460b00f45ca790, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 58b541af91b08c545a7b237fbea7c04e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -31097,7 +31115,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: bc3f817660118354d9dbdbc6c3637789, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c3602bb1250f9f949a857657f7488013, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -34385,8 +34403,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: -1, y: 0, z: 0}
   speed: 2.5
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!81 &1719412308
 AudioListener:
   m_ObjectHideFlags: 0
@@ -34448,7 +34471,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 557078a565fc2494f8cc2f1aa1211bcc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: b061673a6623b6845bac8344068e67c7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -35289,7 +35312,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 83d910516fdc83142b89743f408a9840, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c6cfa79ba757fa04ab3b58b54753fcc5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -35387,8 +35410,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921dea973e703f24187a31efc6d18d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveForward: 0
   direction: {x: 0, y: 0, z: -1}
   speed: 3
+  rotate: 0
+  destRot: {x: 0, y: 0, z: 0}
+  rotDelay: 0
+  duration: 0
 --- !u!81 &1776946993
 AudioListener:
   m_ObjectHideFlags: 0
@@ -41438,7 +41466,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 660f1bcdfe8023245ba8e2972daea421, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3aa0c6bbd3cec524598983cfb8be0b76, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

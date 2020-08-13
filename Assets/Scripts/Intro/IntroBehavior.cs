@@ -6,12 +6,11 @@ public class IntroBehavior : MonoBehaviour
 {
     static public bool intro;
 
-    public GameObject canvas;
-
     public GameObject[] cameras;
     public float[] durations;
     public AudioClip finalClip;
 
+    GameObject canvas;
     int idx;
     float timer;
 
@@ -29,6 +28,7 @@ public class IntroBehavior : MonoBehaviour
         idx = 0;
         disableControls = GameObject.FindGameObjectWithTag("Player").GetComponent<DisableControls>();
         disableControls.Disable();
+        canvas = GameObject.FindGameObjectWithTag("UI");
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class IntroBehavior : MonoBehaviour
         {
             intro = false;
         }
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
         if (timer <= 0 || !intro)
         {
             cameras[idx].SetActive(false);

@@ -32,6 +32,8 @@ public class CrumbsBanksAI : MonoBehaviour
     Vector3 prevSpot;
     Vector3 hoverSpot;
 
+    int damageTaken;
+
     FSMStates state;
 
     enum FSMStates
@@ -52,6 +54,8 @@ public class CrumbsBanksAI : MonoBehaviour
 
         state = FSMStates.Sitting;
         doneStanding = false;
+
+        damageTaken = 0;
 
         Invoke("SpotPlayer", 2);
     }
@@ -155,6 +159,7 @@ public class CrumbsBanksAI : MonoBehaviour
             shielded = true;
             shieldObject = Instantiate(shield);
             shieldObject.transform.SetParent(transform);
+            shieldObject.transform.localPosition = new Vector3(.14f, .87f, 0);
             attackTimer = Random.Range(attackTimeMin, attackTimeMax);
         }
         if (shielded && info.IsName("Idle"))
@@ -172,8 +177,25 @@ public class CrumbsBanksAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        anim.SetTrigger("damage");
-        state = FSMStates.Damaged;
+        if (!shielded)
+        {
+            if (damageTaken < 2)
+            {
+                anim.SetTrigger("damage");
+                state = FSMStates.Damaged;
+                damageTaken++;
+            }
+            else
+            {
+                FindObjectOfType<LevelManager>().LevelWon();
+                GetComponent<Animator>().enabled = false;
+                enabled = false;
+            }
+        }
+        else
+        {
+            DestroyShield();
+        }
     }
 
     public void SpotPlayer()

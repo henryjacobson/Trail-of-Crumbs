@@ -22,8 +22,13 @@ public class PasswordManager : MonoBehaviour
         return ((int)Random.Range(0, Mathf.Pow(10, length))).ToString();
     }
 
-    void Update()
+    public bool VerifyPassword(string attempt)
     {
+        return attempt == this.password;
+    }
 
+    public string GetPassword()
+    {
+        return this.password;
     }
 }

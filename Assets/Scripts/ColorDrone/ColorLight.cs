@@ -7,7 +7,15 @@ using UnityEngine;
 public class ColorLight : MonoBehaviour
 {
     [SerializeField]
+    private List<Renderer> robotObjectsToColor;
+
+    [SerializeField]
     private ColorDroneSpotlightColor color;
+
+    [SerializeField]
+    private Color red = Color.red;
+    [SerializeField]
+    private Color blue = Color.blue;
 
     private SpotlightDetectPlayer sdp;
     private Light light;
@@ -40,16 +48,26 @@ public class ColorLight : MonoBehaviour
         switch(this.color)
         {
             case ColorDroneSpotlightColor.Red:
-                this.light.color = Color.red;
+                this.light.color = this.red;
                 break;
             case ColorDroneSpotlightColor.Blue:
-                this.light.color = Color.blue;
+                this.light.color = this.blue;
                 break;
             default:
                 this.light.color = Color.white;
                 break;
         }
     }
+
+    /*
+    private void SetObjectColors(Color color)
+    {
+        foreach(Renderer renderer in this.robotObjectsToColor)
+        {
+            renderer.
+        }
+    }
+    */
 
     private void OnDrawGizmos()
     {

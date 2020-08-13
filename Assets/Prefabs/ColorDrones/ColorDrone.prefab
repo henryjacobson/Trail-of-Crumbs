@@ -94,7 +94,7 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 0, g: 0, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.6318803, b: 1, a: 1}
   m_Intensity: 36.02
   m_Range: 11.73
   m_SpotAngle: 30
@@ -140,7 +140,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.9892e-41, z: 0, w: 10.375}
+  m_BoundingSphereOverride: {x: 0, y: 3.3491e-41, z: 0, w: 14.3706665}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -168,7 +168,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e93698cdac4a94fab3ffe2a4c6f759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  robotObjectsToColor: []
   color: 1
+  red: {r: 1, g: 0, b: 0, a: 1}
+  blue: {r: 0, g: 0.6318803, b: 1, a: 1}
 --- !u!1001 &4776935482169011776
 PrefabInstance:
   m_ObjectHideFlags: 0

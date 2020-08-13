@@ -19,6 +19,12 @@ public class PasswordInterface : MonoBehaviour
     private Color wrongColor = Color.red;
     [SerializeField]
     private Color rightColor = Color.green;
+    [SerializeField]
+    private AudioClip wrongSFX;
+    [SerializeField]
+    private AudioClip rightSFX;
+    [SerializeField]
+    private AudioClip typeSFX;
 
     private Transform player;
 
@@ -38,7 +44,14 @@ public class PasswordInterface : MonoBehaviour
 
         this.dlp = this.GetComponent<DoorLockPad>();
 
+        this.inputField.onValueChanged.AddListener(this.OnType);
+
         LevelManager.onLevelReset += this.Reset;
+    }
+
+    private void OnType(string value)
+    {
+        AudioSource.PlayClipAtPoint(this.typeSFX, this.transform.position);
     }
 
     void OnDestroy()
@@ -79,6 +92,7 @@ public class PasswordInterface : MonoBehaviour
 
     private void RightAnswer()
     {
+        AudioSource.PlayClipAtPoint(this.rightSFX, this.transform.position);
         this.screenRenderer.material.color = Color.green;
         this.solved = true;
         this.dlp.Unlock();
@@ -91,6 +105,7 @@ public class PasswordInterface : MonoBehaviour
 
     private IEnumerator WrongAnswerFlash(float delay)
     {
+        AudioSource.PlayClipAtPoint(this.wrongSFX, this.transform.position);
         this.animatingWrongAnswer = true;   
         for(int i = 0; i < 3; i++)
         {

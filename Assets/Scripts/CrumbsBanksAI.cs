@@ -15,15 +15,22 @@ public class CrumbsBanksAI : MonoBehaviour
     public float attackTimeMin = 2.5f;
     public float attackTimeMax = 5f;
 
+    public float xMin;
+    public float xMax;
+    public float zMin;
+    public float zMax;
+    public float speed;
 
     Transform player;
-    CharacterController controller;
     Animator anim;
     bool doneStanding;
     bool attacked;
     bool shielded;
     float attackTimer;
+    float attackTime;
     GameObject shieldObject;
+    Vector3 prevSpot;
+    Vector3 hoverSpot;
 
     FSMStates state;
 
@@ -41,7 +48,6 @@ public class CrumbsBanksAI : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
 
         state = FSMStates.Sitting;
@@ -81,9 +87,9 @@ public class CrumbsBanksAI : MonoBehaviour
             if (!doneStanding)
             {
                 doneStanding = true;
-                controller.Move(transform.forward * .45f);
+                transform.position += transform.forward * .45f;
             }
-            controller.Move(Vector3.up * Time.deltaTime);
+            transform.position += Vector3.up * Time.deltaTime;
             if (transform.position.y >= height)
             {
                 transform.position = new Vector3(transform.position.x, height, transform.position.z);
@@ -95,6 +101,11 @@ public class CrumbsBanksAI : MonoBehaviour
 
     void NeutralUpdate()
     {
+        if (Vector3.Distance(hoverSpot, transform.position) > 1f) 
+        {
+            transform.position = Vector3.Lerp(prevSpot, hoverSpot, (attackTime - attackTimer) / attackTime);
+        }
+        print(attackTimer);
         transform.LookAt(player);
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0)
@@ -116,11 +127,12 @@ public class CrumbsBanksAI : MonoBehaviour
             GameObject fireObj = Instantiate(fireball);
             fireObj.transform.position = pos;
             fireObj.transform.LookAt(player);
-            attackTimer = Random.Range(attackTimeMin, attackTimeMax);
+            attackTimer = attackTime = Random.Range(attackTimeMin, attackTimeMax);
         }
         if (attacked && info.IsName("Idle"))
         {
             state = FSMStates.Neutral;
+            NewSpot();
         }
     }
 
@@ -148,6 +160,7 @@ public class CrumbsBanksAI : MonoBehaviour
         if (shielded && info.IsName("Idle"))
         {
             state = FSMStates.Neutral;
+            NewSpot();
         }
     }
 
@@ -168,5 +181,16 @@ public class CrumbsBanksAI : MonoBehaviour
         state = FSMStates.Rising;
         anim.SetTrigger("spotted");
         print("now");
+    }
+
+    void NewSpot()
+    {
+        prevSpot = transform.position;
+        do
+        {
+            float x = Random.Range(xMin, xMax);
+            float z = Random.Range(zMin, zMax);
+            hoverSpot = new Vector3(x, height, z);
+        } while (Vector3.Distance(hoverSpot, player.position) < 5f && Vector3.Distance(hoverSpot, prevSpot) < 10f);
     }
 }

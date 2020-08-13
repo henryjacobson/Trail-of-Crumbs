@@ -322,6 +322,25 @@ MonoBehaviour:
   handOffset: {x: -0.069, y: 0.041, z: -0.003}
   attackTimeMin: 2.5
   attackTimeMax: 5
+  xMin: -10
+  xMax: 10
+  zMin: -10
+  zMax: 10
+  speed: 10
+--- !u!136 &432018761
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432018759}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.17
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &472380002
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,6 +445,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Crumbs Banks
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961838260145078860, guid: 909f4f0fc675e17488b7c34cd0d37e5d,
+        type: 3}
+      propertyPath: m_TagString
+      value: CrumbsBanks
       objectReference: {fileID: 0}
     - target: {fileID: 4961838260145119104, guid: 909f4f0fc675e17488b7c34cd0d37e5d,
         type: 3}
@@ -1077,7 +1101,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -22.2456
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2714357216520622627, guid: 909f4f0fc675e17488b7c34cd0d37e5d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 909f4f0fc675e17488b7c34cd0d37e5d, type: 3}
 --- !u!4 &967085601 stripped
 Transform:

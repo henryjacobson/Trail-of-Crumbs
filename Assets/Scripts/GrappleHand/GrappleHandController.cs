@@ -371,6 +371,12 @@ public class GrappleHandController : MonoBehaviour
                 this.controlState = ControlState.Retracting;
             }
 
+            if (other.CompareTag("ShieldGenerator"))
+            {
+                other.gameObject.GetComponent<ShieldGenerator>().Disable();
+                this.controlState = ControlState.Retracting;
+            }
+
             if (other.CompareTag(this.grabbableWallTag))
             {
                 this.controlState = ControlState.PullingPlayer;

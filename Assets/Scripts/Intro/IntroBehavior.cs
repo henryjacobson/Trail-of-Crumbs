@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class IntroBehavior : MonoBehaviour
 {
@@ -23,12 +24,14 @@ public class IntroBehavior : MonoBehaviour
         intro = true;
         main = Camera.main;
         main.depth = -100;
-        cameras[0].SetActive(true);
-        timer = durations[0];
-        idx = 0;
+        idx = -1;
         disableControls = GameObject.FindGameObjectWithTag("Player").GetComponent<DisableControls>();
         disableControls.Disable();
         canvas = GameObject.FindGameObjectWithTag("UI");
+        if (canvas == null)
+        {
+            Assert.IsTrue(false);
+        }
     }
 
     // Update is called once per frame
@@ -41,7 +44,11 @@ public class IntroBehavior : MonoBehaviour
         canvas.SetActive(false);
         if (timer <= 0 || !intro)
         {
-            cameras[idx].SetActive(false);
+            if (idx >= 0)
+            {
+                cameras[idx].SetActive(false);
+            }
+
             if (idx < cameras.Length - 1 && intro)
             {
                 idx++;

@@ -21,6 +21,9 @@ public class CrumbsBanksAI : MonoBehaviour
     public float zMax;
     public float speed;
 
+    public GameObject particle0;
+    public GameObject particle1;
+
     Transform player;
     Animator anim;
     bool doneStanding;
@@ -57,6 +60,9 @@ public class CrumbsBanksAI : MonoBehaviour
 
         damageTaken = 0;
 
+        particle0.SetActive(false);
+        particle1.SetActive(false);
+
         Invoke("SpotPlayer", 2);
     }
 
@@ -88,6 +94,8 @@ public class CrumbsBanksAI : MonoBehaviour
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         if (info.IsName("Flying"))
         {
+            particle0.SetActive(true);
+            particle1.SetActive(true);
             if (!doneStanding)
             {
                 doneStanding = true;
@@ -110,7 +118,7 @@ public class CrumbsBanksAI : MonoBehaviour
             transform.position = Vector3.Lerp(prevSpot, hoverSpot, (attackTime - attackTimer) / attackTime);
         }
         print(attackTimer);
-        transform.LookAt(player);
+        FacePlayer();
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0)
         {
@@ -122,7 +130,7 @@ public class CrumbsBanksAI : MonoBehaviour
 
     void AttackingUpdate()
     {
-        transform.LookAt(player);
+        FacePlayer();
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         if (!attacked && info.IsName("Attack") && info.normalizedTime >= 0.5f)
         {
@@ -152,7 +160,7 @@ public class CrumbsBanksAI : MonoBehaviour
 
     void ShieldingUpdate()
     {
-        transform.LookAt(player);
+        FacePlayer();
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
         if (!shielded && info.normalizedTime >= 0.55f)
         {
@@ -167,6 +175,12 @@ public class CrumbsBanksAI : MonoBehaviour
             state = FSMStates.Neutral;
             NewSpot();
         }
+    }
+
+    void FacePlayer()
+    {
+        Vector3 spot = new Vector3(player.position.x, transform.position.y, player.position.z);
+        transform.LookAt(spot);
     }
 
     public void DestroyShield()

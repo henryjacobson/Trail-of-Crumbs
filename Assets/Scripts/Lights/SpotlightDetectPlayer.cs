@@ -78,6 +78,7 @@ public class SpotlightDetectPlayer : MonoBehaviour
         }
         else
         {
+            Debug.DrawLine(this.transform.position, this.player.position);
             RaycastHit hit = this.castToPlayer(toObject);
             if (hit.collider == null)
             {

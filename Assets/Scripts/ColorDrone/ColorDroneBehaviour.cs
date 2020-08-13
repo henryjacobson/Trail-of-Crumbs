@@ -19,7 +19,7 @@ public class ColorDroneBehaviour : MonoBehaviour
     void Start()
     {
         this.orientations = this.GetQuaternions(this.rotations);
-        this.initialOrientation = this.orientations[0];
+        this.initialOrientation = this.orientations.Count > 0 ? this.orientations[0] : this.transform.rotation;
         this.StartTimer();
 
         LevelManager.onLevelReset += this.Reset;
@@ -43,7 +43,7 @@ public class ColorDroneBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!LevelManager.isGameOver)
+        if (!LevelManager.isGameOver && this.orientations.Count > 0)
         {
             this.RotateTowardsTarget();
         }

@@ -44,6 +44,7 @@ public class GrappleHandController : MonoBehaviour
 
     private Rigidbody rb;
     private CharacterController playerCC;
+    private Collider collider;
 
     private Transform returnPoint;
     private Vector3 initialLocalScale;
@@ -77,6 +78,7 @@ public class GrappleHandController : MonoBehaviour
 
         this.playerCC = player.GetComponent<CharacterController>();
         this.rb = this.GetComponent<Rigidbody>();
+        this.collider = this.GetComponent<Collider>();
 
         this.player.layer = LayerMask.NameToLayer("Player");
         this.playerGrappleBehaviour = this.player.AddComponent<PlayerWithGrappleBehaviour>();
@@ -148,6 +150,8 @@ public class GrappleHandController : MonoBehaviour
                     this.PullingPlayerUpdate();
                     break;
             }
+
+            this.collider.enabled = this.controlState != ControlState.Resting;
         }
         
         if (Input.GetMouseButtonDown(0))

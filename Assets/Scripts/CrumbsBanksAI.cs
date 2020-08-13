@@ -35,6 +35,8 @@ public class CrumbsBanksAI : MonoBehaviour
     Vector3 prevSpot;
     Vector3 hoverSpot;
 
+    int nShieldGens;
+
     int damageTaken;
 
     FSMStates state;
@@ -132,13 +134,14 @@ public class CrumbsBanksAI : MonoBehaviour
     {
         FacePlayer();
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        if (!attacked && info.IsName("Attack") && info.normalizedTime >= 0.5f)
+        if (!attacked && info.IsName("Attack") && info.normalizedTime >= 0.4f)
         {
             attacked = true;
             Vector3 pos = hand.position + handOffset;
             GameObject fireObj = Instantiate(fireball);
             fireObj.transform.position = pos;
             fireObj.transform.LookAt(player);
+            fireObj.transform.position += fireObj.transform.forward * 2;
             attackTimer = attackTime = Random.Range(attackTimeMin, attackTimeMax);
         }
         if (attacked && info.IsName("Idle"))
@@ -168,6 +171,14 @@ public class CrumbsBanksAI : MonoBehaviour
             shieldObject = Instantiate(shield);
             shieldObject.transform.SetParent(transform);
             shieldObject.transform.localPosition = new Vector3(.14f, .87f, 0);
+
+            ShieldGenerator[] shieldGens = FindObjectsOfType<ShieldGenerator>();
+            nShieldGens = shieldGens.Length;
+            foreach (ShieldGenerator shieldGen in shieldGens)
+            {
+                shieldGen.Enable();
+            }
+
             attackTimer = Random.Range(attackTimeMin, attackTimeMax);
         }
         if (shielded && info.IsName("Idle"))
@@ -183,10 +194,14 @@ public class CrumbsBanksAI : MonoBehaviour
         transform.LookAt(spot);
     }
 
-    public void DestroyShield()
+    public void DamageShield()
     {
-        Destroy(shieldObject);
-        shielded = false;
+        nShieldGens--;
+        if (nShieldGens == 0)
+        {
+            Destroy(shieldObject);
+            shielded = false;
+        }
     }
 
     public void TakeDamage()
@@ -205,10 +220,6 @@ public class CrumbsBanksAI : MonoBehaviour
                 GetComponent<Animator>().enabled = false;
                 enabled = false;
             }
-        }
-        else
-        {
-            DestroyShield();
         }
     }
 

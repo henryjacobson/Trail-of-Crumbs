@@ -20,7 +20,10 @@ namespace DigitalRuby.PyroParticles
 
         public void OnCollisionEnter(Collision col)
         {
-            CollisionHandler.HandleCollision(gameObject, col);
+            if (!col.gameObject.CompareTag("Shield"))
+            {
+                CollisionHandler.HandleCollision(gameObject, col);
+            }
         }
     }
 }

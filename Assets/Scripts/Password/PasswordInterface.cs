@@ -9,17 +9,29 @@ public class PasswordInterface : MonoBehaviour
     [SerializeField]
     private TMP_InputField inputField;
     [SerializeField]
+    private Renderer screenRenderer;
+    [SerializeField]
     private float distanceToActivate = 2;
     [SerializeField]
     private int passwordLength = 4;
+    [SerializeField]
+    private Color wrongColor = Color.red;
+    [SerializeField]
+    private Color rightColor = Color.green;
 
     private Transform player;
 
     private bool solved;
 
+    private Color defaultColor;
+
+    private bool animatingWrongAnswer;
+
     void Start()
     {
         this.player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        this.defaultColor = this.screenRenderer.material.color;
 
         LevelManager.onLevelReset += this.Reset;
     }
@@ -33,7 +45,7 @@ public class PasswordInterface : MonoBehaviour
     {
         this.SetInputEnabled();
         this.LockSelection();
-        if (!this.solved)
+        if (!this.solved && !this.animatingWrongAnswer)
         {
             this.CheckPasswordSolved();
         }
@@ -52,13 +64,37 @@ public class PasswordInterface : MonoBehaviour
         {
             if (FindObjectOfType<PasswordManager>().VerifyPassword(text))
             {
-                this.solved = true;
+                this.RightAnswer();
             } else
             {
-                Debug.Log(text + " " + FindObjectOfType<PasswordManager>().GetPassword());
-                this.Reset();
+                this.WrongAnswer();
             }
         }
+    }
+
+    private void RightAnswer()
+    {
+        this.screenRenderer.material.color = Color.green;
+        this.solved = true;
+    }
+
+    private void WrongAnswer()
+    {
+        StartCoroutine("WrongAnswerFlash", 0.1f);
+    }
+
+    private IEnumerator WrongAnswerFlash(float delay)
+    {
+        this.animatingWrongAnswer = true;   
+        for(int i = 0; i < 3; i++)
+        {
+            this.screenRenderer.material.color = this.wrongColor;
+            yield return new WaitForSeconds(delay);
+            this.screenRenderer.material.color = this.defaultColor;
+            yield return new WaitForSeconds(delay);
+        }
+        this.Reset();
+        this.animatingWrongAnswer = false;
     }
 
     private void Reset()
@@ -87,6 +123,7 @@ public class PasswordInterface : MonoBehaviour
     {
         return !this.solved 
             && Vector3.Distance(this.player.position, this.transform.position) <= this.distanceToActivate
-            && this.inputField.text.Length < this.passwordLength;
+            && this.inputField.text.Length < this.passwordLength
+            && !this.animatingWrongAnswer;
     }
 }

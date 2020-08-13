@@ -13,6 +13,9 @@ public class DoorLockPad : MonoBehaviour
     [SerializeField]
     private AudioClip unlockSFX;
 
+    [SerializeField]
+    private bool useFX = true;
+
     private bool isUnlocked;
 
     private Renderer renderer;
@@ -26,12 +29,18 @@ public class DoorLockPad : MonoBehaviour
     {
         this.lockedDoor.enabled = this.isUnlocked;
 
-        this.renderer.material.SetColor("_EmissionColor", this.isUnlocked ? this.unlockedColor : this.lockedColor);
+        if (this.useFX)
+        {
+            this.renderer.material.SetColor("_EmissionColor", this.isUnlocked ? this.unlockedColor : this.lockedColor);
+        }
     }
 
     public void Unlock()
     {
-        AudioSource.PlayClipAtPoint(this.unlockSFX, this.transform.position);
+        if (this.useFX)
+        {
+            AudioSource.PlayClipAtPoint(this.unlockSFX, this.transform.position);
+        }
         this.SetUnlock(true);
     }
 

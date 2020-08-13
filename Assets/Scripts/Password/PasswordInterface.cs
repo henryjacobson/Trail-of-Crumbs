@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[RequireComponent(typeof(DoorLockPad))]
 public class PasswordInterface : MonoBehaviour
 {
     [SerializeField]
@@ -27,11 +28,15 @@ public class PasswordInterface : MonoBehaviour
 
     private bool animatingWrongAnswer;
 
+    private DoorLockPad dlp;
+
     void Start()
     {
         this.player = GameObject.FindGameObjectWithTag("Player").transform;
 
         this.defaultColor = this.screenRenderer.material.color;
+
+        this.dlp = this.GetComponent<DoorLockPad>();
 
         LevelManager.onLevelReset += this.Reset;
     }
@@ -76,6 +81,7 @@ public class PasswordInterface : MonoBehaviour
     {
         this.screenRenderer.material.color = Color.green;
         this.solved = true;
+        this.dlp.Unlock();
     }
 
     private void WrongAnswer()
@@ -100,6 +106,8 @@ public class PasswordInterface : MonoBehaviour
     private void Reset()
     {
         this.inputField.text = "";
+        this.solved = false;
+        this.dlp.Lock();
     }
 
     private void LockSelection()

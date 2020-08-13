@@ -4843,7 +4843,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 6.3324815e+9}
+  m_BoundingSphereOverride: {x: 0, y: 3.9472e-41, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -34497,7 +34497,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4951401356219310807
 Transform:
@@ -40214,7 +40214,7 @@ PrefabInstance:
     - target: {fileID: 5544845753660060948, guid: 49e0828d2dc5a4ff7a424cb3c0553f06,
         type: 3}
       propertyPath: m_TagString
-      value: GrappleHand
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7105104972963886767, guid: 49e0828d2dc5a4ff7a424cb3c0553f06,
         type: 3}
@@ -40268,6 +40268,30 @@ PrefabInstance:
     - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Radius
+      value: 0.8165235
+      objectReference: {fileID: 0}
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Height
+      value: 6.041576
+      objectReference: {fileID: 0}
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Direction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Center.x
+      value: 0.12685819
+      objectReference: {fileID: 0}
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Center.y
+      value: 2.8498795
+      objectReference: {fileID: 0}
+    - target: {fileID: 22229855, guid: 6d4668e533561ff44bdebcdf0297e4dd, type: 3}
+      propertyPath: m_Center.z
+      value: -0.06514628
       objectReference: {fileID: 0}
     - target: {fileID: 6860280539990057797, guid: 6d4668e533561ff44bdebcdf0297e4dd,
         type: 3}

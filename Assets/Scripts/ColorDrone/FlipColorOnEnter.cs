@@ -6,7 +6,7 @@ public class FlipColorOnEnter : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("GrappleHand"))
         {
             ColorFlipper.FlipColor();
         }

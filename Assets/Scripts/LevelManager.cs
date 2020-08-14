@@ -83,20 +83,9 @@ public class LevelManager : MonoBehaviour
 
         CacheOnCheckpoint.ResetCache();
 
-        ConductorBehavior cb = FindObjectOfType<ConductorBehavior>();
-
         FindObjectOfType<PowerUpSlider>().SetValue(0);
 
         FindObjectOfType<GrappleHandController>().ResetToResting();
-
-
-        FindObjectOfType<CrumbsBanksAI>().CheckPointReset();
-        GameObject.FindGameObjectWithTag("Monologue").GetComponent<BoxCollider>().enabled = true;
-
-        if (cb != null)
-        {
-            cb.GameOver();
-        }
 
         FindObjectOfType<GrappleHandController>().controlState = ControlState.Retracting;
 

@@ -11,13 +11,12 @@ public class PodBreak : MonoBehaviour
     public AudioClip glassBreaking;
     public int carNumber;
 
-    private static List<PodBreak> podCache;
+    private static List<PodBreak> podCache = new List<PodBreak>();
 
     private GameObject brokenPodSpawned;
 
     private void Start()
     {
-        podCache = new List<PodBreak>();
         isBroken = false;
     }
 

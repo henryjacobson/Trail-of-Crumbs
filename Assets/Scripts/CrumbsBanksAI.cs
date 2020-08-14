@@ -100,6 +100,13 @@ public class CrumbsBanksAI : MonoBehaviour
 
         startPos = transform.position;
         startRot = transform.rotation;
+
+        CheckpointBehavior.onSetCheckpoint += this.CheckPointReset;
+    }
+
+    void OnDestroy()
+    {
+        CheckpointBehavior.onSetCheckpoint -= this.CheckPointReset;
     }
 
     // Update is called once per frame
@@ -356,5 +363,7 @@ public class CrumbsBanksAI : MonoBehaviour
         {
             shieldGen.Disable();
         }
+
+        GameObject.FindGameObjectWithTag("Monologue").GetComponent<BoxCollider>().enabled = true;
     }
 }

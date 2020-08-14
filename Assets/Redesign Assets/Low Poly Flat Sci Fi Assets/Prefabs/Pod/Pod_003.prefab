@@ -145,7 +145,7 @@ MonoBehaviour:
   doorLockPad: {fileID: 0}
   brokenPod: {fileID: 6987964640508949394, guid: 4d70077473bc1481da2a93278b7f3cfc,
     type: 3}
-  glassBreaking: {fileID: 8300000, guid: 0b82392d733dd4265a82795edd5aa471, type: 3}
+  glassBreaking: {fileID: 8300000, guid: 38cd80d47e33d4dd2868108a50d047a0, type: 3}
   carNumber: 0
 --- !u!136 &1415156951343055
 CapsuleCollider:

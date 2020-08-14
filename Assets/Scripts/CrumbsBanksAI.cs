@@ -85,8 +85,6 @@ public class CrumbsBanksAI : MonoBehaviour
         {
             rb.isKinematic = true;
         }
-
-        Invoke("SpotPlayer", 2);
     }
 
     // Update is called once per frame

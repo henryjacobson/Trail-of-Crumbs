@@ -16,6 +16,8 @@ public class PasswordInterface : MonoBehaviour
     [SerializeField]
     private int passwordLength = 4;
     [SerializeField]
+    private int expectedPasswordChunks = 2;
+    [SerializeField]
     private Color wrongColor = Color.red;
     [SerializeField]
     private Color rightColor = Color.green;
@@ -29,6 +31,7 @@ public class PasswordInterface : MonoBehaviour
     private Transform player;
 
     private bool solved;
+    private bool savedByCheckpoint;
 
     private Color defaultColor;
 
@@ -47,6 +50,7 @@ public class PasswordInterface : MonoBehaviour
         this.inputField.onValueChanged.AddListener(this.OnType);
 
         LevelManager.onLevelReset += this.Reset;
+        CheckpointBehavior.onSetCheckpoint += this.OnCheckpoint;
     }
 
     private void OnType(string value)
@@ -57,6 +61,7 @@ public class PasswordInterface : MonoBehaviour
     void OnDestroy()
     {
         LevelManager.onLevelReset -= this.Reset;
+        CheckpointBehavior.onSetCheckpoint -= this.OnCheckpoint;
     }
 
     void Update()
@@ -80,7 +85,8 @@ public class PasswordInterface : MonoBehaviour
         string text = this.inputField.text;
         if (text.Length >= this.passwordLength)
         {
-            if (FindObjectOfType<PasswordManager>().VerifyPassword(text))
+            if (FindObjectOfType<PasswordManager>().VerifyPassword(text)
+                && SeePasswordDisplay.seenCharacters.Count >= this.expectedPasswordChunks)
             {
                 this.RightAnswer();
             } else
@@ -120,9 +126,18 @@ public class PasswordInterface : MonoBehaviour
 
     private void Reset()
     {
-        this.inputField.text = "";
-        this.solved = false;
-        this.dlp.Lock();
+        if (!this.savedByCheckpoint)
+        {
+            this.inputField.text = "";
+            this.solved = false;
+            this.dlp.Lock();
+            this.screenRenderer.material.color = this.defaultColor;
+        }
+    }
+
+    private void OnCheckpoint()
+    {
+        this.savedByCheckpoint = this.solved;
     }
 
     private void LockSelection()

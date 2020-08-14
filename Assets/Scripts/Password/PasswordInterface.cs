@@ -16,6 +16,8 @@ public class PasswordInterface : MonoBehaviour
     [SerializeField]
     private int passwordLength = 4;
     [SerializeField]
+    private int expectedPasswordChunks = 2;
+    [SerializeField]
     private Color wrongColor = Color.red;
     [SerializeField]
     private Color rightColor = Color.green;
@@ -80,7 +82,8 @@ public class PasswordInterface : MonoBehaviour
         string text = this.inputField.text;
         if (text.Length >= this.passwordLength)
         {
-            if (FindObjectOfType<PasswordManager>().VerifyPassword(text))
+            if (FindObjectOfType<PasswordManager>().VerifyPassword(text)
+                && SeePasswordDisplay.seenCharacters.Count >= this.expectedPasswordChunks)
             {
                 this.RightAnswer();
             } else

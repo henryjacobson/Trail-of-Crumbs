@@ -43,12 +43,12 @@ public class ConductorBehavior : MonoBehaviour
         startPos = transform.position;
         startRot = transform.rotation;
 
-        CheckpointBehavior.onSetCheckpoint += this.GameOver;
+        LevelManager.onLevelReset += this.GameOver;
     }
 
     void OnDestroy()
     {
-        CheckpointBehavior.onSetCheckpoint -= this.GameOver;
+        LevelManager.onLevelReset -= this.GameOver;
     }
 
     // Update is called once per frame

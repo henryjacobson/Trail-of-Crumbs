@@ -101,12 +101,12 @@ public class CrumbsBanksAI : MonoBehaviour
         startPos = transform.position;
         startRot = transform.rotation;
 
-        CheckpointBehavior.onSetCheckpoint += this.CheckPointReset;
+        LevelManager.onLevelReset += this.CheckPointReset;
     }
 
     void OnDestroy()
     {
-        CheckpointBehavior.onSetCheckpoint -= this.CheckPointReset;
+        LevelManager.onLevelReset -= this.CheckPointReset;
     }
 
     // Update is called once per frame

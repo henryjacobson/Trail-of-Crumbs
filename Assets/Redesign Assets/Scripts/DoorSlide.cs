@@ -80,12 +80,12 @@ public class DoorSlide : MonoBehaviour
         }
 
         leftDoorClosedPosition = new Vector3(0f, 0f, 0f);
-        leftDoorOpenPosition = -openPosition;
+        leftDoorOpenPosition = openPosition;
 
         if (doubleDoors)
         {
-            rightDoorClosedPosition = new Vector3(0f, 0f, 0f);
-            rightDoorOpenPosition = openPosition;
+            rightDoorClosedPosition = halfDoorRightTransform.localPosition;
+            rightDoorOpenPosition = rightDoorClosedPosition - openPosition;
         }
 
         audioSource = GetComponent<AudioSource>();

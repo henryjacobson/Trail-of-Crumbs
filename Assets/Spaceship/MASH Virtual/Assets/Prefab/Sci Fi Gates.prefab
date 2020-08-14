@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   halfDoorLeftTransform: {fileID: 4972167997025879801}
   halfDoorRightTransform: {fileID: 4972167997025879807}
-  openDirection: 0
+  openDirection: 1
   slideDistance: 0.88
   speed: 1
   doorOpeningSoundClip: {fileID: 8300000, guid: 80d08fa5dccc64ffa90d6734ce03512e,

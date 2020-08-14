@@ -24403,7 +24403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6549130324216296459}
   - component: {fileID: 1295413543}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31903,7 +31903,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7105552727862554756}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5291b6b32aa124f50a3f713138174fd1, type: 3}
@@ -34520,7 +34520,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7843136762157332801}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0

@@ -43,6 +43,8 @@ public class DoorSlide : MonoBehaviour
     private Vector3 rightDoorClosedPosition;
     private Vector3 rightDoorOpenPosition;
 
+    bool doubleDoors = true;
+
     [SerializeField]
     private float speed = 1f;                   //	Spped for opening and closing the door
 
@@ -61,6 +63,11 @@ public class DoorSlide : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (halfDoorRightTransform == null)
+        {
+            doubleDoors = false;
+        }
+        
         Vector3 openPosition = Vector3.zero;
         switch(this.openDirection)
         {
@@ -75,8 +82,11 @@ public class DoorSlide : MonoBehaviour
         leftDoorClosedPosition = new Vector3(0f, 0f, 0f);
         leftDoorOpenPosition = -openPosition;
 
-        rightDoorClosedPosition = new Vector3(0f, 0f, 0f);
-        rightDoorOpenPosition = openPosition;
+        if (doubleDoors)
+        {
+            rightDoorClosedPosition = new Vector3(0f, 0f, 0f);
+            rightDoorOpenPosition = openPosition;
+        }
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -144,7 +154,10 @@ public class DoorSlide : MonoBehaviour
             t += Time.deltaTime * speed;
 
             halfDoorLeftTransform.localPosition = Vector3.Slerp(leftDoorClosedPosition, leftDoorOpenPosition, t);
-            halfDoorRightTransform.localPosition = Vector3.Slerp(rightDoorClosedPosition, rightDoorOpenPosition, t);
+            if (doubleDoors)
+            {
+                halfDoorRightTransform.localPosition = Vector3.Slerp(rightDoorClosedPosition, rightDoorOpenPosition, t);
+            }
 
             yield return null;
         }
@@ -170,7 +183,10 @@ public class DoorSlide : MonoBehaviour
             t += Time.deltaTime * speed;
 
             halfDoorLeftTransform.localPosition = Vector3.Slerp(leftDoorOpenPosition, leftDoorClosedPosition, t);
-            halfDoorRightTransform.localPosition = Vector3.Slerp(rightDoorOpenPosition, rightDoorClosedPosition, t);
+            if (doubleDoors)
+            {
+                halfDoorRightTransform.localPosition = Vector3.Slerp(rightDoorOpenPosition, rightDoorClosedPosition, t);
+            }
 
             yield return null;
         }

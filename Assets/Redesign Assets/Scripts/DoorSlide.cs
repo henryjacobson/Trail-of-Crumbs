@@ -123,7 +123,17 @@ public class DoorSlide : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-
+        if (other.CompareTag("Player"))
+        {
+            if (status != DoubleSlidingDoorStatus.Animating)
+            {
+                if (status == DoubleSlidingDoorStatus.Closed && this.enabled)
+                {
+                    StartCoroutine("OpenDoors");
+                }
+            }
+            objectsOnDoorArea++;
+        }
     }
 
     void OnTriggerExit(Collider other)

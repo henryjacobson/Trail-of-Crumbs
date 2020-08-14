@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SeePasswordDisplay : MonoBehaviour
 {
-    public static List<string> seenCharacters = new List<string>();
+    public static List<string> seenCharacters { get => GetSeenCharacters(); }
+    private static List<SeePasswordDisplay> spd = new List<SeePasswordDisplay>();
 
     [SerializeField]
     private DisplayPassword dp;
@@ -12,6 +13,24 @@ public class SeePasswordDisplay : MonoBehaviour
     private bool seen;
 
     private bool savedByCheckpoint;
+
+    void Awake()
+    {
+        spd.Add(this);
+    }
+
+    public static List<string> GetSeenCharacters()
+    {
+        List<string> result = new List<string>();
+        foreach(SeePasswordDisplay s in spd)
+        {
+            if (s.HasSeen())
+            {
+                result.Add(s.GetText());
+            }
+        }
+        return result;
+    }
 
     void Start()
     {
@@ -27,10 +46,6 @@ public class SeePasswordDisplay : MonoBehaviour
 
     private void Reset()
     {
-        if (seenCharacters.Count > 0)
-        {
-            seenCharacters = new List<string>();
-        }
         this.seen = false;
         this.RevertIfSaved();
     }
@@ -64,6 +79,15 @@ public class SeePasswordDisplay : MonoBehaviour
         string text = this.dp.GetText();
         seenCharacters.Add(text);
         this.seen = true;
-        Debug.Log(text);
+    }
+
+    public bool HasSeen()
+    {
+        return this.seen;
+    }
+
+    public string GetText()
+    {
+        return this.dp.GetText();
     }
 }

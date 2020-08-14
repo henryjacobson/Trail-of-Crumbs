@@ -27,12 +27,27 @@ public class Player_Movement : MonoBehaviour
 
     private float initialHeight;
 
+    private Quaternion initialRotation;
+
     // Start is called before the first frame update
     void Start(){
         groundChecker = transform.Find("GroundChecker");
         _charCont = GetComponent<CharacterController>();
         this.initialHeight = this._charCont.height;
         controlsActive = true;
+        this.initialRotation = this.transform.rotation;
+
+        LevelManager.onLevelReset += this.ResetGravity;
+    }
+
+    void OnDestroy()
+    {
+        LevelManager.onLevelReset -= this.ResetGravity;
+    }
+
+    private void ResetGravity()
+    {
+        this.transform.rotation = this.initialRotation;
     }
 
     // Update is called once per frame

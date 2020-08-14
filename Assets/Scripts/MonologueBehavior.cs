@@ -69,18 +69,21 @@ public class MonologueBehavior : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        began = true;
-        intro = true;
-        main = Camera.main;
-        main.depth = -100;
-        idx = -1;
-        disableControls = GameObject.FindGameObjectWithTag("Player").GetComponent<DisableControls>();
-        disableControls.Disable();
-        Cursor.lockState = CursorLockMode.Locked;
-        canvas = GameObject.FindGameObjectWithTag("UI");
-        FindObjectOfType<CrumbsBanksAI>().DelaySpotPlayer(spotDelay);
-        src = GameObject.FindGameObjectWithTag("CrumbsBanks").GetComponent<AudioSource>();
-        src.clip = clip;
-        src.Play();
+        if (other.CompareTag("Player"))
+        {
+            began = true;
+            intro = true;
+            main = Camera.main;
+            main.depth = -100;
+            idx = -1;
+            disableControls = GameObject.FindGameObjectWithTag("Player").GetComponent<DisableControls>();
+            disableControls.Disable();
+            Cursor.lockState = CursorLockMode.Locked;
+            canvas = GameObject.FindGameObjectWithTag("UI");
+            FindObjectOfType<CrumbsBanksAI>().DelaySpotPlayer(spotDelay);
+            src = GameObject.FindGameObjectWithTag("CrumbsBanks").GetComponent<AudioSource>();
+            src.clip = clip;
+            src.Play();
+        }
     }
 }

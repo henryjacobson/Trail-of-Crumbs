@@ -8,11 +8,11 @@ public class CacheOnCheckpoint : MonoBehaviour
 
     public void OnCache(float destroyDelay)
     {
-        this.gameObject.SendMessage("OnDestroy", destroyDelay);
-
         cache.Add(this);
 
         this.gameObject.SetActive(false);
+
+        this.gameObject.SendMessage("OnDestroy", destroyDelay);
     }
 
     public void Revert()

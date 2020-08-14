@@ -19,7 +19,7 @@ public class PasswordManager : MonoBehaviour
 
     private static string GetRandomPassword(int length)
     {
-        return ((int)Random.Range(0, Mathf.Pow(10, length))).ToString();
+        return ((int)Random.Range(0, Mathf.Pow(10, length - 1))).ToString("D" + length);
     }
 
     public bool VerifyPassword(string attempt)

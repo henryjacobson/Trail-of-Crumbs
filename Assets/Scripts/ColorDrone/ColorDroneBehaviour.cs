@@ -10,6 +10,8 @@ public class ColorDroneBehaviour : MonoBehaviour
     private float rotateSpeed = 60;
     [SerializeField]
     private float waitBetweenPoints = 2.5f;
+    [SerializeField]
+    private float waitOffset = 0;
 
     private float waitTimer;
 
@@ -21,6 +23,7 @@ public class ColorDroneBehaviour : MonoBehaviour
         this.orientations = this.GetQuaternions(this.rotations);
         this.initialOrientation = this.orientations.Count > 0 ? this.orientations[0] : this.transform.rotation;
         this.StartTimer();
+        this.waitTimer += this.waitOffset;
 
         LevelManager.onLevelReset += this.Reset;
     }
@@ -51,17 +54,16 @@ public class ColorDroneBehaviour : MonoBehaviour
 
     private void RotateTowardsTarget()
     {
-        Quaternion target = this.orientations[0];
-        if (this.transform.rotation == target)
-        {
-            CycleList<Quaternion>(this.orientations);
-            target = this.orientations[0];
-            this.StartTimer();
-        }
-
         if (this.waitTimer <= 0)
         {
-            this.waitTimer = 0;
+            Quaternion target = this.orientations[0];
+            if (this.transform.rotation == target)
+            {
+                CycleList<Quaternion>(this.orientations);
+                target = this.orientations[0];
+                this.StartTimer();
+            }
+
             this.transform.rotation = Quaternion.RotateTowards(
                 this.transform.rotation, target, this.rotateSpeed * Time.deltaTime);
         }
@@ -82,6 +84,7 @@ public class ColorDroneBehaviour : MonoBehaviour
     {
         this.transform.rotation = this.initialOrientation;
         this.StartTimer();
+        this.waitTimer += this.waitOffset;
     }
 
     private void StartTimer()

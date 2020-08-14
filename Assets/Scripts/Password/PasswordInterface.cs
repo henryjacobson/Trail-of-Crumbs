@@ -31,6 +31,7 @@ public class PasswordInterface : MonoBehaviour
     private Transform player;
 
     private bool solved;
+    private bool savedByCheckpoint;
 
     private Color defaultColor;
 
@@ -49,6 +50,7 @@ public class PasswordInterface : MonoBehaviour
         this.inputField.onValueChanged.AddListener(this.OnType);
 
         LevelManager.onLevelReset += this.Reset;
+        CheckpointBehavior.onSetCheckpoint += this.OnCheckpoint;
     }
 
     private void OnType(string value)
@@ -59,6 +61,7 @@ public class PasswordInterface : MonoBehaviour
     void OnDestroy()
     {
         LevelManager.onLevelReset -= this.Reset;
+        CheckpointBehavior.onSetCheckpoint -= this.OnCheckpoint;
     }
 
     void Update()
@@ -123,9 +126,18 @@ public class PasswordInterface : MonoBehaviour
 
     private void Reset()
     {
-        this.inputField.text = "";
-        this.solved = false;
-        this.dlp.Lock();
+        if (!this.savedByCheckpoint)
+        {
+            this.inputField.text = "";
+            this.solved = false;
+            this.dlp.Lock();
+            this.screenRenderer.material.color = this.defaultColor;
+        }
+    }
+
+    private void OnCheckpoint()
+    {
+        this.savedByCheckpoint = this.solved;
     }
 
     private void LockSelection()

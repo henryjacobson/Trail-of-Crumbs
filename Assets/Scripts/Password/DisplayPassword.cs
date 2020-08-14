@@ -33,8 +33,8 @@ public class DisplayPassword : MonoBehaviour
         this.text.text = password;
     }
 
-    void Update()
+    public string GetText()
     {
-        
+        return this.text.text;
     }
 }

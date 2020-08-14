@@ -384,11 +384,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossRoom
       objectReference: {fileID: 0}
-    - target: {fileID: 6090453340203489380, guid: 6d3bcd92bb5aa2148bbcee104a735c72,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6090453340203489383, guid: 6d3bcd92bb5aa2148bbcee104a735c72,
         type: 3}
       propertyPath: m_LocalPosition.x

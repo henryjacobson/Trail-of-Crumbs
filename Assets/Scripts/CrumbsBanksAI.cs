@@ -47,6 +47,9 @@ public class CrumbsBanksAI : MonoBehaviour
     Vector3 prevSpot;
     Vector3 hoverSpot;
 
+    bool spotted;
+    bool started;
+
     Rigidbody[] ragdoll;
 
     AudioSource src;
@@ -56,6 +59,9 @@ public class CrumbsBanksAI : MonoBehaviour
     int damageTaken;
 
     FSMStates state;
+
+    Vector3 startPos;
+    Quaternion startRot;
 
     enum FSMStates
     {
@@ -75,6 +81,7 @@ public class CrumbsBanksAI : MonoBehaviour
 
         state = FSMStates.Sitting;
         doneStanding = false;
+        spotted = false;
 
         damageTaken = 0;
 
@@ -88,6 +95,9 @@ public class CrumbsBanksAI : MonoBehaviour
         {
             rb.isKinematic = true;
         }
+
+        startPos = transform.position;
+        startRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -272,13 +282,38 @@ public class CrumbsBanksAI : MonoBehaviour
         }
     }
 
+    public void DelaySpotPlayer(float delay)
+    {
+        Invoke("SpotPlayerExtra", delay);
+        started = true;
+    }
+
+    public void SpotPlayerExtra()
+    {
+        if (!spotted && started)
+        {
+            spotted = true;
+            state = FSMStates.Rising;
+            anim.SetTrigger("spotted");
+            print("now");
+
+            Invoke("Riser", riserDelay);
+        }
+
+    }
+
     public void SpotPlayer()
     {
-        state = FSMStates.Rising;
-        anim.SetTrigger("spotted");
-        print("now");
+        if (!spotted)
+        {
+            spotted = true;
+            state = FSMStates.Rising;
+            anim.SetTrigger("spotted");
+            print("now");
 
-        Invoke("Riser", riserDelay);
+            Invoke("Riser", riserDelay);
+        }
+
     }
 
     void Riser()
@@ -296,5 +331,27 @@ public class CrumbsBanksAI : MonoBehaviour
             float z = center.position.z + Random.Range(zMin, zMax);
             hoverSpot = new Vector3(x, height, z);
         } while (Vector3.Distance(hoverSpot, player.position) < 5f && Vector3.Distance(hoverSpot, prevSpot) < 10f);
+    }
+
+    public void CheckPointReset()
+    {
+        particle0.SetActive(false);
+        particle1.SetActive(false);
+        state = FSMStates.Sitting;
+        doneStanding = false;
+        spotted = false;
+        started = false;
+        damageTaken = 0;
+        transform.position = startPos;
+        transform.rotation = startRot;
+        anim.SetTrigger("reset");
+        src.clip = null;
+        Destroy(shieldObject);
+        shielded = false;
+        ShieldGenerator[] shieldGens = FindObjectsOfType<ShieldGenerator>();
+        foreach (ShieldGenerator shieldGen in shieldGens)
+        {
+            shieldGen.Disable();
+        }
     }
 }

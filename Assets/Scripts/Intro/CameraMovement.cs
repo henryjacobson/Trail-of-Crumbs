@@ -14,14 +14,27 @@ public class CameraMovement : MonoBehaviour
     public float afterRot = 0f;
     public float duration;
 
+    public bool useStart = false;
+    public Vector3 start;
+
     Quaternion initRot;
     float timer;
     float rotDone;
     Quaternion destQuat;
     bool doneRotating;
 
+    private void OnEnable()
+    {
+        if (useStart)
+        {
+            transform.localPosition = start;
+        }
+    }
+
     private void Start()
     {
+
+
         if (moveForward)
             direction =
                 transform.forward;

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Train Background.unity
     guid: 87e9e141d15eca540ad3784bd5cbf25d
+  - enabled: 1
+    path: Assets/Scenes/Spaceship.unity
+    guid: 30830902691c1468a85a0e7a06ea1c57
   m_configObjects: {}

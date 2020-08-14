@@ -97,6 +97,11 @@ public class GrappleHandController : MonoBehaviour
         {
             this.powerUpTimerSlider = GameObject.Find("PowerUpTimerSlider").GetComponent<PowerUpSlider>();
         }
+
+        if (this.laserFlash == null)
+        {
+            this.laserFlash = this.returnPoint.Find("LaserFlash").GetComponent<ParticleSystem>();
+        }
     }
 
     private Dictionary<PowerUp, float> initPowerUpFlags()
@@ -125,6 +130,11 @@ public class GrappleHandController : MonoBehaviour
     {
         this.controlState = ControlState.Resting;
         this.transform.SetParent(this.camera.transform);
+        if (this.laserFlash != null)
+        {
+            this.laserFlash.Stop();
+            this.laserFlash.Clear();
+        }
         this.EnforceRestingPosition();
     }
 
@@ -149,6 +159,11 @@ public class GrappleHandController : MonoBehaviour
                 case ControlState.PullingPlayer:
                     this.PullingPlayerUpdate();
                     break;
+            }
+
+            if (this.controlState != ControlState.Resting)
+            {
+                this.returnPoint.LookAt(this.transform);
             }
 
             this.collider.enabled = this.controlState != ControlState.Resting;

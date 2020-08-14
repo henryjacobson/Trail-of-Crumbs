@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -337,7 +337,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-901944
+  m_Name: pb_Mesh-4349874
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1095,7 +1095,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-896858
+  m_Name: pb_Mesh-4344788
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1348,7 +1348,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-896846
+  m_Name: pb_Mesh-4344776
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -28201,10 +28201,20 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 8604967729157380728, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8604967729157380733, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604967729339873752, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8604967729339873757, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
@@ -28216,15 +28226,35 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 8604967729772116604, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604967730149100555, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8604967730149100558, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 8604967730244532960, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8604967730244532965, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604967730660983737, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8604967730660983740, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
@@ -28235,6 +28265,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604967730884258613, guid: 132209f3108244852b63074fd2f6e457,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8628538228513929509, guid: 132209f3108244852b63074fd2f6e457,
         type: 3}
@@ -30374,7 +30409,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-896850
+  m_Name: pb_Mesh-4344780
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -31049,6 +31084,11 @@ PrefabInstance:
         type: 3}
       propertyPath: canBreakPods
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7638253298053005714, guid: 57155f8690699384da62dac4e49fbe18,
+        type: 3}
+      propertyPath: nextLevel
+      value: Spaceship
       objectReference: {fileID: 0}
     - target: {fileID: 7638253298053005715, guid: 57155f8690699384da62dac4e49fbe18,
         type: 3}

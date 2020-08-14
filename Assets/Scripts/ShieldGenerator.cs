@@ -6,20 +6,19 @@ public class ShieldGenerator : MonoBehaviour
 {
     public Transform lens;
     public GameObject laser;
+    public AudioClip disableSFX;
 
     Quaternion startRot;
-    Transform target;
+    Transform shield;
     CrumbsBanksAI ai;
     bool shielding;
-    Transform currentLaser;
+    GameObject currentLaser;
 
     // Start is called before the first frame update
     void Start()
     {
         startRot = transform.rotation;
-        GameObject cbObj = GameObject.FindGameObjectWithTag("CrumbsBanks");
-        target = cbObj.transform;
-        ai = cbObj.GetComponent<CrumbsBanksAI>();
+        ai = GameObject.FindGameObjectWithTag("CrumbsBanks").GetComponent<CrumbsBanksAI>();
         shielding = false;
     }
 
@@ -28,19 +27,21 @@ public class ShieldGenerator : MonoBehaviour
     {
         if (shielding)
         {
-            transform.LookAt(target);
+            transform.LookAt(shield);
+            Vector3 target = shield.position - transform.forward * 1.5f;
             currentLaser.transform.LookAt(target);
-            currentLaser.Rotate(Vector3.right, 90);
-            Vector3 scale = currentLaser.localScale;
-            currentLaser.localScale = new Vector3(scale.x, Vector3.Distance(lens.position, target.position) / 2, scale.z);
-            currentLaser.position = Vector3.Lerp(lens.position, target.position, .5f);
+            currentLaser.transform.Rotate(Vector3.right, 90);
+            Vector3 scale = currentLaser.transform.localScale;
+            currentLaser.transform.localScale = new Vector3(scale.x, Vector3.Distance(lens.position, target) / 2, scale.z);
+            currentLaser.transform.position = Vector3.Lerp(lens.position, target, .5f);
         }
     }
 
     public void Enable()
     {
+        currentLaser = Instantiate(laser);
+        shield = GameObject.FindGameObjectWithTag("Shield").transform;
         shielding = true;
-        currentLaser = Instantiate(laser).transform;
         Update();
     }
 
@@ -50,5 +51,6 @@ public class ShieldGenerator : MonoBehaviour
         Destroy(currentLaser);
         transform.rotation = startRot;
         ai.DamageShield();
+        AudioSource.PlayClipAtPoint(disableSFX, transform.position);
     }
 }

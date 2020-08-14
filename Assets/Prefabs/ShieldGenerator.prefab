@@ -432,6 +432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lens: {fileID: 910571262944652550}
   laser: {fileID: 4011453762127008023, guid: 3df88fba915374b4e9828be0ec474b4f, type: 3}
+  disableSFX: {fileID: 8300000, guid: 5a247d715b3f16643a9860d8d8684953, type: 3}
+  secondRound: 1
 --- !u!1 &910571262944367512
 GameObject:
   m_ObjectHideFlags: 0

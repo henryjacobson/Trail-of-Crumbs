@@ -7,6 +7,7 @@ public class ShieldGenerator : MonoBehaviour
     public Transform lens;
     public GameObject laser;
     public AudioClip disableSFX;
+    public bool secondRound = true;
 
     Quaternion startRot;
     Transform shield;
@@ -37,12 +38,17 @@ public class ShieldGenerator : MonoBehaviour
         }
     }
 
-    public void Enable()
+    public bool Enable(bool isSecondRound)
     {
-        currentLaser = Instantiate(laser);
-        shield = GameObject.FindGameObjectWithTag("Shield").transform;
-        shielding = true;
-        Update();
+        if (secondRound == isSecondRound)
+        {
+            currentLaser = Instantiate(laser);
+            shield = GameObject.FindGameObjectWithTag("Shield").transform;
+            shielding = true;
+            Update();
+            return true;
+        }
+        return false;
     }
 
     public void Disable()

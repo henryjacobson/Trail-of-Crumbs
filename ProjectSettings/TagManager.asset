@@ -23,6 +23,7 @@ TagManager:
   - CrumbsBanks
   - Shield
   - ShieldGenerator
+  - Monologue
   layers:
   - Default
   - TransparentFX

@@ -108,17 +108,15 @@ public class DoorSlide : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-
-        if (status != DoubleSlidingDoorStatus.Animating)
+        if (other.CompareTag("Player"))
         {
-            if (status == DoubleSlidingDoorStatus.Closed && this.enabled)
+            if (status != DoubleSlidingDoorStatus.Animating)
             {
-                StartCoroutine("OpenDoors");
+                if (status == DoubleSlidingDoorStatus.Closed && this.enabled)
+                {
+                    StartCoroutine("OpenDoors");
+                }
             }
-        }
-
-        if (other.CompareTag("Player"))//GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer("Characters"))
-        {
             objectsOnDoorArea++;
         }
     }

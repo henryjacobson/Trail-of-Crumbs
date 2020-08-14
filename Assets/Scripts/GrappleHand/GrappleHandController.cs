@@ -243,28 +243,7 @@ public class GrappleHandController : MonoBehaviour
 
     private void LaunchingUpdate()
     {
-        Vector3 pointA = this.transform.position + this.transform.forward * 0.25f;
-        Vector3 pointB = this.transform.position - this.transform.forward * 0.25f;
-        LayerMask mask = ~LayerMask.GetMask("Light", "Ignore Raycast");
-        Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f, mask);
 
-        bool grabTriggerFound = false;
-        bool obstructionFound = false;
-        foreach(Collider c in colliders)
-        {
-            if (this.IsObjectGrabbable(c.gameObject) && this.ObjectNotThisOrChild(c.gameObject))
-            {
-                grabTriggerFound = true;
-            } else if (this.ObjectNotThisOrChild(c.gameObject))
-            {
-                obstructionFound = true;
-            }
-        }
-        if (!grabTriggerFound && obstructionFound)
-        {
-            AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
-            this.controlState = ControlState.Retracting;
-        }
     }
 
     private bool IsObjectGrabbable(GameObject g)
@@ -344,6 +323,30 @@ public class GrappleHandController : MonoBehaviour
 
     private void LaunchingFixedUpdate()
     {
+        Vector3 pointA = this.transform.position + this.transform.forward * 0.25f;
+        Vector3 pointB = this.transform.position - this.transform.forward * 0.25f;
+        LayerMask mask = ~LayerMask.GetMask("Light", "Ignore Raycast");
+        Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f, mask);
+
+        bool grabTriggerFound = false;
+        bool obstructionFound = false;
+        foreach (Collider c in colliders)
+        {
+            if (this.IsObjectGrabbable(c.gameObject) && this.ObjectNotThisOrChild(c.gameObject))
+            {
+                grabTriggerFound = true;
+            }
+            else if (this.ObjectNotThisOrChild(c.gameObject))
+            {
+                obstructionFound = true;
+            }
+        }
+        if (!grabTriggerFound && obstructionFound)
+        {
+            AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
+            this.controlState = ControlState.Retracting;
+        }
+
         Vector3 offset = this.transform.position + (this.transform.forward * this.GetGrappleSpeed() * Time.fixedDeltaTime);
         this.rb.MovePosition(offset);
 

@@ -89,6 +89,10 @@ public class LevelManager : MonoBehaviour
 
         FindObjectOfType<GrappleHandController>().ResetToResting();
 
+
+        FindObjectOfType<CrumbsBanksAI>().CheckPointReset();
+        GameObject.FindGameObjectWithTag("Monologue").GetComponent<BoxCollider>().enabled = true;
+
         if (cb != null)
         {
             cb.GameOver();

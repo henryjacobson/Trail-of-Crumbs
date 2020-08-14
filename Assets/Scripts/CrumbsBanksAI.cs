@@ -36,6 +36,8 @@ public class CrumbsBanksAI : MonoBehaviour
 
     public GameObject camera;
 
+    public AudioClip initMusic;
+
     Transform player;
     Animator anim;
     bool doneStanding;
@@ -345,7 +347,8 @@ public class CrumbsBanksAI : MonoBehaviour
         transform.position = startPos;
         transform.rotation = startRot;
         anim.SetTrigger("reset");
-        src.clip = null;
+        src.clip = initMusic;
+        src.Play();
         Destroy(shieldObject);
         shielded = false;
         ShieldGenerator[] shieldGens = FindObjectsOfType<ShieldGenerator>();

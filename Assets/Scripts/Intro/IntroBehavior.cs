@@ -41,7 +41,7 @@ public class IntroBehavior : MonoBehaviour
         {
             intro = false;
         }
-        canvas.SetActive(false);
+        //canvas.SetActive(false);
         if (timer <= 0 || !intro)
         {
             if (idx >= 0)

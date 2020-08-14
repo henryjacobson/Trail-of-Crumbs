@@ -363,6 +363,7 @@ MonoBehaviour:
   handOffset: {x: -0.069, y: 0.041, z: -0.003}
   attackTimeMin: 2.5
   attackTimeMax: 5
+  center: {fileID: 0}
   xMin: -10
   xMax: 10
   zMin: -10
@@ -370,6 +371,15 @@ MonoBehaviour:
   speed: 10
   particle0: {fileID: 5872485326993114441}
   particle1: {fileID: 1351456967318871653}
+  song: {fileID: 0}
+  riser: {fileID: 0}
+  riserDelay: 0
+  attackSFX: {fileID: 0}
+  ouchSFX: {fileID: 0}
+  shieldSFX: {fileID: 0}
+  deathSFX: {fileID: 0}
+  camera: {fileID: 0}
+  initMusic: {fileID: 8300000, guid: 5291b6b32aa124f50a3f713138174fd1, type: 3}
 --- !u!136 &432018761
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public class IntroBehavior : MonoBehaviour
 {
@@ -25,13 +24,9 @@ public class IntroBehavior : MonoBehaviour
         main = Camera.main;
         main.depth = -100;
         idx = -1;
-        disableControls = GameObject.FindGameObjectWithTag("Player").GetComponent<DisableControls>();
-        disableControls.Disable();
-        canvas = GameObject.FindGameObjectWithTag("UI");
-        if (canvas == null)
-        {
-            Assert.IsTrue(false);
-        }
+        disableControls = GameObject.FindWithTag("Player").GetComponent<DisableControls>();
+        canvas = GameObject.FindWithTag("UI");
+        print(canvas);
     }
 
     // Update is called once per frame
@@ -41,7 +36,8 @@ public class IntroBehavior : MonoBehaviour
         {
             intro = false;
         }
-        //canvas.SetActive(false);
+        disableControls.Disable();
+        canvas.SetActive(false);
         if (timer <= 0 || !intro)
         {
             if (idx >= 0)

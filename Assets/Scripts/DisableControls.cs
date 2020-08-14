@@ -12,7 +12,7 @@ public class DisableControls : MonoBehaviour
     void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        playerMovement = player.GetComponent<Player_Movement>();
+        playerMovement = player.GetComponentInChildren<Player_Movement>();
         cameraControls = player.GetComponentsInChildren<Camera_Control>();
         grappleHand = player.GetComponentInChildren<GrappleHandController>();
     }

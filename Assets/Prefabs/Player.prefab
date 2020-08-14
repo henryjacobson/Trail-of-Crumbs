@@ -31759,8 +31759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  gravity: -9.81
-  jumpVelocity: 3.5
+  gravity: -19.62
+  jumpVelocity: 5.5
   footstepSFX: {fileID: 6639230920555208901}
   footstepDelay: 0.3
 --- !u!114 &1337690817380850643
@@ -31903,7 +31903,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7105552727862554756}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5291b6b32aa124f50a3f713138174fd1, type: 3}

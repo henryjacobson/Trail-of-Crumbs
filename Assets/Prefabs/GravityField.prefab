@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 821219525799915596}
   - component: {fileID: 821219525799915592}
   - component: {fileID: 821219525799915593}
+  - component: {fileID: 4534536622935709853}
   m_Layer: 2
   m_Name: GravityField
   m_TagString: Untagged
@@ -108,3 +109,15 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821219525799915597}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4534536622935709853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821219525799915597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6bba21f4e7bb946a68add321c43896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -373,7 +373,7 @@ public class GrappleHandController : MonoBehaviour
 
             if (other.CompareTag("ShieldGenerator"))
             {
-                other.gameObject.GetComponent<ShieldGenerator>().Disable();
+                other.gameObject.GetComponentInChildren<ShieldGenerator>().Disable();
                 this.controlState = ControlState.Retracting;
             }
 

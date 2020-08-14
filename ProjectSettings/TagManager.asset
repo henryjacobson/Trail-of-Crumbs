@@ -21,6 +21,8 @@ TagManager:
   - UI
   - Fire
   - CrumbsBanks
+  - Shield
+  - ShieldGenerator
   layers:
   - Default
   - TransparentFX

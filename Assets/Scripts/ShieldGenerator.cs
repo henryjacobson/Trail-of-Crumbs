@@ -47,7 +47,7 @@ public class ShieldGenerator : MonoBehaviour
     public void Disable()
     {
         shielding = false;
-        laser.SetActive(false);
+        Destroy(currentLaser);
         transform.rotation = startRot;
         ai.DamageShield();
     }

@@ -74,6 +74,11 @@ namespace DigitalRuby.PyroParticles
                 return;
             }
 
+            if (obj.CompareTag("Player"))
+            {
+                FindObjectOfType<LevelManager>().LevelLost();
+            }
+
             // stop the projectile
             collided = true;
             Stop();

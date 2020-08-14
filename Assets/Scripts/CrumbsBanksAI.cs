@@ -15,6 +15,7 @@ public class CrumbsBanksAI : MonoBehaviour
     public float attackTimeMin = 2.5f;
     public float attackTimeMax = 5f;
 
+    public Transform center;
     public float xMin;
     public float xMax;
     public float zMin;
@@ -32,6 +33,8 @@ public class CrumbsBanksAI : MonoBehaviour
     public AudioClip ouchSFX;
     public AudioClip shieldSFX;
     public AudioClip deathSFX;
+
+    public GameObject camera;
 
     Transform player;
     Animator anim;
@@ -202,10 +205,10 @@ public class CrumbsBanksAI : MonoBehaviour
             shieldObject.transform.localPosition = new Vector3(.14f, .87f, 0);
 
             ShieldGenerator[] shieldGens = FindObjectsOfType<ShieldGenerator>();
-            nShieldGens = shieldGens.Length;
             foreach (ShieldGenerator shieldGen in shieldGens)
             {
-                shieldGen.Enable();
+                if (shieldGen.Enable(damageTaken == 2))
+                    nShieldGens++;
             }
 
             attackTimer = Random.Range(attackTimeMin, attackTimeMax);
@@ -237,7 +240,7 @@ public class CrumbsBanksAI : MonoBehaviour
 
     public void TakeDamage()
     {
-        if (!shielded)
+        if (!shielded && (state == FSMStates.Neutral || state == FSMStates.Attacking))
         {
             if (damageTaken < 2)
             {
@@ -248,9 +251,18 @@ public class CrumbsBanksAI : MonoBehaviour
             }
             else
             {
+                /*
+                var pos = transform.position + Vector3.up * 2f;
+                var ratio = 1 / Vector3.Distance(pos, center.position);
+                camera.transform.position = Vector3.Lerp(pos, center.position, ratio);
+                camera.transform.LookAt(pos);
+                camera.SetActive(true);
+                */
                 AudioSource.PlayClipAtPoint(deathSFX, transform.position);
                 FindObjectOfType<LevelManager>().LevelWon();
                 GetComponent<Animator>().enabled = false;
+                particle0.SetActive(false);
+                particle1.SetActive(false);
                 enabled = false;
                 foreach (Rigidbody rb in ragdoll)
                 {
@@ -280,8 +292,8 @@ public class CrumbsBanksAI : MonoBehaviour
         prevSpot = transform.position;
         do
         {
-            float x = Random.Range(xMin, xMax);
-            float z = Random.Range(zMin, zMax);
+            float x = center.position.x + Random.Range(xMin, xMax);
+            float z = center.position.z + Random.Range(zMin, zMax);
             hoverSpot = new Vector3(x, height, z);
         } while (Vector3.Distance(hoverSpot, player.position) < 5f && Vector3.Distance(hoverSpot, prevSpot) < 10f);
     }

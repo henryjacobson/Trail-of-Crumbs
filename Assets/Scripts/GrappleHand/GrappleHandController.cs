@@ -328,6 +328,26 @@ public class GrappleHandController : MonoBehaviour
         LayerMask mask = ~LayerMask.GetMask("Light", "Ignore Raycast");
         Collider[] colliders = Physics.OverlapCapsule(pointA, pointB, 0.25f, mask);
 
+        bool grabTriggerFound = false;
+        bool obstructionFound = false;
+        foreach (Collider c in colliders)
+        {
+            if (this.IsObjectGrabbable(c.gameObject) && this.ObjectNotThisOrChild(c.gameObject))
+            {
+                grabTriggerFound = true;
+            }
+            else if (this.ObjectNotThisOrChild(c.gameObject))
+            {
+                obstructionFound = true;
+            }
+        }
+
+        if (!grabTriggerFound && obstructionFound)
+        {
+            AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
+            this.controlState = ControlState.Retracting;
+        }
+
         Vector3 offset = this.transform.position + (this.transform.forward * this.GetGrappleSpeed() * Time.fixedDeltaTime);
         this.rb.MovePosition(offset);
 
@@ -358,39 +378,33 @@ public class GrappleHandController : MonoBehaviour
                 this.controlState = ControlState.Retracting;
             }
 
-            else if (other.CompareTag("Conductor"))
+            if (other.CompareTag("Conductor"))
             {
                 other.gameObject.GetComponent<ConductorBehavior>().Attack();
                 this.controlState = ControlState.Retracting;
             }
 
-            else if (other.CompareTag("CrumbsBanks"))
+            if (other.CompareTag("CrumbsBanks"))
             {
                 other.gameObject.GetComponent<CrumbsBanksAI>().TakeDamage();
                 this.controlState = ControlState.Retracting;
             }
 
-            else if (other.CompareTag("ShieldGenerator"))
+            if (other.CompareTag("ShieldGenerator"))
             {
                 other.gameObject.GetComponentInChildren<ShieldGenerator>().Disable();
                 this.controlState = ControlState.Retracting;
             }
 
-            else if (other.CompareTag(this.grabbableWallTag))
+            if (other.CompareTag(this.grabbableWallTag))
             {
                 this.controlState = ControlState.PullingPlayer;
                 AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
             }
 
-            else if (other.CompareTag(this.grabbableItemTag))
+            if (other.CompareTag(this.grabbableItemTag))
             {
                 this.PickUpObject(other.gameObject);
-                this.controlState = ControlState.Retracting;
-            }
-
-            else if (!other.isTrigger)
-            {
-                AudioSource.PlayClipAtPoint(this.hitSFX, this.transform.position);
                 this.controlState = ControlState.Retracting;
             }
         }

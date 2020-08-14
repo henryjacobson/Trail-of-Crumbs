@@ -106,7 +106,10 @@ MonoBehaviour:
   distanceToGrappleToStop: 2
   fireSFX: {fileID: 8300000, guid: 95e838e0a30c748cb9d08f70fd02e578, type: 3}
   returnSFX: {fileID: 8300000, guid: 406c929b7299afb469c82778f8d15d5b, type: 3}
-  powerupTimerText: {fileID: 0}
+  hitSFX: {fileID: 0}
+  powerUpTimerSlider: {fileID: 0}
+  extendRangeUIColor: {r: 0, g: 1, b: 0, a: 1}
+  attackUIColor: {r: 1, g: 0, b: 0, a: 1}
   damage: 10
   range: 100
   fpsCam: {fileID: 0}
@@ -137,7 +140,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Height: 0.99999994
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}

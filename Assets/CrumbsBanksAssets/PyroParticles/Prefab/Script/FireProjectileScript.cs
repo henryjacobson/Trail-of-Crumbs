@@ -74,7 +74,9 @@ namespace DigitalRuby.PyroParticles
                 return;
             }
 
-            if (obj.CompareTag("Player"))
+            print(obj.tag);
+
+            if (c.gameObject.CompareTag("Player"))
             {
                 FindObjectOfType<LevelManager>().LevelLost();
             }

@@ -168,7 +168,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4965,7 +4965,7 @@ MonoBehaviour:
   ProjectileExplosionRadius: 3
   ProjectileExplosionForce: 500
   ProjectileColliderDelay: 0
-  ProjectileColliderSpeed: 25
+  ProjectileColliderSpeed: 10
   ProjectileDirection: {x: 0, y: 0, z: 1}
   ProjectileCollisionLayers:
     serializedVersion: 2

@@ -127,7 +127,7 @@ public class LevelManager : MonoBehaviour
 
     private void DisableGameOverText()
     {
-        gameOverText.enabled = false;
+        SetGameOverText("");
     }
 
     private void LoadNextLevel()

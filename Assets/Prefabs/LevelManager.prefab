@@ -594,6 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6c7fe579d783a498065038120379b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 7638253298374806328}
 --- !u!1 &7638253298053005715
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,9 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae21b829f0a16d4281c1e7f3d1a2fae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: PrisonRedesign
+  nextLevel: Spaceship
   gameOverText: {fileID: 7638253298374806328}
-  canBreakPods: 0
+  canBreakPods: 1
   player: {fileID: 0}
   loseSFX: {fileID: 8300000, guid: 71e886e8b4be141d0b60746c9afcfb50, type: 3}
   winSFX: {fileID: 8300000, guid: 54baec16e92834b569d448f515e1e4e5, type: 3}

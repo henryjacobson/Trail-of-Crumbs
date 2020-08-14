@@ -261,6 +261,8 @@ public class CrumbsBanksAI : MonoBehaviour
                 AudioSource.PlayClipAtPoint(deathSFX, transform.position);
                 FindObjectOfType<LevelManager>().LevelWon();
                 GetComponent<Animator>().enabled = false;
+                particle0.SetActive(false);
+                particle1.SetActive(false);
                 enabled = false;
                 foreach (Rigidbody rb in ragdoll)
                 {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,13 @@ public class CacheOnCheckpoint : MonoBehaviour
 
         this.gameObject.SetActive(false);
 
-        this.gameObject.SendMessage("OnDestroy", destroyDelay);
+        try
+        {
+            this.gameObject.SendMessage("OnDestroy", destroyDelay);
+        } catch (Exception e)
+        {
+
+        }
     }
 
     public void Revert()

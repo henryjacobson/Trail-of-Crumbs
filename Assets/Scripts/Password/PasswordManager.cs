@@ -9,7 +9,7 @@ public class PasswordManager : MonoBehaviour
     [SerializeField]
     private int randomPasswordLength = 4;
 
-    void Start()
+    void Awake()
     {
         if (this.password == "")
         {

@@ -25,10 +25,13 @@ public class Player_Movement : MonoBehaviour
 
     private bool flippingGravity;
 
+    private float initialHeight;
+
     // Start is called before the first frame update
     void Start(){
         groundChecker = transform.Find("GroundChecker");
         _charCont = GetComponent<CharacterController>();
+        this.initialHeight = this._charCont.height;
         controlsActive = true;
     }
 
@@ -83,7 +86,7 @@ public class Player_Movement : MonoBehaviour
         }
         else 
         {
-            _charCont.height = 2.0f;
+            _charCont.height = this.initialHeight;
             speed = 6.0f;
         }
     }

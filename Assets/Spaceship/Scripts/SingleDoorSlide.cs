@@ -94,7 +94,7 @@ public class SingleDoorSlide : MonoBehaviour
             }
         }
 
-        if (other.GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer("Characters"))
+        if (other.CompareTag("Player"))//GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer("Characters"))
         {
             objectsOnDoorArea++;
         }
@@ -108,7 +108,7 @@ public class SingleDoorSlide : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         //	Keep tracking of objects on the door
-        if (other.GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer("Characters"))
+        if (other.CompareTag("Player"))//GetComponent<Collider>().gameObject.layer == LayerMask.NameToLayer("Characters"))
         {
             objectsOnDoorArea--;
         }

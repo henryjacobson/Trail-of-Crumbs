@@ -133,7 +133,8 @@ public class Player_Movement : MonoBehaviour
     {
         while(Quaternion.Angle(this.transform.rotation, rotation) >= 1)
         {
-            this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * 12);
+            this.transform.rotation = rotation;
+            //this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rotation, Time.deltaTime * 12);
             yield return null;
         }
 

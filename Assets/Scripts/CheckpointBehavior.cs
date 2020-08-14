@@ -14,8 +14,8 @@ public class CheckpointBehavior : MonoBehaviour
             FindObjectOfType<LevelManager>().SetCheckPoint(other.transform.position);
             PodBreak.ClearPodCache();
             CacheOnCheckpoint.ClearCache();
-            onSetCheckpoint();
             Destroy(gameObject);
+            onSetCheckpoint();
         }
     }
 }

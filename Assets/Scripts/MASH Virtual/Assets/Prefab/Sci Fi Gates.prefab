@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3702160184686050159}
   - component: {fileID: 6832362722775459435}
   - component: {fileID: 6872616932689621748}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sci Fi Gates
   m_TagString: Untagged
   m_Icon: {fileID: 0}

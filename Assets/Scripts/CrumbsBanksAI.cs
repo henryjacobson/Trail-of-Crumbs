@@ -24,6 +24,15 @@ public class CrumbsBanksAI : MonoBehaviour
     public GameObject particle0;
     public GameObject particle1;
 
+    public AudioClip song;
+    public AudioClip riser;
+    public float riserDelay;
+
+    public AudioClip attackSFX;
+    public AudioClip ouchSFX;
+    public AudioClip shieldSFX;
+    public AudioClip deathSFX;
+
     Transform player;
     Animator anim;
     bool doneStanding;
@@ -34,6 +43,10 @@ public class CrumbsBanksAI : MonoBehaviour
     GameObject shieldObject;
     Vector3 prevSpot;
     Vector3 hoverSpot;
+
+    Rigidbody[] ragdoll;
+
+    AudioSource src;
 
     int nShieldGens;
 
@@ -64,6 +77,14 @@ public class CrumbsBanksAI : MonoBehaviour
 
         particle0.SetActive(false);
         particle1.SetActive(false);
+
+        src = Camera.main.GetComponent<AudioSource>();
+
+        ragdoll = GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in ragdoll)
+        {
+            rb.isKinematic = true;
+        }
 
         Invoke("SpotPlayer", 2);
     }
@@ -109,6 +130,15 @@ public class CrumbsBanksAI : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, height, transform.position.z);
                 state = FSMStates.Neutral;
                 anim.SetTrigger("start");
+
+                prevSpot = transform.position;
+                hoverSpot = transform.position;
+
+                attackTime = 0;
+                attackTimer = 0;
+
+                src.clip = song;
+                src.Play();
             }
         }
     }
@@ -119,7 +149,7 @@ public class CrumbsBanksAI : MonoBehaviour
         {
             transform.position = Vector3.Lerp(prevSpot, hoverSpot, (attackTime - attackTimer) / attackTime);
         }
-        print(attackTimer);
+
         FacePlayer();
         attackTimer -= Time.deltaTime;
         if (attackTimer <= 0)
@@ -143,6 +173,7 @@ public class CrumbsBanksAI : MonoBehaviour
             fireObj.transform.LookAt(player);
             fireObj.transform.position += fireObj.transform.forward * 2;
             attackTimer = attackTime = Random.Range(attackTimeMin, attackTimeMax);
+            AudioSource.PlayClipAtPoint(attackSFX, transform.position);
         }
         if (attacked && info.IsName("Idle"))
         {
@@ -180,6 +211,8 @@ public class CrumbsBanksAI : MonoBehaviour
             }
 
             attackTimer = Random.Range(attackTimeMin, attackTimeMax);
+
+            AudioSource.PlayClipAtPoint(shieldSFX, transform.position);
         }
         if (shielded && info.IsName("Idle"))
         {
@@ -212,13 +245,19 @@ public class CrumbsBanksAI : MonoBehaviour
             {
                 anim.SetTrigger("damage");
                 state = FSMStates.Damaged;
-                damageTaken++;
+                damageTaken++; 
+                AudioSource.PlayClipAtPoint(ouchSFX, transform.position);
             }
             else
             {
+                AudioSource.PlayClipAtPoint(deathSFX, transform.position);
                 FindObjectOfType<LevelManager>().LevelWon();
                 GetComponent<Animator>().enabled = false;
                 enabled = false;
+                foreach (Rigidbody rb in ragdoll)
+                {
+                    rb.isKinematic = false;
+                }
             }
         }
     }
@@ -228,6 +267,14 @@ public class CrumbsBanksAI : MonoBehaviour
         state = FSMStates.Rising;
         anim.SetTrigger("spotted");
         print("now");
+
+        Invoke("Riser", riserDelay);
+    }
+
+    void Riser()
+    {
+        src.clip = riser;
+        src.Play();
     }
 
     void NewSpot()

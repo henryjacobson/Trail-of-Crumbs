@@ -156,25 +156,10 @@ public class EnemyAI : MonoBehaviour
 
     public void GameOver(bool initialEnemy)
     {
-        if (initialEnemy)
-        {
-            audioSource.clip = gameOver;
-            audioSource.Play();
-            var enemies = FindObjectsOfType<EnemyAI>();
-            foreach (EnemyAI enemy in enemies)
-            {
-                if (enemy != this)
-                {
-                    enemy.GameOver(false);
-                }
-            }
-            player.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
-            Camera.main.transform.LookAt(transform.position + Vector3.up * 1.5f);
-        }
-        else
-        {
-            Invoke("Haha", Random.Range(.2f, 1f));
-        }
+        audioSource.clip = gameOver;
+        audioSource.Play();
+        player.transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, transform.position.z));
+        Camera.main.transform.LookAt(transform.position + Vector3.up * 1.5f);
 
         state = FSMStates.GameOver;
         anim.enabled = false;

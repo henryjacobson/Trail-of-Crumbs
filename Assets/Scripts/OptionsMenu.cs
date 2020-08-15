@@ -20,6 +20,7 @@ namespace SlimUI.ModernMenu{
 		AudioSource musicSource;
 
 		public void  Start (){
+			Time.timeScale = 1f;
             if (!isMainMenu)
             {
 				cameraControls = GameObject.FindGameObjectWithTag("Player").GetComponentsInChildren<Camera_Control>();

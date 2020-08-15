@@ -224,6 +224,7 @@ public class CrumbsBanksAI : MonoBehaviour
             shieldObject.transform.localPosition = new Vector3(.14f, .87f, 0);
 
             ShieldGenerator[] shieldGens = FindObjectsOfType<ShieldGenerator>();
+            nShieldGens = 0;
             foreach (ShieldGenerator shieldGen in shieldGens)
             {
                 if (shieldGen.Enable(damageTaken == 2))

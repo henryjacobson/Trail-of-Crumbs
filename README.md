@@ -2,11 +2,21 @@
 
 A stealth game developed by me and three other students.
 
+## Play the Game
+
+The third level was too large to upload to WebGL so here is the link to levels 1 and 2 and the final boss fight.
+
+https://jacobsonh.itch.io/trail-of-crumbs
+
+And here is the full game windows download.
+
+https://drive.google.com/file/d/1nD_HutgJGW2WR-TEeCh8_SDIU6LWbY8h/view?usp=sharing
+
 ## My Contributions
 
 I implemented all enemy AI with multiple FSMs and navigation mechanics, models from various sources, animations from Mixamo, and behavior including a complex final boss fight with three stages. I also wrote the code for and designed the intro sequences for each level. I also integrated exisiting menu asset to control settings and pause.
 
-### Scripts I wrote
+### Some of the scripts I wrote
 
 * [EnemyAI](Assets/Scripts/Enemies/EnemyAI.cs)
 * [IntroBehavior](Assets/Scripts/Intro/IntroBehavior.cs)
